@@ -25,10 +25,10 @@ public class Pantallaprincipal extends View {
 	private int current_rain_x=0;
 	private int current_rain_y=0;
 	private int prob_rain=70; // probability of rain
-	private int cnormal=2; // cnormal es l'index de creixement normal (sobre 100)
+	//private int cnormal=2; // cnormal es l'index de creixement normal (sobre 100)
 	private int cproxim=8; // cproxim es l'index de creixement proxim (sobre 100)
 	private int cpluja=50; // cpluja es l'index de creixement en zones de pluja (sobre 100)
-	private int num_of_grass=0;
+	//private int num_of_grass=0;
 	private GrassMatrix matriu_herba=new GrassMatrix();
 	private Random randomGenerator;
 
@@ -45,12 +45,11 @@ public class Pantallaprincipal extends View {
 		randomGenerator = new Random();
 		
 	}
-
 	@Override
     public void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         canvas.save();
-        num_of_grass=0;
+        Engine.NUM_OF_GRASS=0;
 		int random_x = randomGenerator.nextInt(100); //  range 0..99
 		int random_y = randomGenerator.nextInt(100); //  range 0..99
 		int rain_chance = randomGenerator.nextInt(100); //  range 0..99
@@ -74,7 +73,7 @@ public class Pantallaprincipal extends View {
 			for (int y=0;y<100;y++) {
 				matriu_herba.grow(x, y);
 				int chance = randomGenerator.nextInt(100); //  range 0..99
-				if (chance>100-cnormal) {
+				if (chance>100-Engine.CNORMAL) {
 					matriu_herba.born(x,y);	// mira si aquesta casella es pot convertir en una nova herba
 				}
 				if (chance>100-cproxim && matriu_herba.getNear(x,y)==1) { // en cas que estigui proxima a una altre herba
@@ -88,27 +87,27 @@ public class Pantallaprincipal extends View {
 				// dibuixem les herbes vives segons els diferents nivells d'energia
 				if (matriu_herba.getAge(x,y)==1) {
 					canvas.drawBitmap(planta1, x*5, y*5, null);
-					num_of_grass=num_of_grass+1;
+					Engine.NUM_OF_GRASS=Engine.NUM_OF_GRASS+1;
 				}
 				if (matriu_herba.getAge(x,y)==2) {
 					canvas.drawBitmap(planta2, x*5, y*5, null);
-					num_of_grass=num_of_grass+1;
+					Engine.NUM_OF_GRASS=Engine.NUM_OF_GRASS+1;
 				}
 				if (matriu_herba.getAge(x,y)==3) {
 					canvas.drawBitmap(planta3, x*5, y*5, null);
-					num_of_grass=num_of_grass+1;
+					Engine.NUM_OF_GRASS=Engine.NUM_OF_GRASS+1;
 				}
 				if (matriu_herba.getAge(x,y)==4) {
 					canvas.drawBitmap(planta4, x*5, y*5, null);
-					num_of_grass=num_of_grass+1;
+					Engine.NUM_OF_GRASS=Engine.NUM_OF_GRASS+1;
 				}
 				if (matriu_herba.getAge(x,y)==5) {
 					canvas.drawBitmap(planta5, x*5, y*5, null);
-					num_of_grass=num_of_grass+1;
+					Engine.NUM_OF_GRASS=Engine.NUM_OF_GRASS+1;
 				}
 				if (matriu_herba.getRain(x,y)==1) {
 					canvas.drawBitmap(pluja, x*5, y*5, null);
-					num_of_grass=num_of_grass+1;
+					Engine.NUM_OF_GRASS=Engine.NUM_OF_GRASS+1;
 				}
 
 			}
