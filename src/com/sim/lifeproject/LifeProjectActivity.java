@@ -39,10 +39,14 @@ public class LifeProjectActivity extends Activity {
         tabs.addTab(spec);
         spec=tabs.newTabSpec("mitab2");
         spec.setContent(R.id.tab2);
-        spec.setIndicator("Setup",res.getDrawable(android.R.drawable.ic_menu_edit));
+        spec.setIndicator("Setup1",res.getDrawable(android.R.drawable.ic_menu_edit));
         tabs.addTab(spec);
-         
+        spec=tabs.newTabSpec("mitab3");
+        spec.setContent(R.id.tab3);
+        spec.setIndicator("Setup2",res.getDrawable(android.R.drawable.ic_menu_edit));
+        tabs.addTab(spec);
         tabs.setCurrentTab(0);
+        
         pantalla.requestFocus();
         LinearLayout upper = (LinearLayout) findViewById(R.id.pantallasimulacio);
         upper.addView(pantalla);
