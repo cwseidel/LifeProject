@@ -21,14 +21,8 @@ public class Pantallaprincipal extends View {
 	private Bitmap pluja;
 	private int is_raining=0;
 	private int raining_time=0;
-	private int max_rainining_time=5;
 	private int current_rain_x=0;
 	private int current_rain_y=0;
-	private int prob_rain=70; // probability of rain
-	//private int cnormal=2; // cnormal es l'index de creixement normal (sobre 100)
-	private int cproxim=8; // cproxim es l'index de creixement proxim (sobre 100)
-	private int cpluja=50; // cpluja es l'index de creixement en zones de pluja (sobre 100)
-	//private int num_of_grass=0;
 	private GrassMatrix matriu_herba=new GrassMatrix();
 	private Random randomGenerator;
 
@@ -55,13 +49,13 @@ public class Pantallaprincipal extends View {
 		int rain_chance = randomGenerator.nextInt(100); //  range 0..99
 		if (is_raining==1) { 
 			raining_time=raining_time+1;
-			if (raining_time>max_rainining_time) { // si ha de parar de ploure
+			if (raining_time>Engine.MAX_RAINING_TIME) { // si ha de parar de ploure
 				matriu_herba.rain_off(current_rain_x,current_rain_y);
 				is_raining=0;
 				raining_time=0;
 			}
 		}
-		if (rain_chance>100-prob_rain && is_raining==0) { // si no plou i es produeix la possiblitat
+		if (rain_chance>100-Engine.PROB_RAIN && is_raining==0) { // si no plou i es produeix la possiblitat
 			matriu_herba.rain_on(random_x,random_y);
 			current_rain_x=random_x;
 			current_rain_y=random_y;
@@ -76,10 +70,10 @@ public class Pantallaprincipal extends View {
 				if (chance>100-Engine.CNORMAL) {
 					matriu_herba.born(x,y);	// mira si aquesta casella es pot convertir en una nova herba
 				}
-				if (chance>100-cproxim && matriu_herba.getNear(x,y)==1) { // en cas que estigui proxima a una altre herba
+				if (chance>100-Engine.CPROXIM && matriu_herba.getNear(x,y)==1) { // en cas que estigui proxima a una altre herba
 					matriu_herba.born(x,y);	// mira si aquesta casella es pot convertir en una nova herba
 				}
-				if (chance>100-cpluja && matriu_herba.getRain(x,y)==1) {
+				if (chance>100-Engine.CPLUJA && matriu_herba.getRain(x,y)==1) {
 					matriu_herba.born(x,y);
 				}
 				// dibuixem el fons
