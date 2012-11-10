@@ -1,8 +1,26 @@
+/*
+    Copyright (C) 2012  Ferran Fàbregas
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
 package com.sim.lifeproject;
 
 
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
@@ -11,6 +29,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -27,7 +46,12 @@ public class LifeProjectActivity extends Activity {
 	int en_moviment=1;
 	TabHost tabs;
 	EditText grow_edit1;
+	EditText grow_edit2;
+	EditText rain_edit1;
+	EditText rain_edit2;
+	EditText rain_edit3;
 	TextView num_grass;
+		
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +82,10 @@ public class LifeProjectActivity extends Activity {
         Button rain_update = (Button) findViewById(R.id.rain_update);
         Button grow_update = (Button) findViewById(R.id.grow_update);
         grow_edit1=(EditText)findViewById(R.id.grow_edit1);
+        grow_edit2=(EditText)findViewById(R.id.grow_edit2);
+        rain_edit1=(EditText)findViewById(R.id.rain_edit1);
+        rain_edit2=(EditText)findViewById(R.id.rain_edit2);
+        rain_edit3=(EditText)findViewById(R.id.rain_edit3);
         num_grass=(TextView)findViewById(R.id.show);
         
         gestor = new Handler() {
@@ -98,9 +126,18 @@ public class LifeProjectActivity extends Activity {
         grow_update.setOnClickListener(new Button.OnClickListener() {
       	   public void onClick(View v) {
       		  Engine.CNORMAL=Integer.parseInt(grow_edit1.getText().toString());
+      		  Engine.CPROXIM=Integer.parseInt(grow_edit2.getText().toString());
       		  tabs.setCurrentTab(0);
       	   }
          });
+        rain_update.setOnClickListener(new Button.OnClickListener() {
+       	   public void onClick(View v) {
+       		  Engine.CPLUJA=Integer.parseInt(rain_edit1.getText().toString());
+       		  Engine.MAX_RAINING_TIME=Integer.parseInt(rain_edit2.getText().toString());
+       		  Engine.PROB_RAIN=Integer.parseInt(rain_edit3.getText().toString());
+       		  tabs.setCurrentTab(0);
+       	   }
+          });
     }
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

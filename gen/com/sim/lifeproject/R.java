@@ -25,13 +25,14 @@ public final class R {
     public static final class id {
         public static final int LinearLayout02=0x7f060002;
         public static final int grow_edit1=0x7f06000f;
+        public static final int grow_edit2=0x7f060011;
         public static final int grow_txt1=0x7f06000e;
         public static final int grow_txt2=0x7f060010;
-        public static final int grow_update=0x7f060011;
+        public static final int grow_update=0x7f060012;
         public static final int layout_ad=0x7f060004;
-        public static final int menu_exit=0x7f060012;
-        public static final int menu_start=0x7f060014;
-        public static final int menu_stop=0x7f060013;
+        public static final int menu_exit=0x7f060013;
+        public static final int menu_start=0x7f060015;
+        public static final int menu_stop=0x7f060014;
         public static final int pantallasimulacio=0x7f060001;
         public static final int rain_edit1=0x7f060007;
         public static final int rain_edit2=0x7f060009;
