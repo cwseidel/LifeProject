@@ -19,10 +19,9 @@ package com.sim.lifeproject;
 
 
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.Context;
 import android.content.res.Resources;
-import android.graphics.Point;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -31,13 +30,13 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TabHost;
 import android.widget.TextView;
 
+@SuppressLint("HandlerLeak")
 public class LifeProjectActivity extends Activity {
     /** Called when the activity is first created. */
 	Thread bucleprincipal;
@@ -91,6 +90,11 @@ public class LifeProjectActivity extends Activity {
         rain_edit2=(EditText)findViewById(R.id.rain_edit2);
         rain_edit3=(EditText)findViewById(R.id.rain_edit3);
         num_grass=(TextView)findViewById(R.id.show);
+        rain_edit1.setText(Integer.toString(Engine.CPLUJA));
+        rain_edit2.setText(Integer.toString(Engine.MAX_RAINING_TIME));
+        rain_edit3.setText(Integer.toString(Engine.PROB_RAIN));
+        grow_edit1.setText(Integer.toString(Engine.CNORMAL));
+        grow_edit2.setText(Integer.toString(Engine.CPROXIM));
         
         gestor = new Handler() {
             public void handleMessage(Message msg) {
