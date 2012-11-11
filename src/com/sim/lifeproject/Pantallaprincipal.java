@@ -60,6 +60,8 @@ public class Pantallaprincipal extends View {
     public void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         canvas.save();
+        int position_offset=(Engine.SCREEN_W-500)/2;
+        if (position_offset<0) { position_offset=0; }
         Engine.NUM_OF_GRASS=0;
 		int random_x = randomGenerator.nextInt(100); //  range 0..99
 		int random_y = randomGenerator.nextInt(100); //  range 0..99
@@ -94,30 +96,30 @@ public class Pantallaprincipal extends View {
 					matriu_herba.born(x,y);
 				}
 				// dibuixem el fons
-				canvas.drawBitmap(terra, x*5, y*5, null);
+				canvas.drawBitmap(terra, position_offset+(x*5), y*5, null);
 				// dibuixem les herbes vives segons els diferents nivells d'energia
 				if (matriu_herba.getAge(x,y)==1) {
-					canvas.drawBitmap(planta1, x*5, y*5, null);
+					canvas.drawBitmap(planta1, position_offset+(x*5), y*5, null);
 					Engine.NUM_OF_GRASS=Engine.NUM_OF_GRASS+1;
 				}
 				if (matriu_herba.getAge(x,y)==2) {
-					canvas.drawBitmap(planta2, x*5, y*5, null);
+					canvas.drawBitmap(planta2, position_offset+(x*5), y*5, null);
 					Engine.NUM_OF_GRASS=Engine.NUM_OF_GRASS+1;
 				}
 				if (matriu_herba.getAge(x,y)==3) {
-					canvas.drawBitmap(planta3, x*5, y*5, null);
+					canvas.drawBitmap(planta3, position_offset+(x*5), y*5, null);
 					Engine.NUM_OF_GRASS=Engine.NUM_OF_GRASS+1;
 				}
 				if (matriu_herba.getAge(x,y)==4) {
-					canvas.drawBitmap(planta4, x*5, y*5, null);
+					canvas.drawBitmap(planta4, position_offset+(x*5), y*5, null);
 					Engine.NUM_OF_GRASS=Engine.NUM_OF_GRASS+1;
 				}
 				if (matriu_herba.getAge(x,y)==5) {
-					canvas.drawBitmap(planta5, x*5, y*5, null);
+					canvas.drawBitmap(planta5, position_offset+(x*5), y*5, null);
 					Engine.NUM_OF_GRASS=Engine.NUM_OF_GRASS+1;
 				}
 				if (matriu_herba.getRain(x,y)==1) {
-					canvas.drawBitmap(pluja, x*5, y*5, null);
+					canvas.drawBitmap(pluja, position_offset+(x*5), y*5, null);
 					Engine.NUM_OF_GRASS=Engine.NUM_OF_GRASS+1;
 				}
 

@@ -22,9 +22,11 @@ package com.sim.lifeproject;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.view.Display;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -57,6 +59,8 @@ public class LifeProjectActivity extends Activity {
         super.onCreate(savedInstanceState);
         pantalla = new Pantallaprincipal(this);
         setContentView(R.layout.main);
+        Display display = getWindowManager().getDefaultDisplay();
+        Engine.SCREEN_W=display.getWidth();
         Resources res = getResources();
         
         tabs=(TabHost)findViewById(android.R.id.tabhost);
@@ -93,7 +97,7 @@ public class LifeProjectActivity extends Activity {
             	switch (msg.what) {
             	case LifeProjectActivity.UPDATEID:
             		pantalla.invalidate();
-            		num_grass.setText("% of plants:"+Engine.NUM_OF_GRASS/100);
+            		num_grass.setText("Plants: "+(float)Engine.NUM_OF_GRASS/100+ "%");
             		break;
             	}
             	super.handleMessage(msg);
@@ -107,7 +111,7 @@ public class LifeProjectActivity extends Activity {
         					msg.what= LifeProjectActivity.UPDATEID;
         					LifeProjectActivity.gestor.sendMessage(msg);
         					try {
-        						Thread.sleep(100);
+        						Thread.sleep(300);
         					} catch (InterruptedException e) {
         						en_moviment=0;
         					}

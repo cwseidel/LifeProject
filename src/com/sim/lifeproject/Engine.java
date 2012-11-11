@@ -25,4 +25,6 @@ public static int PROB_RAIN=70; // probability of rain
 public static int CPROXIM=8; // cproxim es l'index de creixement proxim (sobre 100)
 public static int CPLUJA=50;
 public static int MAX_RAINING_TIME=5;
+public static int SCREEN_W;
+public static int SCREEN_H;
 }
