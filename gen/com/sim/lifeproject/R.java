@@ -12,15 +12,7 @@ public final class R {
     }
     public static final class drawable {
         public static final int ic_launcher=0x7f020000;
-        public static final int planta1=0x7f020001;
-        public static final int planta2=0x7f020002;
-        public static final int planta3=0x7f020003;
-        public static final int planta4=0x7f020004;
-        public static final int planta5=0x7f020005;
-        public static final int pluja=0x7f020006;
-        public static final int splashscreen=0x7f020007;
-        public static final int spritetest=0x7f020008;
-        public static final int terra=0x7f020009;
+        public static final int splashscreen=0x7f020001;
     }
     public static final class id {
         public static final int LinearLayout02=0x7f060002;

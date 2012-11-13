@@ -88,6 +88,8 @@ public class Pantallaprincipal extends View {
 		color_planta5.setColor(Color.rgb(0, 115, 0));
 		color_rain.setColor(Color.rgb(0, 128, 255));
 		color_rain.setAlpha(100);
+
+		
 		if (Engine.SCREEN_W>500) { tile_size=5; } else { tile_size=3; }
 		// update an draw the matrix
 		for (int x=0;x<100;x++) {
