@@ -35,6 +35,7 @@ public class Pantallaprincipal extends View {
 	private int current_rain_y=0;
 	private GrassMatrix matriu_herba=new GrassMatrix();
 	private Random randomGenerator;
+	private int tile_size;
 	Paint color_terra = new Paint();
 	Paint color_planta1 = new Paint();
 	Paint color_planta2 = new Paint();
@@ -53,7 +54,12 @@ public class Pantallaprincipal extends View {
     public void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         canvas.save();
-        int position_offset=(Engine.SCREEN_W-500)/2;
+        int position_offset;
+        if (Engine.SCREEN_W>=500) {
+        	position_offset=(Engine.SCREEN_W-500)/2;
+        } else {
+        	position_offset=(Engine.SCREEN_W-300)/2;
+        }
         if (position_offset<0) { position_offset=0; }
         Engine.NUM_OF_GRASS=0;
 		int random_x = randomGenerator.nextInt(100); //  range 0..99
@@ -82,6 +88,7 @@ public class Pantallaprincipal extends View {
 		color_planta5.setColor(Color.rgb(0, 115, 0));
 		color_rain.setColor(Color.rgb(0, 128, 255));
 		color_rain.setAlpha(100);
+		if (Engine.SCREEN_W>500) { tile_size=5; } else { tile_size=3; }
 		// update an draw the matrix
 		for (int x=0;x<100;x++) {
 			for (int y=0;y<100;y++) {
@@ -97,30 +104,30 @@ public class Pantallaprincipal extends View {
 					matriu_herba.born(x,y);
 				}
 				// dibuixem el fons
-				canvas.drawRect(position_offset+(x*5), y*5, position_offset+(x*5)+5, (y*5)+5, color_terra);
+				canvas.drawRect(position_offset+(x*tile_size), y*tile_size, position_offset+(x*tile_size)+tile_size, (y*tile_size)+tile_size, color_terra);
 				// dibuixem les herbes vives segons els diferents nivells d'energia
 				if (matriu_herba.getAge(x,y)==1) {
-					canvas.drawRect(position_offset+(x*5), y*5, position_offset+(x*5)+5, (y*5)+5, color_planta1);
+					canvas.drawRect(position_offset+(x*tile_size), y*tile_size, position_offset+(x*tile_size)+tile_size, (y*tile_size)+tile_size, color_planta1);
 					Engine.NUM_OF_GRASS=Engine.NUM_OF_GRASS+1;
 				}
 				if (matriu_herba.getAge(x,y)==2) {
-					canvas.drawRect(position_offset+(x*5), y*5, position_offset+(x*5)+5, (y*5)+5, color_planta2);
+					canvas.drawRect(position_offset+(x*tile_size), y*tile_size, position_offset+(x*tile_size)+tile_size, (y*tile_size)+tile_size, color_planta2);
 					Engine.NUM_OF_GRASS=Engine.NUM_OF_GRASS+1;
 				}
 				if (matriu_herba.getAge(x,y)==3) {
-					canvas.drawRect(position_offset+(x*5), y*5, position_offset+(x*5)+5, (y*5)+5, color_planta3);
+					canvas.drawRect(position_offset+(x*tile_size), y*tile_size, position_offset+(x*tile_size)+tile_size, (y*tile_size)+tile_size, color_planta3);
 					Engine.NUM_OF_GRASS=Engine.NUM_OF_GRASS+1;
 				}
 				if (matriu_herba.getAge(x,y)==4) {
-					canvas.drawRect(position_offset+(x*5), y*5, position_offset+(x*5)+5, (y*5)+5, color_planta4);
+					canvas.drawRect(position_offset+(x*tile_size), y*tile_size, position_offset+(x*tile_size)+tile_size, (y*tile_size)+tile_size, color_planta4);
 					Engine.NUM_OF_GRASS=Engine.NUM_OF_GRASS+1;
 				}
 				if (matriu_herba.getAge(x,y)==5) {
-					canvas.drawRect(position_offset+(x*5), y*5, position_offset+(x*5)+5, (y*5)+5, color_planta5);
+					canvas.drawRect(position_offset+(x*tile_size), y*tile_size, position_offset+(x*tile_size)+tile_size, (y*tile_size)+tile_size, color_planta5);
 					Engine.NUM_OF_GRASS=Engine.NUM_OF_GRASS+1;
 				}
 				if (matriu_herba.getRain(x,y)==1) {
-					canvas.drawRect(position_offset+(x*5), y*5, position_offset+(x*5)+5, (y*5)+5, color_rain);
+					canvas.drawRect(position_offset+(x*tile_size), y*tile_size, position_offset+(x*tile_size)+tile_size, (y*tile_size)+tile_size, color_rain);
 					Engine.NUM_OF_GRASS=Engine.NUM_OF_GRASS+1;
 				}
 

@@ -67,7 +67,7 @@ public class LifeProjectActivity extends Activity {
          
         TabHost.TabSpec spec=tabs.newTabSpec("mitab1");
         spec.setContent(R.id.tab1);
-        spec.setIndicator("Simulation",res.getDrawable(android.R.drawable.ic_dialog_info));
+        spec.setIndicator("Simulation",res.getDrawable(android.R.drawable.ic_menu_gallery));
         tabs.addTab(spec);
         spec=tabs.newTabSpec("mitab2");
         spec.setContent(R.id.tab2);
