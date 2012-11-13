@@ -17,42 +17,35 @@
 
 package com.sim.lifeproject;
 
-import com.sim.lifeproject.R;
 
 import android.content.Context;
 import android.view.View;
 import android.graphics.Canvas;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.Paint;
+
 import java.util.Random;
 
 
 
 public class Pantallaprincipal extends View {
-	private Bitmap terra; 
-	private Bitmap planta1;
-	private Bitmap planta2;
-	private Bitmap planta3;
-	private Bitmap planta4;
-	private Bitmap planta5;
-	private Bitmap pluja;
 	private int is_raining=0;
 	private int raining_time=0;
 	private int current_rain_x=0;
 	private int current_rain_y=0;
 	private GrassMatrix matriu_herba=new GrassMatrix();
 	private Random randomGenerator;
+	Paint color_terra = new Paint();
+	Paint color_planta1 = new Paint();
+	Paint color_planta2 = new Paint();
+	Paint color_planta3 = new Paint();
+	Paint color_planta4 = new Paint();
+	Paint color_planta5 = new Paint();
+	Paint color_rain = new Paint();
 
 
 	public Pantallaprincipal(Context context) {
 		super(context);
-		terra = BitmapFactory.decodeResource(getResources(), R.drawable.terra);
-		planta1 = BitmapFactory.decodeResource(getResources(), R.drawable.planta1);
-		planta2 = BitmapFactory.decodeResource(getResources(), R.drawable.planta2);
-		planta3 = BitmapFactory.decodeResource(getResources(), R.drawable.planta3);
-		planta4 = BitmapFactory.decodeResource(getResources(), R.drawable.planta4);
-		planta5 = BitmapFactory.decodeResource(getResources(), R.drawable.planta5);
-		pluja = BitmapFactory.decodeResource(getResources(), R.drawable.pluja);
 		randomGenerator = new Random();
 		
 	}
@@ -81,6 +74,14 @@ public class Pantallaprincipal extends View {
 			is_raining=1; // plou
 			raining_time=1;
 		}
+		color_terra.setColor(Color.rgb(136, 96, 17));
+		color_planta1.setColor(Color.rgb(113, 255, 113));
+		color_planta2.setColor(Color.rgb(4, 255, 4));
+		color_planta3.setColor(Color.rgb(0, 232, 0));
+		color_planta4.setColor(Color.rgb(0, 170, 0));
+		color_planta5.setColor(Color.rgb(0, 115, 0));
+		color_rain.setColor(Color.rgb(0, 128, 255));
+		color_rain.setAlpha(100);
 		// update an draw the matrix
 		for (int x=0;x<100;x++) {
 			for (int y=0;y<100;y++) {
@@ -96,30 +97,30 @@ public class Pantallaprincipal extends View {
 					matriu_herba.born(x,y);
 				}
 				// dibuixem el fons
-				canvas.drawBitmap(terra, position_offset+(x*5), y*5, null);
+				canvas.drawRect(position_offset+(x*5), y*5, position_offset+(x*5)+5, (y*5)+5, color_terra);
 				// dibuixem les herbes vives segons els diferents nivells d'energia
 				if (matriu_herba.getAge(x,y)==1) {
-					canvas.drawBitmap(planta1, position_offset+(x*5), y*5, null);
+					canvas.drawRect(position_offset+(x*5), y*5, position_offset+(x*5)+5, (y*5)+5, color_planta1);
 					Engine.NUM_OF_GRASS=Engine.NUM_OF_GRASS+1;
 				}
 				if (matriu_herba.getAge(x,y)==2) {
-					canvas.drawBitmap(planta2, position_offset+(x*5), y*5, null);
+					canvas.drawRect(position_offset+(x*5), y*5, position_offset+(x*5)+5, (y*5)+5, color_planta2);
 					Engine.NUM_OF_GRASS=Engine.NUM_OF_GRASS+1;
 				}
 				if (matriu_herba.getAge(x,y)==3) {
-					canvas.drawBitmap(planta3, position_offset+(x*5), y*5, null);
+					canvas.drawRect(position_offset+(x*5), y*5, position_offset+(x*5)+5, (y*5)+5, color_planta3);
 					Engine.NUM_OF_GRASS=Engine.NUM_OF_GRASS+1;
 				}
 				if (matriu_herba.getAge(x,y)==4) {
-					canvas.drawBitmap(planta4, position_offset+(x*5), y*5, null);
+					canvas.drawRect(position_offset+(x*5), y*5, position_offset+(x*5)+5, (y*5)+5, color_planta4);
 					Engine.NUM_OF_GRASS=Engine.NUM_OF_GRASS+1;
 				}
 				if (matriu_herba.getAge(x,y)==5) {
-					canvas.drawBitmap(planta5, position_offset+(x*5), y*5, null);
+					canvas.drawRect(position_offset+(x*5), y*5, position_offset+(x*5)+5, (y*5)+5, color_planta5);
 					Engine.NUM_OF_GRASS=Engine.NUM_OF_GRASS+1;
 				}
 				if (matriu_herba.getRain(x,y)==1) {
-					canvas.drawBitmap(pluja, position_offset+(x*5), y*5, null);
+					canvas.drawRect(position_offset+(x*5), y*5, position_offset+(x*5)+5, (y*5)+5, color_rain);
 					Engine.NUM_OF_GRASS=Engine.NUM_OF_GRASS+1;
 				}
 
