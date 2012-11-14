@@ -43,6 +43,7 @@ public class Pantallaprincipal extends View {
 	Paint color_planta4 = new Paint();
 	Paint color_planta5 = new Paint();
 	Paint color_rain = new Paint();
+	Paint fons_matriu= new Paint();
 
 
 	public Pantallaprincipal(Context context) {
@@ -86,6 +87,7 @@ public class Pantallaprincipal extends View {
 		color_planta3.setColor(Color.rgb(0, 232, 0));
 		color_planta4.setColor(Color.rgb(0, 170, 0));
 		color_planta5.setColor(Color.rgb(0, 115, 0));
+		fons_matriu.setColor(Color.rgb(0, 0, 0));
 		color_rain.setColor(Color.rgb(0, 128, 255));
 		color_rain.setAlpha(100);
 
@@ -105,31 +107,33 @@ public class Pantallaprincipal extends View {
 				if (chance>100-Engine.CPLUJA && matriu_herba.getRain(x,y)==1) {
 					matriu_herba.born(x,y);
 				}
-				// dibuixem el fons
-				canvas.drawRect(position_offset+(x*tile_size), y*tile_size, position_offset+(x*tile_size)+tile_size, (y*tile_size)+tile_size, color_terra);
+				// dibuixem el fons negre
+				canvas.drawRect(position_offset+(x*tile_size), (y*tile_size), position_offset+(x*tile_size)+tile_size, (y*tile_size)+tile_size, fons_matriu);
+				// dibuixem el fons terra
+				canvas.drawRect(position_offset+(x*tile_size)+1, (y*tile_size)+1, position_offset+(x*tile_size)+tile_size-1, (y*tile_size)+tile_size-1, color_terra);
 				// dibuixem les herbes vives segons els diferents nivells d'energia
 				if (matriu_herba.getAge(x,y)==1) {
-					canvas.drawRect(position_offset+(x*tile_size), y*tile_size, position_offset+(x*tile_size)+tile_size, (y*tile_size)+tile_size, color_planta1);
+					canvas.drawRect(position_offset+(x*tile_size)+1, (y*tile_size)+1, position_offset+(x*tile_size)+tile_size-1, (y*tile_size)+tile_size-1, color_planta1);
 					Engine.NUM_OF_GRASS=Engine.NUM_OF_GRASS+1;
 				}
 				if (matriu_herba.getAge(x,y)==2) {
-					canvas.drawRect(position_offset+(x*tile_size), y*tile_size, position_offset+(x*tile_size)+tile_size, (y*tile_size)+tile_size, color_planta2);
+					canvas.drawRect(position_offset+(x*tile_size)+1, (y*tile_size)+1, position_offset+(x*tile_size)+tile_size-1, (y*tile_size)+tile_size-1, color_planta2);
 					Engine.NUM_OF_GRASS=Engine.NUM_OF_GRASS+1;
 				}
 				if (matriu_herba.getAge(x,y)==3) {
-					canvas.drawRect(position_offset+(x*tile_size), y*tile_size, position_offset+(x*tile_size)+tile_size, (y*tile_size)+tile_size, color_planta3);
+					canvas.drawRect(position_offset+(x*tile_size)+1, (y*tile_size)+1, position_offset+(x*tile_size)+tile_size-1, (y*tile_size)+tile_size-1, color_planta3);
 					Engine.NUM_OF_GRASS=Engine.NUM_OF_GRASS+1;
 				}
 				if (matriu_herba.getAge(x,y)==4) {
-					canvas.drawRect(position_offset+(x*tile_size), y*tile_size, position_offset+(x*tile_size)+tile_size, (y*tile_size)+tile_size, color_planta4);
+					canvas.drawRect(position_offset+(x*tile_size)+1, (y*tile_size)+1, position_offset+(x*tile_size)+tile_size-1, (y*tile_size)+tile_size-1, color_planta4);
 					Engine.NUM_OF_GRASS=Engine.NUM_OF_GRASS+1;
 				}
 				if (matriu_herba.getAge(x,y)==5) {
-					canvas.drawRect(position_offset+(x*tile_size), y*tile_size, position_offset+(x*tile_size)+tile_size, (y*tile_size)+tile_size, color_planta5);
+					canvas.drawRect(position_offset+(x*tile_size)+1, (y*tile_size)+1, position_offset+(x*tile_size)+tile_size-1, (y*tile_size)+tile_size-1, color_planta5);
 					Engine.NUM_OF_GRASS=Engine.NUM_OF_GRASS+1;
 				}
 				if (matriu_herba.getRain(x,y)==1) {
-					canvas.drawRect(position_offset+(x*tile_size), y*tile_size, position_offset+(x*tile_size)+tile_size, (y*tile_size)+tile_size, color_rain);
+					canvas.drawRect(position_offset+(x*tile_size)+1, (y*tile_size)+1, position_offset+(x*tile_size)+tile_size-1, (y*tile_size)+tile_size-1, color_rain);
 					Engine.NUM_OF_GRASS=Engine.NUM_OF_GRASS+1;
 				}
 
