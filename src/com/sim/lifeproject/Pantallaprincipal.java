@@ -24,6 +24,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 
@@ -43,13 +44,20 @@ public class Pantallaprincipal extends View {
 	Paint color_planta4 = new Paint();
 	Paint color_planta5 = new Paint();
 	Paint color_rain = new Paint();
+	Paint color_race1 = new Paint();
+	Paint color_race2 = new Paint();
 	Paint fons_matriu= new Paint();
+	// arraylist per les dos llistes d'animals
+	ArrayList<Animal> Race1List = new ArrayList<Animal>();
+	ArrayList<Animal> Race2List = new ArrayList<Animal>();
 
 
 	public Pantallaprincipal(Context context) {
 		super(context);
 		randomGenerator = new Random();
-		
+		// create first animals of each race
+		Race1List.add(new Animal(10,10,Engine.RACE1_MAX_AGE));
+		Race2List.add(new Animal(90,90,Engine.RACE2_MAX_AGE));		
 	}
 	@Override
     public void onDraw(Canvas canvas) {
@@ -87,6 +95,8 @@ public class Pantallaprincipal extends View {
 		color_planta3.setColor(Color.rgb(0, 232, 0));
 		color_planta4.setColor(Color.rgb(0, 170, 0));
 		color_planta5.setColor(Color.rgb(0, 115, 0));
+		color_race1.setColor(Color.rgb(255, 0, 0));
+		color_race2.setColor(Color.rgb(255, 255, 0));
 		fons_matriu.setColor(Color.rgb(0, 0, 0));
 		color_rain.setColor(Color.rgb(0, 128, 255));
 		color_rain.setAlpha(100);
@@ -113,32 +123,48 @@ public class Pantallaprincipal extends View {
 				canvas.drawRect(position_offset+(x*tile_size)+1, (y*tile_size)+1, position_offset+(x*tile_size)+tile_size-1, (y*tile_size)+tile_size-1, color_terra);
 				// dibuixem les herbes vives segons els diferents nivells d'energia
 				if (matriu_herba.getAge(x,y)==1) {
-					canvas.drawRect(position_offset+(x*tile_size)+1, (y*tile_size)+1, position_offset+(x*tile_size)+tile_size-1, (y*tile_size)+tile_size-1, color_planta1);
+					//canvas.drawRect(position_offset+(x*tile_size)+1, (y*tile_size)+1, position_offset+(x*tile_size)+tile_size-1, (y*tile_size)+tile_size-1, color_planta1);
 					Engine.NUM_OF_GRASS=Engine.NUM_OF_GRASS+1;
 				}
 				if (matriu_herba.getAge(x,y)==2) {
-					canvas.drawRect(position_offset+(x*tile_size)+1, (y*tile_size)+1, position_offset+(x*tile_size)+tile_size-1, (y*tile_size)+tile_size-1, color_planta2);
+					//canvas.drawRect(position_offset+(x*tile_size)+1, (y*tile_size)+1, position_offset+(x*tile_size)+tile_size-1, (y*tile_size)+tile_size-1, color_planta2);
 					Engine.NUM_OF_GRASS=Engine.NUM_OF_GRASS+1;
 				}
 				if (matriu_herba.getAge(x,y)==3) {
-					canvas.drawRect(position_offset+(x*tile_size)+1, (y*tile_size)+1, position_offset+(x*tile_size)+tile_size-1, (y*tile_size)+tile_size-1, color_planta3);
+					//canvas.drawRect(position_offset+(x*tile_size)+1, (y*tile_size)+1, position_offset+(x*tile_size)+tile_size-1, (y*tile_size)+tile_size-1, color_planta3);
 					Engine.NUM_OF_GRASS=Engine.NUM_OF_GRASS+1;
 				}
 				if (matriu_herba.getAge(x,y)==4) {
-					canvas.drawRect(position_offset+(x*tile_size)+1, (y*tile_size)+1, position_offset+(x*tile_size)+tile_size-1, (y*tile_size)+tile_size-1, color_planta4);
+					//canvas.drawRect(position_offset+(x*tile_size)+1, (y*tile_size)+1, position_offset+(x*tile_size)+tile_size-1, (y*tile_size)+tile_size-1, color_planta4);
 					Engine.NUM_OF_GRASS=Engine.NUM_OF_GRASS+1;
 				}
 				if (matriu_herba.getAge(x,y)==5) {
-					canvas.drawRect(position_offset+(x*tile_size)+1, (y*tile_size)+1, position_offset+(x*tile_size)+tile_size-1, (y*tile_size)+tile_size-1, color_planta5);
+					//canvas.drawRect(position_offset+(x*tile_size)+1, (y*tile_size)+1, position_offset+(x*tile_size)+tile_size-1, (y*tile_size)+tile_size-1, color_planta5);
 					Engine.NUM_OF_GRASS=Engine.NUM_OF_GRASS+1;
 				}
 				if (matriu_herba.getRain(x,y)==1) {
-					canvas.drawRect(position_offset+(x*tile_size)+1, (y*tile_size)+1, position_offset+(x*tile_size)+tile_size-1, (y*tile_size)+tile_size-1, color_rain);
+					//canvas.drawRect(position_offset+(x*tile_size)+1, (y*tile_size)+1, position_offset+(x*tile_size)+tile_size-1, (y*tile_size)+tile_size-1, color_rain);
 					Engine.NUM_OF_GRASS=Engine.NUM_OF_GRASS+1;
 				}
 
 			}
 		}
+		int race1size= Race1List.size();
+		int race2size= Race2List.size();
+		// bucle per visualitzar i fer evolucionar els animals
+		for (int i = 0; i < race1size; i++) {
+			Animal item=Race1List.get(i);
+			canvas.drawRect(position_offset+(item.getX()*tile_size)+1, (item.getY()*tile_size)+1, position_offset+(item.getX()*tile_size)+tile_size-1, (item.getY()*tile_size)+tile_size-1, color_race1);
+			item.move();
+			//Race1List.add(new Animal(item.getX(),item.getY(),Engine.RACE1_MAX_AGE));
+		}
+		for (int i = 0; i < race2size; i++) {
+			Animal item=Race2List.get(i);
+			canvas.drawRect(position_offset+(item.getX()*tile_size)+1, (item.getY()*tile_size)+1, position_offset+(item.getX()*tile_size)+tile_size-1, (item.getY()*tile_size)+tile_size-1, color_race2);
+			item.move();
+			//Race2List.add(new Animal(item.getX(),item.getY(),Engine.RACE2_MAX_AGE));
+		}
+		
 		//invalidate();
 	}
 
