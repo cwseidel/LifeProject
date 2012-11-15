@@ -30,6 +30,7 @@
     				android:id="@+id/LinearLayout02"
     				android:layout_width="fill_parent"
     				android:layout_height="wrap_content"
+    				android:background="@drawable/splashscreen"
     				android:layout_below="@+id/pantallasimulacio">
     				<TextView
 					android:id="@+id/show_info"
@@ -52,6 +53,7 @@
 				android:layout_width="fill_parent"
 				android:layout_height="fill_parent"
 				android:orientation="vertical"
+				android:background="@drawable/splashscreen"
 				xmlns:android="http://schemas.android.com/apk/res/android">
 				<TextView
 					android:id="@+id/rain_txt1"
@@ -116,6 +118,7 @@
 				android:layout_width="fill_parent"
 				android:layout_height="fill_parent"
 				android:orientation="vertical"
+				android:background="@drawable/splashscreen"
 				xmlns:android="http://schemas.android.com/apk/res/android">
 				<TextView
 					android:id="@+id/race1_txt1"
@@ -179,6 +182,7 @@
 				android:layout_width="fill_parent"
 				android:layout_height="fill_parent"
 				android:orientation="vertical"
+				android:background="@drawable/splashscreen"
 				xmlns:android="http://schemas.android.com/apk/res/android">
 				<TextView
 					android:id="@+id/race2_txt1"
@@ -242,6 +246,7 @@
 				android:layout_width="fill_parent"
 				android:layout_height="fill_parent"
 				android:orientation="vertical"
+				android:background="@drawable/splashscreen"
 				xmlns:android="http://schemas.android.com/apk/res/android">
 				<TextView
 					android:id="@+id/helptext"
