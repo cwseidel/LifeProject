@@ -44,7 +44,6 @@ public class LifeProjectActivity extends Activity {
 	LinearLayout upper;
 	protected static final int UPDATEID=0x101;
 	static Handler gestor;
-	int en_moviment=0;
 	TabHost tabs;
 	EditText grow_edit1;
 	EditText grow_edit2;
@@ -54,9 +53,13 @@ public class LifeProjectActivity extends Activity {
 	EditText race1_edit1;
 	EditText race1_edit2;
 	EditText race1_edit3;
+	EditText race1_edit4;
+	EditText race1_edit5;
 	EditText race2_edit1;
 	EditText race2_edit2;
 	EditText race2_edit3;
+	EditText race2_edit4;
+	EditText race2_edit5;
 	TextView num_grass,num_race1,num_race2;
 		
 	@Override
@@ -64,6 +67,8 @@ public class LifeProjectActivity extends Activity {
         super.onCreate(savedInstanceState);
         pantalla = new Pantallaprincipal(this);
         setContentView(R.layout.main);
+        Engine.PLAY =false;
+        Engine.FIRST_LOOP = true;
         Display display = getWindowManager().getDefaultDisplay();
         Engine.SCREEN_W=display.getWidth();
         Resources res = getResources();
@@ -108,9 +113,13 @@ public class LifeProjectActivity extends Activity {
         race1_edit1=(EditText)findViewById(R.id.race1_edit1);
         race1_edit2=(EditText)findViewById(R.id.race1_edit2);
         race1_edit3=(EditText)findViewById(R.id.race1_edit3);
+        race1_edit4=(EditText)findViewById(R.id.race1_edit4);
+        race1_edit5=(EditText)findViewById(R.id.race1_edit5);
         race2_edit1=(EditText)findViewById(R.id.race2_edit1);
         race2_edit2=(EditText)findViewById(R.id.race2_edit2);
         race2_edit3=(EditText)findViewById(R.id.race2_edit3);
+        race2_edit4=(EditText)findViewById(R.id.race2_edit4);
+        race2_edit5=(EditText)findViewById(R.id.race2_edit5);
         rain_edit1.setText(Integer.toString(Engine.CPLUJA));
         rain_edit2.setText(Integer.toString(Engine.MAX_RAINING_TIME));
         rain_edit3.setText(Integer.toString(Engine.PROB_RAIN));
@@ -119,9 +128,13 @@ public class LifeProjectActivity extends Activity {
         race1_edit1.setText(Integer.toString(Engine.C_BORN_RACE1));
         race1_edit2.setText(Integer.toString(Engine.EFICIENCY_RACE1));
         race1_edit3.setText(Integer.toString(Engine.RACE1_MAX_AGE));
+        race1_edit4.setText(Integer.toString(Engine.X_RACE1));
+        race1_edit5.setText(Integer.toString(Engine.Y_RACE1));
         race2_edit1.setText(Integer.toString(Engine.C_BORN_RACE2));
         race2_edit2.setText(Integer.toString(Engine.EFICIENCY_RACE2));
         race2_edit3.setText(Integer.toString(Engine.RACE2_MAX_AGE));
+        race2_edit4.setText(Integer.toString(Engine.X_RACE2));
+        race2_edit5.setText(Integer.toString(Engine.Y_RACE2));
         gestor = new Handler() {
             public void handleMessage(Message msg) {
             	switch (msg.what) {
@@ -136,14 +149,14 @@ public class LifeProjectActivity extends Activity {
         bucleprincipal = new Thread() {
         	public void run() {
         		while (true) {
-        				if (en_moviment==1) {
+        				if (Engine.PLAY==true) {
         					Message msg = new Message();
         					msg.what= LifeProjectActivity.UPDATEID;
         					LifeProjectActivity.gestor.sendMessage(msg);
         					try {
         						Thread.sleep(300);
         					} catch (InterruptedException e) {
-        						en_moviment=0;
+        						Engine.PLAY=false;
         					}
         				} else {
         					//nothing
@@ -152,11 +165,7 @@ public class LifeProjectActivity extends Activity {
         	}
         };
         bucleprincipal.start();
-        rain_update.setOnClickListener(new Button.OnClickListener() {
-     	   public void onClick(View v) {
-     		   en_moviment=1;
-     	   }
-        });
+        
 
         rain_update.setOnClickListener(new Button.OnClickListener() {
        	   public void onClick(View v) {
@@ -172,7 +181,9 @@ public class LifeProjectActivity extends Activity {
         	public void onClick(View v) {
         		Engine.C_BORN_RACE1=Integer.parseInt(race1_edit1.getText().toString());
         		Engine.EFICIENCY_RACE1=Integer.parseInt(race1_edit2.getText().toString());
-        		Engine.RACE1_MAX_AGE=Integer.parseInt(race1_edit3.getText().toString());  
+        		Engine.RACE1_MAX_AGE=Integer.parseInt(race1_edit3.getText().toString());
+        		Engine.X_RACE1=Integer.parseInt(race1_edit4.getText().toString());
+        		Engine.Y_RACE1=Integer.parseInt(race1_edit5.getText().toString());
         		tabs.setCurrentTab(0);
         	   }
            });
@@ -180,7 +191,9 @@ public class LifeProjectActivity extends Activity {
         	public void onClick(View v) {
         		Engine.C_BORN_RACE2=Integer.parseInt(race2_edit1.getText().toString());
            		Engine.EFICIENCY_RACE2=Integer.parseInt(race2_edit2.getText().toString());
-           		Engine.RACE2_MAX_AGE=Integer.parseInt(race2_edit3.getText().toString());  
+           		Engine.RACE2_MAX_AGE=Integer.parseInt(race2_edit3.getText().toString());
+           		Engine.X_RACE2=Integer.parseInt(race2_edit4.getText().toString());
+        		Engine.Y_RACE2=Integer.parseInt(race2_edit5.getText().toString());
            		tabs.setCurrentTab(0);
         	   }
            });
@@ -198,10 +211,10 @@ public class LifeProjectActivity extends Activity {
 	        	finish();
 	            break;
 	        case R.id.menu_start:
-	        	en_moviment=1;                
+	        	Engine.PLAY=true;                
 	        	break;
 	        case R.id.menu_stop: 
-	        	en_moviment=0;
+	        	Engine.PLAY=false; 
 	        	break;
 	    }
 	    return true;

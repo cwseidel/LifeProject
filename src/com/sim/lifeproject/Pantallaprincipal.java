@@ -56,14 +56,19 @@ public class Pantallaprincipal extends View {
 	public Pantallaprincipal(Context context) {
 		super(context);
 		randomGenerator = new Random();
-		// create first animals of each race
-		Race1List.add(new Animal(10,10,Engine.RACE1_MAX_AGE));
-		Race2List.add(new Animal(90,90,Engine.RACE2_MAX_AGE));		
+			
 	}
 	@Override
     public void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         canvas.save();
+        if (Engine.PLAY==true) {
+        if (Engine.FIRST_LOOP==true) {
+        	// create first animals of each race
+    		Race1List.add(new Animal(Engine.X_RACE1,Engine.Y_RACE1,Engine.RACE1_MAX_AGE));
+    		Race2List.add(new Animal(Engine.X_RACE2,Engine.Y_RACE2,Engine.RACE2_MAX_AGE));
+    		Engine.FIRST_LOOP=false;
+        }
         int position_offset;
         if (Engine.SCREEN_W>=500) {
         	position_offset=(Engine.SCREEN_W-500)/2;
@@ -228,6 +233,7 @@ public class Pantallaprincipal extends View {
 		
 		
 		//invalidate();
+	}
 	}
 
 }

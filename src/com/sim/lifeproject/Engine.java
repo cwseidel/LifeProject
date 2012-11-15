@@ -36,7 +36,15 @@ public static int C_BORN_RACE1=99;
 public static int C_BORN_RACE2=99;
 public static int EFICIENCY_RACE1=10;
 public static int EFICIENCY_RACE2=15;
-// screen dimensions
+public static int X_RACE1=10;
+public static int Y_RACE1=10;
+public static int X_RACE2=90;
+public static int Y_RACE2=90;
+
+// screen dimensions and global variables
 public static int SCREEN_W;
 public static int SCREEN_H;
+public static boolean PLAY=false;
+public static boolean FIRST_LOOP=true;
+
 }
