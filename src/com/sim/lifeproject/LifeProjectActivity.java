@@ -60,7 +60,7 @@ public class LifeProjectActivity extends Activity {
 	EditText race2_edit3;
 	EditText race2_edit4;
 	EditText race2_edit5;
-	TextView num_grass,num_race1,num_race2;
+	TextView show_info,num_race1,num_race2;
 		
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -109,7 +109,7 @@ public class LifeProjectActivity extends Activity {
         rain_edit1=(EditText)findViewById(R.id.rain_edit1);
         rain_edit2=(EditText)findViewById(R.id.rain_edit2);
         rain_edit3=(EditText)findViewById(R.id.rain_edit3);
-        num_grass=(TextView)findViewById(R.id.show_plants);
+        show_info=(TextView)findViewById(R.id.show_info);
         race1_edit1=(EditText)findViewById(R.id.race1_edit1);
         race1_edit2=(EditText)findViewById(R.id.race1_edit2);
         race1_edit3=(EditText)findViewById(R.id.race1_edit3);
@@ -140,7 +140,7 @@ public class LifeProjectActivity extends Activity {
             	switch (msg.what) {
             	case LifeProjectActivity.UPDATEID:
             		pantalla.invalidate();
-            		num_grass.setText("Plants: "+(float)Engine.NUM_OF_GRASS/100+ "%\nSpecie 1: "+Engine.NUM_OF_RACE1+" alive ("+Engine.DEAD_RACE1+" died last turn)\nSpecie 2: "+Engine.NUM_OF_RACE2+" alive ("+Engine.DEAD_RACE2+" died last turn)");
+            		show_info.setText("(Green) Plants: "+(float)Engine.NUM_OF_GRASS/100+ "%\n(Red) Specie 1: "+Engine.NUM_OF_RACE1+" alive ("+(float)Engine.DEAD_RACE1*100/Engine.NUM_OF_RACE1+" % died)\n (Yellow) Specie 2: "+Engine.NUM_OF_RACE2+" alive ("+(float)Engine.DEAD_RACE2*100/Engine.NUM_OF_RACE2+" % died)");
             		break;
             	}
             	super.handleMessage(msg);

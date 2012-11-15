@@ -32,7 +32,7 @@
     				android:layout_height="wrap_content"
     				android:layout_below="@+id/pantallasimulacio">
     				<TextView
-					android:id="@+id/show_plants"
+					android:id="@+id/show_info"
 					android:layout_width="fill_parent"
 					android:layout_height="wrap_content"
 					android:gravity="center"
@@ -247,7 +247,7 @@
 					android:id="@+id/helptext"
 					android:layout_width="fill_parent"
 					android:layout_height="wrap_content"
-					android:text="Alpha v1 Release\nThis is a life simulator\nMore information at:" />
+					android:text="@string/textinfo" />
         	</LinearLayout>
  
          </FrameLayout>

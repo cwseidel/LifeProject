@@ -4,5 +4,16 @@
     <string name="start">Start</string>
     <string name="stop">Stop</string>
     <string name="app_name">LifeProject</string>
+    <string name="textinfo">
+        Alpha Release 2\n
+        This is a life simulator, based on those elements:\n
+        Plants: its the main food for the animal spices, you can setup the plants variables on plants tab.\n
+        Rain: can modify behaviour of plants growing, you can setup the rain variables on plants tab.\n
+       	Spices: Modify behaviour of two spices, compiting for the resources (plants), you can setup the spicies variables on spices tab.\n
+       	Sim tab: you can see the simulation on sim tab (you can stop, start or exit the simulation with menu options)\n
+        This is a very schematic vision of the simulator, if you want more information, a tutorial and / or give me some feedback, visit:\n
+        https://github.com/ferriman/LifeProject/wiki\n
+        Thanks!\n
+    </string>
 
 </resources>

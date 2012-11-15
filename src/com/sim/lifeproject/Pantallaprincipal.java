@@ -60,9 +60,9 @@ public class Pantallaprincipal extends View {
 	}
 	@Override
     public void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
+		if (Engine.PLAY==true) {
+		super.onDraw(canvas);
         canvas.save();
-        if (Engine.PLAY==true) {
         if (Engine.FIRST_LOOP==true) {
         	// create first animals of each race
     		Race1List.add(new Animal(Engine.X_RACE1,Engine.Y_RACE1,Engine.RACE1_MAX_AGE));

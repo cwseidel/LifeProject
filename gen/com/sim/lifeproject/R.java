@@ -55,7 +55,7 @@ public final class R {
         public static final int rain_txt1=0x7f060006;
         public static final int rain_txt2=0x7f060008;
         public static final int rain_txt3=0x7f06000a;
-        public static final int show_plants=0x7f060003;
+        public static final int show_info=0x7f060003;
         public static final int tab1=0x7f060000;
         public static final int tab2=0x7f060005;
         public static final int tab3=0x7f060011;
@@ -73,5 +73,6 @@ public final class R {
         public static final int app_name=0x7f040002;
         public static final int start=0x7f040000;
         public static final int stop=0x7f040001;
+        public static final int textinfo=0x7f040003;
     }
 }
