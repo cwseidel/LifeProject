@@ -44,7 +44,7 @@ public class LifeProjectActivity extends Activity {
 	LinearLayout upper;
 	protected static final int UPDATEID=0x101;
 	static Handler gestor;
-	int en_moviment=1;
+	int en_moviment=0;
 	TabHost tabs;
 	EditText grow_edit1;
 	EditText grow_edit2;
