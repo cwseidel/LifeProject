@@ -19,7 +19,7 @@ package com.sim.lifeproject;
 
 public class Engine {
 /*Variables that will be used in the game*/
-public static int CNORMAL=70; // cnormal es l'index de creixement normal (sobre 100) = 4000;
+public static int CNORMAL=40; // cnormal es l'index de creixement normal (sobre 100) = 4000;
 public static int NUM_OF_GRASS=0;
 public static int PROB_RAIN=70; // probability of rain
 public static int CPROXIM=8; // cproxim es l'index de creixement proxim (sobre 100)
@@ -30,6 +30,12 @@ public static int RACE1_MAX_AGE=20;
 public static int RACE2_MAX_AGE=20;
 public static int NUM_OF_RACE1=0;
 public static int NUM_OF_RACE2=0;
+public static int DEAD_RACE1=0;
+public static int DEAD_RACE2=0;
+public static int C_BORN_RACE1=99;
+public static int C_BORN_RACE2=99;
+public static int EFICIENCY_RACE1=10;
+public static int EFICIENCY_RACE2=15;
 // screen dimensions
 public static int SCREEN_W;
 public static int SCREEN_H;

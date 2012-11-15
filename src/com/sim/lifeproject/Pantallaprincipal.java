@@ -164,12 +164,16 @@ public class Pantallaprincipal extends View {
 			if (matriu_herba.getEnergy(item.getX(),item.getY())>0) { // si la planta te energia
 				if (item.getEnergy()<=10) { // si te gana
 						item.feed(); // s'alimenta
-						matriu_herba.setEnergy(item.getX(),item.getY(),5); // restem energia a la planta
+						matriu_herba.setEnergy(item.getX(),item.getY(),Engine.EFICIENCY_RACE1); // restem energia a la planta
 				}
 			}
 			if (item.ready_to_reproduce()) { // si esta preparat per reproduirse
 				item.reproduce(); // es reprodueix
-				Race1List.add(new Animal(item.getX(),item.getY(),Engine.RACE1_MAX_AGE));
+				Random randomGenerator = new Random();
+				int chances_to_born = randomGenerator.nextInt(100); //  range 0..99
+				if (chances_to_born<Engine.C_BORN_RACE1) {
+					Race1List.add(new Animal(item.getX(),item.getY(),Engine.RACE1_MAX_AGE));
+				}
 				item.grow(); // creix
 			} else {
 				item.move(); // es mou
@@ -181,6 +185,7 @@ public class Pantallaprincipal extends View {
 			canvas.drawRect(position_offset+(item.getX()*tile_size)+1, (item.getY()*tile_size)+1, position_offset+(item.getX()*tile_size)+tile_size-1, (item.getY()*tile_size)+tile_size-1, color_race1);
 		}
 		// remove and clear dead animals (RACE1)
+		Engine.DEAD_RACE1=deadAnimals.size();
 		for (int i=0;i<deadAnimals.size(); i++ ) {
 			Animal item=deadAnimals.get(i);
 			Race1List.remove(item);
@@ -193,12 +198,16 @@ public class Pantallaprincipal extends View {
 			if (matriu_herba.getEnergy(item.getX(),item.getY())>0) { // si la planta te energia
 				if (item.getEnergy()<=10) { // si te gana
 						item.feed(); // s'alimenta
-						matriu_herba.setEnergy(item.getX(),item.getY(),5); // restem energia a la planta
+						matriu_herba.setEnergy(item.getX(),item.getY(),Engine.EFICIENCY_RACE2); // restem energia a la planta
 				}
 			}
 			if (item.ready_to_reproduce()) { // si esta preparat per reproduirse
 				item.reproduce(); // es reprodueix
-				Race2List.add(new Animal(item.getX(),item.getY(),Engine.RACE2_MAX_AGE));
+				Random randomGenerator = new Random();
+				int chances_to_born = randomGenerator.nextInt(100); //  range 0..99
+				if (chances_to_born<Engine.C_BORN_RACE2) {
+					Race2List.add(new Animal(item.getX(),item.getY(),Engine.RACE2_MAX_AGE));
+				}
 				item.grow(); // creix
 			} else {
 				item.move(); // es mou
@@ -210,6 +219,7 @@ public class Pantallaprincipal extends View {
 			canvas.drawRect(position_offset+(item.getX()*tile_size)+1, (item.getY()*tile_size)+1, position_offset+(item.getX()*tile_size)+tile_size-1, (item.getY()*tile_size)+tile_size-1, color_race2);
 		}
 		// remove and clear dead animals (RACE2)
+		Engine.DEAD_RACE2=deadAnimals.size();
 		for (int i=0;i<deadAnimals.size(); i++ ) {
 			Animal item=deadAnimals.get(i);
 			Race2List.remove(item);

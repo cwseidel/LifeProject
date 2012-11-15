@@ -20,10 +20,11 @@ public final class R {
         public static final int grow_edit2=0x7f06000f;
         public static final int grow_txt1=0x7f06000c;
         public static final int grow_txt2=0x7f06000e;
+        public static final int helptext=0x7f060022;
         public static final int layout_ad=0x7f060004;
-        public static final int menu_exit=0x7f060021;
-        public static final int menu_start=0x7f060023;
-        public static final int menu_stop=0x7f060022;
+        public static final int menu_exit=0x7f060023;
+        public static final int menu_start=0x7f060025;
+        public static final int menu_stop=0x7f060024;
         public static final int pantallasimulacio=0x7f060001;
         public static final int plants_update=0x7f060010;
         public static final int race1_edit1=0x7f060013;
@@ -51,6 +52,7 @@ public final class R {
         public static final int tab2=0x7f060005;
         public static final int tab3=0x7f060011;
         public static final int tab4=0x7f060019;
+        public static final int tab5=0x7f060021;
     }
     public static final class layout {
         public static final int main=0x7f030000;

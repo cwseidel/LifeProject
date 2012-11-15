@@ -57,7 +57,7 @@
 					android:id="@+id/rain_txt1"
 					android:layout_width="fill_parent"
 					android:layout_height="wrap_content"
-					android:text="Rain Grow Ratio" />
+					android:text="OnRain plants grow ratio" />
 				<EditText
 					android:id="@+id/rain_edit1"
 					android:layout_width="fill_parent"
@@ -67,7 +67,7 @@
 					android:id="@+id/rain_txt2"
 					android:layout_width="fill_parent"
 					android:layout_height="wrap_content"
-					android:text="Rain Duration" />
+					android:text="Rain duration" />
 				<EditText
 					android:id="@+id/rain_edit2"
 					android:layout_width="fill_parent"
@@ -77,7 +77,7 @@
 					android:id="@+id/rain_txt3"
 					android:layout_width="fill_parent"
 					android:layout_height="wrap_content"
-					android:text="Rain Chances" />
+					android:text="Rain chances" />
 				<EditText
 					android:id="@+id/rain_edit3"
 					android:layout_width="fill_parent"
@@ -87,7 +87,7 @@
 					android:id="@+id/grow_txt1"
 					android:layout_width="fill_parent"
 					android:layout_height="wrap_content"
-					android:text="Grow Ratio" />
+					android:text="General grow ratio" />
 				<EditText
 					android:id="@+id/grow_edit1"
 					android:layout_width="fill_parent"
@@ -97,7 +97,7 @@
 					android:id="@+id/grow_txt2"
 					android:layout_width="fill_parent"
 					android:layout_height="wrap_content"
-					android:text="Near Grow Ratio" />
+					android:text="Proximity grow ratio" />
 				<EditText
 					android:id="@+id/grow_edit2"
 					android:layout_width="fill_parent"
@@ -121,7 +121,7 @@
 					android:id="@+id/race1_txt1"
 					android:layout_width="fill_parent"
 					android:layout_height="wrap_content"
-					android:text="Grow Ratio" />
+					android:text="Grow ratio" />
 				<EditText
 					android:id="@+id/race1_edit1"
 					android:layout_width="fill_parent"
@@ -131,7 +131,7 @@
 					android:id="@+id/race1_txt2"
 					android:layout_width="fill_parent"
 					android:layout_height="wrap_content"
-					android:text="Eficiency" />
+					android:text="Energy used to grow" />
 				<EditText
 					android:id="@+id/race1_edit2"
 					android:layout_width="fill_parent"
@@ -141,7 +141,7 @@
 					android:id="@+id/race1_txt3"
 					android:layout_width="fill_parent"
 					android:layout_height="wrap_content"
-					android:text="Max Age" />
+					android:text="Max age" />
 				<EditText
 					android:id="@+id/race1_edit3"
 					android:layout_width="fill_parent"
@@ -164,7 +164,7 @@
 					android:id="@+id/race2_txt1"
 					android:layout_width="fill_parent"
 					android:layout_height="wrap_content"
-					android:text="Grow Ratio" />
+					android:text="Grow ratio" />
 				<EditText
 					android:id="@+id/race2_edit1"
 					android:layout_width="fill_parent"
@@ -174,7 +174,7 @@
 					android:id="@+id/race2_txt2"
 					android:layout_width="fill_parent"
 					android:layout_height="wrap_content"
-					android:text="Eficiency" />
+					android:text="Energy used to grow" />
 				<EditText
 					android:id="@+id/race2_edit2"
 					android:layout_width="fill_parent"
@@ -184,7 +184,7 @@
 					android:id="@+id/race2_txt3"
 					android:layout_width="fill_parent"
 					android:layout_height="wrap_content"
-					android:text="Max Age" />
+					android:text="Max age" />
 				<EditText
 					android:id="@+id/race2_edit3"
 					android:layout_width="fill_parent"
@@ -196,6 +196,18 @@
 					android:layout_height="wrap_content"
 					android:text="Update" 
 					/>
+        	</LinearLayout>
+        	<LinearLayout
+				android:id="@+id/tab5"
+				android:layout_width="fill_parent"
+				android:layout_height="fill_parent"
+				android:orientation="vertical"
+				xmlns:android="http://schemas.android.com/apk/res/android">
+				<TextView
+					android:id="@+id/helptext"
+					android:layout_width="fill_parent"
+					android:layout_height="wrap_content"
+					android:text="Alpha v1 Release\nThis is a life simulator\nMore information at:" />
         	</LinearLayout>
  
          </FrameLayout>
