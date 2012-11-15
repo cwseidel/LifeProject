@@ -25,16 +25,22 @@ public class Animal {
 	private int age;
 	private int energy;
 	private int max_age;
+	private boolean is_dead;
 	public Animal(int x, int y, int max_age) { // animal born
 		this.x=x;
 		this.y=y;
 		this.age=0;
-		this.energy=1;
+		this.energy=10;
 		this.max_age=max_age;
+		this.is_dead=false;
+	}
+	public void feed() {
+		this.energy=this.energy+5;
 	}
 	public void grow() {
 		this.age++;
 		this.energy--;
+		if (this.energy<=0 || this.age>this.max_age) { this.is_dead=true; }
 	}
 	public void move() {
 		Random randomGenerator = new Random();
@@ -45,7 +51,10 @@ public class Animal {
 		if (nextplace==3 && this.y<99) { this.y++; }
 	}
 	public boolean ready_to_reproduce() {
-		if (this.age>300 && this.energy>10) return true; else return false;
+		if (this.age>5 && this.energy>10) return true; else return false;
+	}
+	public void reproduce() {
+		this.energy=this.energy-5;
 	}
 	public int getX() {
 		return this.x;
@@ -70,6 +79,9 @@ public class Animal {
 	}
 	public void setEnergy(int value) {
 		this.energy=value;
+	}
+	public boolean is_dead() {
+		return this.is_dead;
 	}
 	
 }

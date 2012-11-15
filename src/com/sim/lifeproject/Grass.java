@@ -100,11 +100,21 @@ public class Grass {
 	public void setRain(int rain) {
 		this.rain=rain;
 	}
+	public void setEnergy(int energy) {
+		this.energy=this.energy-energy;
+		if (this.energy<=0) {
+			this.age=0; // die
+			this.energy=0;
+		}
+	}
 	public int getNear() {
 		return this.near;
 	}
 	public int getRain() {
 		return this.rain;
+	}
+	public int getEnergy() {
+		return this.energy;
 	}
 
 }

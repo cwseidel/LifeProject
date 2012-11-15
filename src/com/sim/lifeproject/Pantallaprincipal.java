@@ -50,6 +50,7 @@ public class Pantallaprincipal extends View {
 	// arraylist per les dos llistes d'animals
 	ArrayList<Animal> Race1List = new ArrayList<Animal>();
 	ArrayList<Animal> Race2List = new ArrayList<Animal>();
+	ArrayList<Animal> deadAnimals = new ArrayList<Animal>();
 
 
 	public Pantallaprincipal(Context context) {
@@ -100,6 +101,8 @@ public class Pantallaprincipal extends View {
 		fons_matriu.setColor(Color.rgb(0, 0, 0));
 		color_rain.setColor(Color.rgb(0, 128, 255));
 		color_rain.setAlpha(100);
+		color_race1.setAlpha(100);
+		color_race2.setAlpha(100);
 
 		
 		if (Engine.SCREEN_W>500) { tile_size=5; } else { tile_size=3; }
@@ -123,27 +126,27 @@ public class Pantallaprincipal extends View {
 				canvas.drawRect(position_offset+(x*tile_size)+1, (y*tile_size)+1, position_offset+(x*tile_size)+tile_size-1, (y*tile_size)+tile_size-1, color_terra);
 				// dibuixem les herbes vives segons els diferents nivells d'energia
 				if (matriu_herba.getAge(x,y)==1) {
-					//canvas.drawRect(position_offset+(x*tile_size)+1, (y*tile_size)+1, position_offset+(x*tile_size)+tile_size-1, (y*tile_size)+tile_size-1, color_planta1);
+					canvas.drawRect(position_offset+(x*tile_size)+1, (y*tile_size)+1, position_offset+(x*tile_size)+tile_size-1, (y*tile_size)+tile_size-1, color_planta1);
 					Engine.NUM_OF_GRASS=Engine.NUM_OF_GRASS+1;
 				}
 				if (matriu_herba.getAge(x,y)==2) {
-					//canvas.drawRect(position_offset+(x*tile_size)+1, (y*tile_size)+1, position_offset+(x*tile_size)+tile_size-1, (y*tile_size)+tile_size-1, color_planta2);
+					canvas.drawRect(position_offset+(x*tile_size)+1, (y*tile_size)+1, position_offset+(x*tile_size)+tile_size-1, (y*tile_size)+tile_size-1, color_planta2);
 					Engine.NUM_OF_GRASS=Engine.NUM_OF_GRASS+1;
 				}
 				if (matriu_herba.getAge(x,y)==3) {
-					//canvas.drawRect(position_offset+(x*tile_size)+1, (y*tile_size)+1, position_offset+(x*tile_size)+tile_size-1, (y*tile_size)+tile_size-1, color_planta3);
+					canvas.drawRect(position_offset+(x*tile_size)+1, (y*tile_size)+1, position_offset+(x*tile_size)+tile_size-1, (y*tile_size)+tile_size-1, color_planta3);
 					Engine.NUM_OF_GRASS=Engine.NUM_OF_GRASS+1;
 				}
 				if (matriu_herba.getAge(x,y)==4) {
-					//canvas.drawRect(position_offset+(x*tile_size)+1, (y*tile_size)+1, position_offset+(x*tile_size)+tile_size-1, (y*tile_size)+tile_size-1, color_planta4);
+					canvas.drawRect(position_offset+(x*tile_size)+1, (y*tile_size)+1, position_offset+(x*tile_size)+tile_size-1, (y*tile_size)+tile_size-1, color_planta4);
 					Engine.NUM_OF_GRASS=Engine.NUM_OF_GRASS+1;
 				}
 				if (matriu_herba.getAge(x,y)==5) {
-					//canvas.drawRect(position_offset+(x*tile_size)+1, (y*tile_size)+1, position_offset+(x*tile_size)+tile_size-1, (y*tile_size)+tile_size-1, color_planta5);
+					canvas.drawRect(position_offset+(x*tile_size)+1, (y*tile_size)+1, position_offset+(x*tile_size)+tile_size-1, (y*tile_size)+tile_size-1, color_planta5);
 					Engine.NUM_OF_GRASS=Engine.NUM_OF_GRASS+1;
 				}
 				if (matriu_herba.getRain(x,y)==1) {
-					//canvas.drawRect(position_offset+(x*tile_size)+1, (y*tile_size)+1, position_offset+(x*tile_size)+tile_size-1, (y*tile_size)+tile_size-1, color_rain);
+					canvas.drawRect(position_offset+(x*tile_size)+1, (y*tile_size)+1, position_offset+(x*tile_size)+tile_size-1, (y*tile_size)+tile_size-1, color_rain);
 					Engine.NUM_OF_GRASS=Engine.NUM_OF_GRASS+1;
 				}
 
@@ -151,19 +154,68 @@ public class Pantallaprincipal extends View {
 		}
 		int race1size= Race1List.size();
 		int race2size= Race2List.size();
-		// bucle per visualitzar i fer evolucionar els animals
+		Engine.NUM_OF_RACE1=race1size;
+		Engine.NUM_OF_RACE2=race2size;
+		deadAnimals.clear();
+		// bucle per visualitzar i fer evolucionar els animals (RACE1)
 		for (int i = 0; i < race1size; i++) {
 			Animal item=Race1List.get(i);
+			
+			if (matriu_herba.getEnergy(item.getX(),item.getY())>0) { // si la planta te energia
+				if (item.getEnergy()<=10) { // si te gana
+						item.feed(); // s'alimenta
+						matriu_herba.setEnergy(item.getX(),item.getY(),5); // restem energia a la planta
+				}
+			}
+			if (item.ready_to_reproduce()) { // si esta preparat per reproduirse
+				item.reproduce(); // es reprodueix
+				Race1List.add(new Animal(item.getX(),item.getY(),Engine.RACE1_MAX_AGE));
+				item.grow(); // creix
+			} else {
+				item.move(); // es mou
+				item.grow(); // creix
+			}
+			if (item.is_dead()) {
+				deadAnimals.add(item); // el posem a la llista d'animals morts
+			}
 			canvas.drawRect(position_offset+(item.getX()*tile_size)+1, (item.getY()*tile_size)+1, position_offset+(item.getX()*tile_size)+tile_size-1, (item.getY()*tile_size)+tile_size-1, color_race1);
-			item.move();
-			//Race1List.add(new Animal(item.getX(),item.getY(),Engine.RACE1_MAX_AGE));
 		}
+		// remove and clear dead animals (RACE1)
+		for (int i=0;i<deadAnimals.size(); i++ ) {
+			Animal item=deadAnimals.get(i);
+			Race1List.remove(item);
+		}
+		deadAnimals.clear();
+		// bucle per visualitzar i fer evolucionar els animals (RACE2)
 		for (int i = 0; i < race2size; i++) {
 			Animal item=Race2List.get(i);
+			
+			if (matriu_herba.getEnergy(item.getX(),item.getY())>0) { // si la planta te energia
+				if (item.getEnergy()<=10) { // si te gana
+						item.feed(); // s'alimenta
+						matriu_herba.setEnergy(item.getX(),item.getY(),5); // restem energia a la planta
+				}
+			}
+			if (item.ready_to_reproduce()) { // si esta preparat per reproduirse
+				item.reproduce(); // es reprodueix
+				Race2List.add(new Animal(item.getX(),item.getY(),Engine.RACE2_MAX_AGE));
+				item.grow(); // creix
+			} else {
+				item.move(); // es mou
+				item.grow(); // creix
+			}
+			if (item.is_dead()) {
+				deadAnimals.add(item); // el posem a la llista d'animals morts
+			}
 			canvas.drawRect(position_offset+(item.getX()*tile_size)+1, (item.getY()*tile_size)+1, position_offset+(item.getX()*tile_size)+tile_size-1, (item.getY()*tile_size)+tile_size-1, color_race2);
-			item.move();
-			//Race2List.add(new Animal(item.getX(),item.getY(),Engine.RACE2_MAX_AGE));
 		}
+		// remove and clear dead animals (RACE2)
+		for (int i=0;i<deadAnimals.size(); i++ ) {
+			Animal item=deadAnimals.get(i);
+			Race2List.remove(item);
+		}
+		deadAnimals.clear();
+		
 		
 		//invalidate();
 	}

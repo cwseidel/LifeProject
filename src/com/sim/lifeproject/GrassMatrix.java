@@ -87,4 +87,11 @@ public class GrassMatrix {
 	public int getRain(int x,int y) {
 		return g_matrix[x][y].getRain();
 	}
+	public int getEnergy(int x,int y) {
+		return g_matrix[x][y].getEnergy();
+	}
+	public void setEnergy(int x,int y,int energy) {
+		g_matrix[x][y].setEnergy(energy);
+	}
+	
 }

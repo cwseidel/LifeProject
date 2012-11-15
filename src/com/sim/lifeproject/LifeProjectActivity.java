@@ -51,7 +51,7 @@ public class LifeProjectActivity extends Activity {
 	EditText rain_edit1;
 	EditText rain_edit2;
 	EditText rain_edit3;
-	TextView num_grass;
+	TextView num_grass,num_race1,num_race2;
 		
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -71,25 +71,32 @@ public class LifeProjectActivity extends Activity {
         tabs.addTab(spec);
         spec=tabs.newTabSpec("mitab2");
         spec.setContent(R.id.tab2);
-        spec.setIndicator("Rain Setup",res.getDrawable(android.R.drawable.ic_menu_edit));
+        spec.setIndicator("Plants Setup",res.getDrawable(android.R.drawable.ic_menu_edit));
         tabs.addTab(spec);
         spec=tabs.newTabSpec("mitab3");
         spec.setContent(R.id.tab3);
-        spec.setIndicator("Grow Setup",res.getDrawable(android.R.drawable.ic_menu_edit));
+        spec.setIndicator("Spice 1 Setup",res.getDrawable(android.R.drawable.ic_menu_edit));
+        tabs.addTab(spec);
+        spec=tabs.newTabSpec("mitab4");
+        spec.setContent(R.id.tab4);
+        spec.setIndicator("Spice 2 Setup",res.getDrawable(android.R.drawable.ic_menu_edit));
         tabs.addTab(spec);
         tabs.setCurrentTab(0);
         
         pantalla.requestFocus();
         LinearLayout upper = (LinearLayout) findViewById(R.id.pantallasimulacio);
         upper.addView(pantalla);
-        Button rain_update = (Button) findViewById(R.id.rain_update);
-        Button grow_update = (Button) findViewById(R.id.grow_update);
+        Button rain_update = (Button) findViewById(R.id.plants_update);
+        Button race1_update = (Button) findViewById(R.id.race1_update);
+        Button race2_update = (Button) findViewById(R.id.race2_update);
         grow_edit1=(EditText)findViewById(R.id.grow_edit1);
         grow_edit2=(EditText)findViewById(R.id.grow_edit2);
         rain_edit1=(EditText)findViewById(R.id.rain_edit1);
         rain_edit2=(EditText)findViewById(R.id.rain_edit2);
         rain_edit3=(EditText)findViewById(R.id.rain_edit3);
-        num_grass=(TextView)findViewById(R.id.show);
+        num_grass=(TextView)findViewById(R.id.show_plants);
+        //num_race1=(TextView)findViewById(R.id.show_race1);
+        //num_race2=(TextView)findViewById(R.id.show_race2);
         rain_edit1.setText(Integer.toString(Engine.CPLUJA));
         rain_edit2.setText(Integer.toString(Engine.MAX_RAINING_TIME));
         rain_edit3.setText(Integer.toString(Engine.PROB_RAIN));
@@ -101,7 +108,9 @@ public class LifeProjectActivity extends Activity {
             	switch (msg.what) {
             	case LifeProjectActivity.UPDATEID:
             		pantalla.invalidate();
-            		num_grass.setText("Plants: "+(float)Engine.NUM_OF_GRASS/100+ "%");
+            		num_grass.setText("Plants: "+(float)Engine.NUM_OF_GRASS/100+ "%\nNum of elements (Spiece 1): "+Engine.NUM_OF_RACE1+"\nNum of elements (Spiece 2): "+Engine.NUM_OF_RACE2);
+            		//num_race1.setText("Num of elements (Spiece 1): "+(float)Engine.NUM_OF_RACE1);
+            		//num_race2.setText("Num of elements (Spiece 2): "+(float)Engine.NUM_OF_RACE2);
             		break;
             	}
             	super.handleMessage(msg);
@@ -131,18 +140,14 @@ public class LifeProjectActivity extends Activity {
      		   en_moviment=1;
      	   }
         });
-        grow_update.setOnClickListener(new Button.OnClickListener() {
-      	   public void onClick(View v) {
-      		  Engine.CNORMAL=Integer.parseInt(grow_edit1.getText().toString());
-      		  Engine.CPROXIM=Integer.parseInt(grow_edit2.getText().toString());
-      		  tabs.setCurrentTab(0);
-      	   }
-         });
+
         rain_update.setOnClickListener(new Button.OnClickListener() {
        	   public void onClick(View v) {
        		  Engine.CPLUJA=Integer.parseInt(rain_edit1.getText().toString());
        		  Engine.MAX_RAINING_TIME=Integer.parseInt(rain_edit2.getText().toString());
        		  Engine.PROB_RAIN=Integer.parseInt(rain_edit3.getText().toString());
+       		  Engine.CNORMAL=Integer.parseInt(grow_edit1.getText().toString());
+     		  Engine.CPROXIM=Integer.parseInt(grow_edit2.getText().toString());
        		  tabs.setCurrentTab(0);
        	   }
           });
