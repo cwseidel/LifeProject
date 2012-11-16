@@ -111,11 +111,11 @@ public class LifeProjectActivity extends Activity {
         specie2_edit3=(EditText)findViewById(R.id.specie2_edit3);
         specie2_edit4=(EditText)findViewById(R.id.specie2_edit4);
         specie2_edit5=(EditText)findViewById(R.id.specie2_edit5);
-        rain_edit1.setText(Integer.toString(Engine.CPLUJA));
+        rain_edit1.setText(Integer.toString(Engine.PLANTS_ONRAIN_GROWTH_RATIO));
         rain_edit2.setText(Integer.toString(Engine.MAX_RAINING_TIME));
         rain_edit3.setText(Integer.toString(Engine.CHANCES_OF_RAIN));
-        grow_edit1.setText(Integer.toString(Engine.PLANTS_NORMAL_GROWTH));
-        grow_edit2.setText(Integer.toString(Engine.CPROXIM));
+        grow_edit1.setText(Integer.toString(Engine.PLANTS_NORMAL_GROWTH_RATIO));
+        grow_edit2.setText(Integer.toString(Engine.PLANTS_ENHANCED_GROWTH_RATIO));
         specie1_edit1.setText(Integer.toString(Engine.SPECIE1_CHANCES_TO_BORN));
         specie1_edit2.setText(Integer.toString(Engine.SPECIE1_ENERGY_NEEDED));
         specie1_edit3.setText(Integer.toString(Engine.SPECIE1_MAX_AGE));
@@ -132,7 +132,7 @@ public class LifeProjectActivity extends Activity {
             	switch (msg.what) {
             	case LifeProjectActivity.UPDATEID:
             		pantalla.invalidate();
-            		info_plants.setText("(Green) Plants: "+(float)Engine.PLANTS_TOTAL_UNITS/100+ "%\n(Red) Specie 1: "+Engine.SPECIE1_TOTAL_UNITS+" alive ("+(float)Engine.SPECIE1_LAST_DEADS*100/Engine.SPECIE1_TOTAL_UNITS+" % died)\n (Yellow) Specie 2: "+Engine.SPECIE2_TOTAL_UNITS+" alive ("+(float)Engine.SPECIE2_LAST_DEADS*100/Engine.SPECIE2_TOTAL_UNITS+" % died)");
+            		info_plants.setText("(Green) Plants: "+(float)Engine.PLANTS_TOTAL_UNITS/100+ "%\n(Red) Specie 1: "+Engine.SPECIE1_TOTAL_UNITS+" alive ("+(float)Engine.SPECIE1_LAST_DEADS*100/Engine.SPECIE1_TOTAL_UNITS+" % died)\n(Yellow) Specie 2: "+Engine.SPECIE2_TOTAL_UNITS+" alive ("+(float)Engine.SPECIE2_LAST_DEADS*100/Engine.SPECIE2_TOTAL_UNITS+" % died)");
             		break;
             	}
             	super.handleMessage(msg);
@@ -161,11 +161,11 @@ public class LifeProjectActivity extends Activity {
 
         plants_update.setOnClickListener(new Button.OnClickListener() {
        	   public void onClick(View v) {
-       		  Engine.CPLUJA=Integer.parseInt(rain_edit1.getText().toString());
+       		  Engine.PLANTS_ONRAIN_GROWTH_RATIO=Integer.parseInt(rain_edit1.getText().toString());
        		  Engine.MAX_RAINING_TIME=Integer.parseInt(rain_edit2.getText().toString());
        		  Engine.CHANCES_OF_RAIN=Integer.parseInt(rain_edit3.getText().toString());
-       		  Engine.PLANTS_NORMAL_GROWTH=Integer.parseInt(grow_edit1.getText().toString());
-     		  Engine.CPROXIM=Integer.parseInt(grow_edit2.getText().toString());
+       		  Engine.PLANTS_NORMAL_GROWTH_RATIO=Integer.parseInt(grow_edit1.getText().toString());
+     		  Engine.PLANTS_ENHANCED_GROWTH_RATIO=Integer.parseInt(grow_edit2.getText().toString());
        		  tabs.setCurrentTab(0);
        	   }
           });

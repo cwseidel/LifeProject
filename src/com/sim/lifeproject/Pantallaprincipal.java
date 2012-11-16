@@ -95,6 +95,7 @@ public class Pantallaprincipal extends View {
 			is_raining=1; // plou
 			raining_time=1;
 		}
+		// set tile colors
 		color_terra.setColor(Color.rgb(136, 96, 17));
 		color_planta1.setColor(Color.rgb(113, 255, 113));
 		color_planta2.setColor(Color.rgb(4, 255, 4));
@@ -108,21 +109,20 @@ public class Pantallaprincipal extends View {
 		color_rain.setAlpha(100);
 		color_race1.setAlpha(100);
 		color_race2.setAlpha(100);
-
-		
-		if (Engine.SCREEN_W>500) { tile_size=5; } else { tile_size=3; }
+		// end of set tile colors
+		if (Engine.SCREEN_W>500) { tile_size=5; } else { tile_size=3; } // set tile size
 		// update an draw the matrix
 		for (int x=0;x<100;x++) {
 			for (int y=0;y<100;y++) {
 				matriu_herba.grow(x, y);
 				int chance = randomGenerator.nextInt(100); //  range 0..99
-				if (chance>100-Engine.PLANTS_NORMAL_GROWTH) {
+				if (chance>100-Engine.PLANTS_NORMAL_GROWTH_RATIO) {
 					matriu_herba.born(x,y);	// mira si aquesta casella es pot convertir en una nova herba
 				}
-				if (chance>100-Engine.CPROXIM && matriu_herba.getNear(x,y)==1) { // en cas que estigui proxima a una altre herba
+				if (chance>100-Engine.PLANTS_ENHANCED_GROWTH_RATIO && matriu_herba.getNear(x,y)==1) { // en cas que estigui proxima a una altre herba
 					matriu_herba.born(x,y);	// mira si aquesta casella es pot convertir en una nova herba
 				}
-				if (chance>100-Engine.CPLUJA && matriu_herba.getRain(x,y)==1) {
+				if (chance>100-Engine.PLANTS_ONRAIN_GROWTH_RATIO && matriu_herba.getRain(x,y)==1) {
 					matriu_herba.born(x,y);
 				}
 				// dibuixem el fons negre
@@ -157,13 +157,13 @@ public class Pantallaprincipal extends View {
 
 			}
 		}
-		int race1size= specie1List.size();
-		int race2size= specie2List.size();
-		Engine.SPECIE1_TOTAL_UNITS=race1size;
-		Engine.SPECIE2_TOTAL_UNITS=race2size;
+		int specie1size= specie1List.size();
+		int specie2size= specie2List.size();
+		Engine.SPECIE1_TOTAL_UNITS=specie1size;
+		Engine.SPECIE2_TOTAL_UNITS=specie2size;
 		deadAnimals.clear();
 		// bucle per visualitzar i fer evolucionar els animals (RACE1)
-		for (int i = 0; i < race1size; i++) {
+		for (int i = 0; i < specie1size; i++) {
 			Animal item=specie1List.get(i);
 			
 			if (matriu_herba.getEnergy(item.getX(),item.getY())>0) { // si la planta te energia
@@ -197,7 +197,7 @@ public class Pantallaprincipal extends View {
 		}
 		deadAnimals.clear();
 		// bucle per visualitzar i fer evolucionar els animals (RACE2)
-		for (int i = 0; i < race2size; i++) {
+		for (int i = 0; i < specie2size; i++) {
 			Animal item=specie2List.get(i);
 			
 			if (matriu_herba.getEnergy(item.getX(),item.getY())>0) { // si la planta te energia

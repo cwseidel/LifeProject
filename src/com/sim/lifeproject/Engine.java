@@ -18,12 +18,12 @@
 package com.sim.lifeproject;
 
 public class Engine {
-/*Variables that will be used in the game*/
-public static int PLANTS_NORMAL_GROWTH=40; // cnormal es l'index de creixement normal (sobre 100) = 4000;
+// plants variables
+public static int PLANTS_NORMAL_GROWTH_RATIO=40;
 public static int PLANTS_TOTAL_UNITS=0;
-public static int CHANCES_OF_RAIN=70; // probability of rain
-public static int CPROXIM=8; // cproxim es l'index de creixement proxim (sobre 100)
-public static int CPLUJA=50;
+public static int CHANCES_OF_RAIN=70;
+public static int PLANTS_ENHANCED_GROWTH_RATIO=8;
+public static int PLANTS_ONRAIN_GROWTH_RATIO=50;
 public static int MAX_RAINING_TIME=5;
 // species variables
 public static int SPECIE1_MAX_AGE=20;
