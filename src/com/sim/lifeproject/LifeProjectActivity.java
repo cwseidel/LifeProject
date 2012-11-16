@@ -50,6 +50,7 @@ public class LifeProjectActivity extends Activity {
 	EditText specie1_edit1,specie1_edit2,specie1_edit3,specie1_edit4,specie1_edit5;
 	EditText specie2_edit1,specie2_edit2,specie2_edit3,specie2_edit4,specie2_edit5;
 	TextView info_plants,info_specie1,info_specie2;
+	Button plants_update,specie1_update,specie2_update;
 		
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -90,46 +91,48 @@ public class LifeProjectActivity extends Activity {
         pantalla.requestFocus();
         LinearLayout upper = (LinearLayout) findViewById(R.id.pantallasimulacio);
         upper.addView(pantalla);
-        Button rain_update = (Button) findViewById(R.id.plants_update);
-        Button race1_update = (Button) findViewById(R.id.race1_update);
-        Button race2_update = (Button) findViewById(R.id.race2_update);
+        // begin setup UI layout
+        plants_update = (Button) findViewById(R.id.plants_update);
+        specie1_update = (Button) findViewById(R.id.specie1_update);
+        specie2_update = (Button) findViewById(R.id.specie2_update);
         grow_edit1=(EditText)findViewById(R.id.grow_edit1);
         grow_edit2=(EditText)findViewById(R.id.grow_edit2);
         rain_edit1=(EditText)findViewById(R.id.rain_edit1);
         rain_edit2=(EditText)findViewById(R.id.rain_edit2);
         rain_edit3=(EditText)findViewById(R.id.rain_edit3);
         info_plants=(TextView)findViewById(R.id.show_info);
-        specie1_edit1=(EditText)findViewById(R.id.race1_edit1);
-        specie1_edit2=(EditText)findViewById(R.id.race1_edit2);
-        specie1_edit3=(EditText)findViewById(R.id.race1_edit3);
-        specie1_edit4=(EditText)findViewById(R.id.race1_edit4);
-        specie1_edit5=(EditText)findViewById(R.id.race1_edit5);
-        specie2_edit1=(EditText)findViewById(R.id.race2_edit1);
-        specie2_edit2=(EditText)findViewById(R.id.race2_edit2);
-        specie2_edit3=(EditText)findViewById(R.id.race2_edit3);
-        specie2_edit4=(EditText)findViewById(R.id.race2_edit4);
-        specie2_edit5=(EditText)findViewById(R.id.race2_edit5);
+        specie1_edit1=(EditText)findViewById(R.id.specie1_edit1);
+        specie1_edit2=(EditText)findViewById(R.id.specie1_edit2);
+        specie1_edit3=(EditText)findViewById(R.id.specie1_edit3);
+        specie1_edit4=(EditText)findViewById(R.id.specie1_edit4);
+        specie1_edit5=(EditText)findViewById(R.id.specie1_edit5);
+        specie2_edit1=(EditText)findViewById(R.id.specie2_edit1);
+        specie2_edit2=(EditText)findViewById(R.id.specie2_edit2);
+        specie2_edit3=(EditText)findViewById(R.id.specie2_edit3);
+        specie2_edit4=(EditText)findViewById(R.id.specie2_edit4);
+        specie2_edit5=(EditText)findViewById(R.id.specie2_edit5);
         rain_edit1.setText(Integer.toString(Engine.CPLUJA));
         rain_edit2.setText(Integer.toString(Engine.MAX_RAINING_TIME));
-        rain_edit3.setText(Integer.toString(Engine.PROB_RAIN));
-        grow_edit1.setText(Integer.toString(Engine.CNORMAL));
+        rain_edit3.setText(Integer.toString(Engine.CHANCES_OF_RAIN));
+        grow_edit1.setText(Integer.toString(Engine.PLANTS_NORMAL_GROWTH));
         grow_edit2.setText(Integer.toString(Engine.CPROXIM));
-        specie1_edit1.setText(Integer.toString(Engine.C_BORN_RACE1));
-        specie1_edit2.setText(Integer.toString(Engine.EFICIENCY_RACE1));
-        specie1_edit3.setText(Integer.toString(Engine.RACE1_MAX_AGE));
-        specie1_edit4.setText(Integer.toString(Engine.X_RACE1));
-        specie1_edit5.setText(Integer.toString(Engine.Y_RACE1));
-        specie2_edit1.setText(Integer.toString(Engine.C_BORN_RACE2));
-        specie2_edit2.setText(Integer.toString(Engine.EFICIENCY_RACE2));
-        specie2_edit3.setText(Integer.toString(Engine.RACE2_MAX_AGE));
-        specie2_edit4.setText(Integer.toString(Engine.X_RACE2));
-        specie2_edit5.setText(Integer.toString(Engine.Y_RACE2));
+        specie1_edit1.setText(Integer.toString(Engine.SPECIE1_CHANCES_TO_BORN));
+        specie1_edit2.setText(Integer.toString(Engine.SPECIE1_ENERGY_NEEDED));
+        specie1_edit3.setText(Integer.toString(Engine.SPECIE1_MAX_AGE));
+        specie1_edit4.setText(Integer.toString(Engine.SPECIE1_X_START));
+        specie1_edit5.setText(Integer.toString(Engine.SPECIE1_Y_START));
+        specie2_edit1.setText(Integer.toString(Engine.SPECIE2_CHANCES_TO_BORN));
+        specie2_edit2.setText(Integer.toString(Engine.SPECIE2_ENERGY_NEEDED));
+        specie2_edit3.setText(Integer.toString(Engine.SPECIE2_MAX_AGE));
+        specie2_edit4.setText(Integer.toString(Engine.SPECIE2_X_START));
+        specie2_edit5.setText(Integer.toString(Engine.SPECIE2_Y_START));
+        // end setup UI layout
         gestor = new Handler() {
             public void handleMessage(Message msg) {
             	switch (msg.what) {
             	case LifeProjectActivity.UPDATEID:
             		pantalla.invalidate();
-            		info_plants.setText("(Green) Plants: "+(float)Engine.NUM_OF_GRASS/100+ "%\n(Red) Specie 1: "+Engine.NUM_OF_RACE1+" alive ("+(float)Engine.DEAD_RACE1*100/Engine.NUM_OF_RACE1+" % died)\n (Yellow) Specie 2: "+Engine.NUM_OF_RACE2+" alive ("+(float)Engine.DEAD_RACE2*100/Engine.NUM_OF_RACE2+" % died)");
+            		info_plants.setText("(Green) Plants: "+(float)Engine.PLANTS_TOTAL_UNITS/100+ "%\n(Red) Specie 1: "+Engine.SPECIE1_TOTAL_UNITS+" alive ("+(float)Engine.SPECIE1_LAST_DEADS*100/Engine.SPECIE1_TOTAL_UNITS+" % died)\n (Yellow) Specie 2: "+Engine.SPECIE2_TOTAL_UNITS+" alive ("+(float)Engine.SPECIE2_LAST_DEADS*100/Engine.SPECIE2_TOTAL_UNITS+" % died)");
             		break;
             	}
             	super.handleMessage(msg);
@@ -156,33 +159,33 @@ public class LifeProjectActivity extends Activity {
         bucleprincipal.start();
         
 
-        rain_update.setOnClickListener(new Button.OnClickListener() {
+        plants_update.setOnClickListener(new Button.OnClickListener() {
        	   public void onClick(View v) {
        		  Engine.CPLUJA=Integer.parseInt(rain_edit1.getText().toString());
        		  Engine.MAX_RAINING_TIME=Integer.parseInt(rain_edit2.getText().toString());
-       		  Engine.PROB_RAIN=Integer.parseInt(rain_edit3.getText().toString());
-       		  Engine.CNORMAL=Integer.parseInt(grow_edit1.getText().toString());
+       		  Engine.CHANCES_OF_RAIN=Integer.parseInt(rain_edit3.getText().toString());
+       		  Engine.PLANTS_NORMAL_GROWTH=Integer.parseInt(grow_edit1.getText().toString());
      		  Engine.CPROXIM=Integer.parseInt(grow_edit2.getText().toString());
        		  tabs.setCurrentTab(0);
        	   }
           });
-        race1_update.setOnClickListener(new Button.OnClickListener() {
+        specie1_update.setOnClickListener(new Button.OnClickListener() {
         	public void onClick(View v) {
-        		Engine.C_BORN_RACE1=Integer.parseInt(specie1_edit1.getText().toString());
-        		Engine.EFICIENCY_RACE1=Integer.parseInt(specie1_edit2.getText().toString());
-        		Engine.RACE1_MAX_AGE=Integer.parseInt(specie1_edit3.getText().toString());
-        		Engine.X_RACE1=Integer.parseInt(specie1_edit4.getText().toString());
-        		Engine.Y_RACE1=Integer.parseInt(specie1_edit5.getText().toString());
+        		Engine.SPECIE1_CHANCES_TO_BORN=Integer.parseInt(specie1_edit1.getText().toString());
+        		Engine.SPECIE1_ENERGY_NEEDED=Integer.parseInt(specie1_edit2.getText().toString());
+        		Engine.SPECIE1_MAX_AGE=Integer.parseInt(specie1_edit3.getText().toString());
+        		Engine.SPECIE1_X_START=Integer.parseInt(specie1_edit4.getText().toString());
+        		Engine.SPECIE1_Y_START=Integer.parseInt(specie1_edit5.getText().toString());
         		tabs.setCurrentTab(0);
         	   }
            });
-        race2_update.setOnClickListener(new Button.OnClickListener() {
+        specie2_update.setOnClickListener(new Button.OnClickListener() {
         	public void onClick(View v) {
-        		Engine.C_BORN_RACE2=Integer.parseInt(specie2_edit1.getText().toString());
-           		Engine.EFICIENCY_RACE2=Integer.parseInt(specie2_edit2.getText().toString());
-           		Engine.RACE2_MAX_AGE=Integer.parseInt(specie2_edit3.getText().toString());
-           		Engine.X_RACE2=Integer.parseInt(specie2_edit4.getText().toString());
-        		Engine.Y_RACE2=Integer.parseInt(specie2_edit5.getText().toString());
+        		Engine.SPECIE2_CHANCES_TO_BORN=Integer.parseInt(specie2_edit1.getText().toString());
+           		Engine.SPECIE2_ENERGY_NEEDED=Integer.parseInt(specie2_edit2.getText().toString());
+           		Engine.SPECIE2_MAX_AGE=Integer.parseInt(specie2_edit3.getText().toString());
+           		Engine.SPECIE2_X_START=Integer.parseInt(specie2_edit4.getText().toString());
+        		Engine.SPECIE2_Y_START=Integer.parseInt(specie2_edit5.getText().toString());
            		tabs.setCurrentTab(0);
         	   }
            });

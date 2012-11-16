@@ -19,27 +19,27 @@ package com.sim.lifeproject;
 
 public class Engine {
 /*Variables that will be used in the game*/
-public static int CNORMAL=40; // cnormal es l'index de creixement normal (sobre 100) = 4000;
-public static int NUM_OF_GRASS=0;
-public static int PROB_RAIN=70; // probability of rain
+public static int PLANTS_NORMAL_GROWTH=40; // cnormal es l'index de creixement normal (sobre 100) = 4000;
+public static int PLANTS_TOTAL_UNITS=0;
+public static int CHANCES_OF_RAIN=70; // probability of rain
 public static int CPROXIM=8; // cproxim es l'index de creixement proxim (sobre 100)
 public static int CPLUJA=50;
 public static int MAX_RAINING_TIME=5;
-// animal variables
-public static int RACE1_MAX_AGE=20;
-public static int RACE2_MAX_AGE=20;
-public static int NUM_OF_RACE1=0;
-public static int NUM_OF_RACE2=0;
-public static int DEAD_RACE1=0;
-public static int DEAD_RACE2=0;
-public static int C_BORN_RACE1=99;
-public static int C_BORN_RACE2=99;
-public static int EFICIENCY_RACE1=10;
-public static int EFICIENCY_RACE2=15;
-public static int X_RACE1=10;
-public static int Y_RACE1=10;
-public static int X_RACE2=90;
-public static int Y_RACE2=90;
+// species variables
+public static int SPECIE1_MAX_AGE=20;
+public static int SPECIE2_MAX_AGE=20;
+public static int SPECIE1_TOTAL_UNITS=0;
+public static int SPECIE2_TOTAL_UNITS=0;
+public static int SPECIE1_LAST_DEADS=0;
+public static int SPECIE2_LAST_DEADS=0;
+public static int SPECIE1_CHANCES_TO_BORN=99;
+public static int SPECIE2_CHANCES_TO_BORN=99;
+public static int SPECIE1_ENERGY_NEEDED=10;
+public static int SPECIE2_ENERGY_NEEDED=15;
+public static int SPECIE1_X_START=10;
+public static int SPECIE1_Y_START=10;
+public static int SPECIE2_X_START=90;
+public static int SPECIE2_Y_START=90;
 
 // global variables
 public static int SCREEN_W; // screen width

@@ -48,8 +48,8 @@ public class Pantallaprincipal extends View {
 	Paint color_race2 = new Paint();
 	Paint fons_matriu= new Paint();
 	// arraylist per les dos llistes d'animals
-	ArrayList<Animal> Race1List = new ArrayList<Animal>();
-	ArrayList<Animal> Race2List = new ArrayList<Animal>();
+	ArrayList<Animal> specie1List = new ArrayList<Animal>();
+	ArrayList<Animal> specie2List = new ArrayList<Animal>();
 	ArrayList<Animal> deadAnimals = new ArrayList<Animal>();
 
 
@@ -65,8 +65,8 @@ public class Pantallaprincipal extends View {
         canvas.save();
         if (Engine.FIRST_LOOP==true) {
         	// create first animals of each race
-    		Race1List.add(new Animal(Engine.X_RACE1,Engine.Y_RACE1,Engine.RACE1_MAX_AGE));
-    		Race2List.add(new Animal(Engine.X_RACE2,Engine.Y_RACE2,Engine.RACE2_MAX_AGE));
+    		specie1List.add(new Animal(Engine.SPECIE1_X_START,Engine.SPECIE1_Y_START,Engine.SPECIE1_MAX_AGE));
+    		specie2List.add(new Animal(Engine.SPECIE2_X_START,Engine.SPECIE2_Y_START,Engine.SPECIE2_MAX_AGE));
     		Engine.FIRST_LOOP=false;
         }
         int position_offset;
@@ -76,7 +76,7 @@ public class Pantallaprincipal extends View {
         	position_offset=(Engine.SCREEN_W-300)/2;
         }
         if (position_offset<0) { position_offset=0; }
-        Engine.NUM_OF_GRASS=0;
+        Engine.PLANTS_TOTAL_UNITS=0;
 		int random_x = randomGenerator.nextInt(100); //  range 0..99
 		int random_y = randomGenerator.nextInt(100); //  range 0..99
 		int rain_chance = randomGenerator.nextInt(100); //  range 0..99
@@ -88,7 +88,7 @@ public class Pantallaprincipal extends View {
 				raining_time=0;
 			}
 		}
-		if (rain_chance>100-Engine.PROB_RAIN && is_raining==0) { // si no plou i es produeix la possiblitat
+		if (rain_chance>100-Engine.CHANCES_OF_RAIN && is_raining==0) { // si no plou i es produeix la possiblitat
 			matriu_herba.rain_on(random_x,random_y);
 			current_rain_x=random_x;
 			current_rain_y=random_y;
@@ -116,7 +116,7 @@ public class Pantallaprincipal extends View {
 			for (int y=0;y<100;y++) {
 				matriu_herba.grow(x, y);
 				int chance = randomGenerator.nextInt(100); //  range 0..99
-				if (chance>100-Engine.CNORMAL) {
+				if (chance>100-Engine.PLANTS_NORMAL_GROWTH) {
 					matriu_herba.born(x,y);	// mira si aquesta casella es pot convertir en una nova herba
 				}
 				if (chance>100-Engine.CPROXIM && matriu_herba.getNear(x,y)==1) { // en cas que estigui proxima a una altre herba
@@ -132,52 +132,52 @@ public class Pantallaprincipal extends View {
 				// dibuixem les herbes vives segons els diferents nivells d'energia
 				if (matriu_herba.getAge(x,y)==1) {
 					canvas.drawRect(position_offset+(x*tile_size)+1, (y*tile_size)+1, position_offset+(x*tile_size)+tile_size-1, (y*tile_size)+tile_size-1, color_planta1);
-					Engine.NUM_OF_GRASS=Engine.NUM_OF_GRASS+1;
+					Engine.PLANTS_TOTAL_UNITS=Engine.PLANTS_TOTAL_UNITS+1;
 				}
 				if (matriu_herba.getAge(x,y)==2) {
 					canvas.drawRect(position_offset+(x*tile_size)+1, (y*tile_size)+1, position_offset+(x*tile_size)+tile_size-1, (y*tile_size)+tile_size-1, color_planta2);
-					Engine.NUM_OF_GRASS=Engine.NUM_OF_GRASS+1;
+					Engine.PLANTS_TOTAL_UNITS=Engine.PLANTS_TOTAL_UNITS+1;
 				}
 				if (matriu_herba.getAge(x,y)==3) {
 					canvas.drawRect(position_offset+(x*tile_size)+1, (y*tile_size)+1, position_offset+(x*tile_size)+tile_size-1, (y*tile_size)+tile_size-1, color_planta3);
-					Engine.NUM_OF_GRASS=Engine.NUM_OF_GRASS+1;
+					Engine.PLANTS_TOTAL_UNITS=Engine.PLANTS_TOTAL_UNITS+1;
 				}
 				if (matriu_herba.getAge(x,y)==4) {
 					canvas.drawRect(position_offset+(x*tile_size)+1, (y*tile_size)+1, position_offset+(x*tile_size)+tile_size-1, (y*tile_size)+tile_size-1, color_planta4);
-					Engine.NUM_OF_GRASS=Engine.NUM_OF_GRASS+1;
+					Engine.PLANTS_TOTAL_UNITS=Engine.PLANTS_TOTAL_UNITS+1;
 				}
 				if (matriu_herba.getAge(x,y)==5) {
 					canvas.drawRect(position_offset+(x*tile_size)+1, (y*tile_size)+1, position_offset+(x*tile_size)+tile_size-1, (y*tile_size)+tile_size-1, color_planta5);
-					Engine.NUM_OF_GRASS=Engine.NUM_OF_GRASS+1;
+					Engine.PLANTS_TOTAL_UNITS=Engine.PLANTS_TOTAL_UNITS+1;
 				}
 				if (matriu_herba.getRain(x,y)==1) {
 					canvas.drawRect(position_offset+(x*tile_size)+1, (y*tile_size)+1, position_offset+(x*tile_size)+tile_size-1, (y*tile_size)+tile_size-1, color_rain);
-					Engine.NUM_OF_GRASS=Engine.NUM_OF_GRASS+1;
+					Engine.PLANTS_TOTAL_UNITS=Engine.PLANTS_TOTAL_UNITS+1;
 				}
 
 			}
 		}
-		int race1size= Race1List.size();
-		int race2size= Race2List.size();
-		Engine.NUM_OF_RACE1=race1size;
-		Engine.NUM_OF_RACE2=race2size;
+		int race1size= specie1List.size();
+		int race2size= specie2List.size();
+		Engine.SPECIE1_TOTAL_UNITS=race1size;
+		Engine.SPECIE2_TOTAL_UNITS=race2size;
 		deadAnimals.clear();
 		// bucle per visualitzar i fer evolucionar els animals (RACE1)
 		for (int i = 0; i < race1size; i++) {
-			Animal item=Race1List.get(i);
+			Animal item=specie1List.get(i);
 			
 			if (matriu_herba.getEnergy(item.getX(),item.getY())>0) { // si la planta te energia
 				if (item.getEnergy()<=10) { // si te gana
 						item.feed(); // s'alimenta
-						matriu_herba.setEnergy(item.getX(),item.getY(),Engine.EFICIENCY_RACE1); // restem energia a la planta
+						matriu_herba.setEnergy(item.getX(),item.getY(),Engine.SPECIE1_ENERGY_NEEDED); // restem energia a la planta
 				}
 			}
 			if (item.ready_to_reproduce()) { // si esta preparat per reproduirse
 				item.reproduce(); // es reprodueix
 				Random randomGenerator = new Random();
 				int chances_to_born = randomGenerator.nextInt(100); //  range 0..99
-				if (chances_to_born<Engine.C_BORN_RACE1) {
-					Race1List.add(new Animal(item.getX(),item.getY(),Engine.RACE1_MAX_AGE));
+				if (chances_to_born<Engine.SPECIE1_CHANCES_TO_BORN) {
+					specie1List.add(new Animal(item.getX(),item.getY(),Engine.SPECIE1_MAX_AGE));
 				}
 				item.grow(); // creix
 			} else {
@@ -190,28 +190,28 @@ public class Pantallaprincipal extends View {
 			canvas.drawRect(position_offset+(item.getX()*tile_size)+1, (item.getY()*tile_size)+1, position_offset+(item.getX()*tile_size)+tile_size-1, (item.getY()*tile_size)+tile_size-1, color_race1);
 		}
 		// remove and clear dead animals (RACE1)
-		Engine.DEAD_RACE1=deadAnimals.size();
+		Engine.SPECIE1_LAST_DEADS=deadAnimals.size();
 		for (int i=0;i<deadAnimals.size(); i++ ) {
 			Animal item=deadAnimals.get(i);
-			Race1List.remove(item);
+			specie1List.remove(item);
 		}
 		deadAnimals.clear();
 		// bucle per visualitzar i fer evolucionar els animals (RACE2)
 		for (int i = 0; i < race2size; i++) {
-			Animal item=Race2List.get(i);
+			Animal item=specie2List.get(i);
 			
 			if (matriu_herba.getEnergy(item.getX(),item.getY())>0) { // si la planta te energia
 				if (item.getEnergy()<=10) { // si te gana
 						item.feed(); // s'alimenta
-						matriu_herba.setEnergy(item.getX(),item.getY(),Engine.EFICIENCY_RACE2); // restem energia a la planta
+						matriu_herba.setEnergy(item.getX(),item.getY(),Engine.SPECIE2_ENERGY_NEEDED); // restem energia a la planta
 				}
 			}
 			if (item.ready_to_reproduce()) { // si esta preparat per reproduirse
 				item.reproduce(); // es reprodueix
 				Random randomGenerator = new Random();
 				int chances_to_born = randomGenerator.nextInt(100); //  range 0..99
-				if (chances_to_born<Engine.C_BORN_RACE2) {
-					Race2List.add(new Animal(item.getX(),item.getY(),Engine.RACE2_MAX_AGE));
+				if (chances_to_born<Engine.SPECIE2_CHANCES_TO_BORN) {
+					specie2List.add(new Animal(item.getX(),item.getY(),Engine.SPECIE2_MAX_AGE));
 				}
 				item.grow(); // creix
 			} else {
@@ -224,10 +224,10 @@ public class Pantallaprincipal extends View {
 			canvas.drawRect(position_offset+(item.getX()*tile_size)+1, (item.getY()*tile_size)+1, position_offset+(item.getX()*tile_size)+tile_size-1, (item.getY()*tile_size)+tile_size-1, color_race2);
 		}
 		// remove and clear dead animals (RACE2)
-		Engine.DEAD_RACE2=deadAnimals.size();
+		Engine.SPECIE2_LAST_DEADS=deadAnimals.size();
 		for (int i=0;i<deadAnimals.size(); i++ ) {
 			Animal item=deadAnimals.get(i);
-			Race2List.remove(item);
+			specie2List.remove(item);
 		}
 		deadAnimals.clear();
 		
