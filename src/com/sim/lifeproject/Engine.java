@@ -41,10 +41,10 @@ public static int Y_RACE1=10;
 public static int X_RACE2=90;
 public static int Y_RACE2=90;
 
-// screen dimensions and global variables
-public static int SCREEN_W;
-public static int SCREEN_H;
-public static boolean PLAY=false;
-public static boolean FIRST_LOOP=true;
+// global variables
+public static int SCREEN_W; // screen width
+public static int SCREEN_H; // screen height -not used-
+public static boolean PLAY=false; // app begins stopped
+public static boolean FIRST_LOOP=true; // is the first loop of the main while?
 
 }
