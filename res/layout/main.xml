@@ -1,21 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TabHost xmlns:android="http://schemas.android.com/apk/res/android" android:id="@android:id/tabhost"
+<TabHost 
+    xmlns:android="http://schemas.android.com/apk/res/android" 
+    android:id="@android:id/tabhost"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
- 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" >
- 
-         <TabWidget android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@android:id/tabs" />
- 
-         <FrameLayout android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@android:id/tabcontent" >
- 
+      	<TabWidget 
+      	    android:layout_width="match_parent"
+        	android:layout_height="wrap_content"
+        	android:id="@android:id/tabs" />
+      	<!-- Begining of tabs -->
+      	<FrameLayout 
+      	    android:layout_width="match_parent"
+           	android:layout_height="match_parent"
+       		android:id="@android:id/tabcontent" >
+       		<!-- First tab -->
             <RelativeLayout
     			android:id="@+id/tab1"
     			android:layout_width="fill_parent"
@@ -33,13 +35,12 @@
     				android:layout_height="wrap_content"
     				android:layout_below="@+id/pantallasimulacio">
     				<TextView
-					android:id="@+id/show_info"
-					android:layout_width="fill_parent"
-					android:layout_height="wrap_content"
-					android:textColor="#000000"
-					android:gravity="center"
-					android:text="" />
-    				
+						android:id="@+id/show_info"
+						android:layout_width="fill_parent"
+						android:layout_height="wrap_content"
+						android:textColor="#000000"
+						android:gravity="center"
+						android:text="" />		
 				</LinearLayout>
 				<LinearLayout
     				android:layout_below="@+id/pantallasimulacio"
@@ -48,7 +49,7 @@
     				android:id="@+id/layout_ad"
     				android:layout_height="wrap_content" />
 			</RelativeLayout>
-            
+            <!-- Second tab -->
           	<LinearLayout
 				android:id="@+id/tab2"
 				android:layout_width="fill_parent"
@@ -57,46 +58,14 @@
 				android:background="@drawable/splashscreen"
 				xmlns:android="http://schemas.android.com/apk/res/android">
 				<TextView
-					android:id="@+id/rain_txt1"
-					android:layout_width="fill_parent"
-					android:layout_height="wrap_content"
-					android:textColor="#000000"
-					android:text="OnRain plants grow ratio" />
-				<EditText
-					android:id="@+id/rain_edit1"
-					android:layout_width="fill_parent"
-					android:layout_height="wrap_content"
-					/>
-				<TextView
-					android:id="@+id/rain_txt2"
-					android:layout_width="fill_parent"
-					android:layout_height="wrap_content"
-					android:textColor="#000000"
-					android:text="Rain duration" />
-				<EditText
-					android:id="@+id/rain_edit2"
-					android:layout_width="fill_parent"
-					android:layout_height="wrap_content"
-					/>
-				<TextView
-					android:id="@+id/rain_txt3"
-					android:layout_width="fill_parent"
-					android:layout_height="wrap_content"
-					android:textColor="#000000"
-					android:text="Rain chances" />
-				<EditText
-					android:id="@+id/rain_edit3"
-					android:layout_width="fill_parent"
-					android:layout_height="wrap_content"
-					/>
-				<TextView
 					android:id="@+id/grow_txt1"
 					android:layout_width="fill_parent"
 					android:layout_height="wrap_content"
 					android:textColor="#000000"
-					android:text="General grow ratio" />
+					android:text="@string/grow_txt1" />
 				<EditText
 					android:id="@+id/grow_edit1"
+					android:hint="@string/grow_txt1"
 					android:layout_width="fill_parent"
 					android:layout_height="wrap_content"
 					/>
@@ -105,9 +74,46 @@
 					android:layout_width="fill_parent"
 					android:layout_height="wrap_content"
 					android:textColor="#000000"
-					android:text="Proximity grow ratio" />
+					android:text="@string/grow_txt2" />
 				<EditText
 					android:id="@+id/grow_edit2"
+					android:hint="@string/grow_txt2"
+					android:layout_width="fill_parent"
+					android:layout_height="wrap_content"
+					/>
+				<TextView
+					android:id="@+id/rain_txt1"
+					android:layout_width="fill_parent"
+					android:layout_height="wrap_content"
+					android:textColor="#000000"
+					android:text="@string/rain_txt1" />
+				<EditText
+					android:id="@+id/rain_edit1"
+					android:hint="@string/rain_txt1"
+					android:layout_width="fill_parent"
+					android:layout_height="wrap_content"
+					/>
+				<TextView
+					android:id="@+id/rain_txt2"
+					android:layout_width="fill_parent"
+					android:layout_height="wrap_content"
+					android:textColor="#000000"
+					android:text="@string/rain_txt2" />
+				<EditText
+					android:id="@+id/rain_edit2"
+					android:hint="@string/rain_txt2"
+					android:layout_width="fill_parent"
+					android:layout_height="wrap_content"
+					/>
+				<TextView
+					android:id="@+id/rain_txt3"
+					android:layout_width="fill_parent"
+					android:layout_height="wrap_content"
+					android:textColor="#000000"
+					android:text="@string/rain_txt3" />
+				<EditText
+					android:id="@+id/rain_edit3"
+					android:hint="@string/rain_txt3"
 					android:layout_width="fill_parent"
 					android:layout_height="wrap_content"
 					/>
@@ -115,10 +121,10 @@
 					android:id="@+id/plants_update"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:text="Update" 
+					android:text="@string/update" 
 					/>
         	</LinearLayout>
-        	
+        	<!-- Third tab -->
           	<LinearLayout
 				android:id="@+id/tab3"
 				android:layout_width="fill_parent"
@@ -131,9 +137,10 @@
 					android:layout_width="fill_parent"
 					android:layout_height="wrap_content"
 					android:textColor="#000000"
-					android:text="Grow ratio" />
+					android:text="@string/race_txt1" />
 				<EditText
 					android:id="@+id/race1_edit1"
+					android:hint="@string/race_txt1"
 					android:layout_width="fill_parent"
 					android:layout_height="wrap_content"
 					/>
@@ -142,9 +149,10 @@
 					android:layout_width="fill_parent"
 					android:layout_height="wrap_content"
 					android:textColor="#000000"
-					android:text="Energy used to grow" />
+					android:text="@string/race_txt2" />
 				<EditText
 					android:id="@+id/race1_edit2"
+					android:hint="@string/race_txt2"
 					android:layout_width="fill_parent"
 					android:layout_height="wrap_content"
 					/>
@@ -153,9 +161,10 @@
 					android:layout_width="fill_parent"
 					android:layout_height="wrap_content"
 					android:textColor="#000000"
-					android:text="Max age" />
+					android:text="@string/race_txt3" />
 				<EditText
 					android:id="@+id/race1_edit3"
+					android:hint="@string/race_txt3"
 					android:layout_width="fill_parent"
 					android:layout_height="wrap_content"
 					/>
@@ -164,9 +173,10 @@
 					android:layout_width="fill_parent"
 					android:layout_height="wrap_content"
 					android:textColor="#000000"
-					android:text="X coord seed" />
+					android:text="@string/race_txt4" />
 				<EditText
 					android:id="@+id/race1_edit4"
+					android:hint="@string/race_txt4"
 					android:layout_width="fill_parent"
 					android:layout_height="wrap_content"
 					/>
@@ -175,9 +185,10 @@
 					android:layout_width="fill_parent"
 					android:layout_height="wrap_content"
 					android:textColor="#000000"
-					android:text="Y coord seed" />
+					android:text="@string/race_txt5" />
 				<EditText
 					android:id="@+id/race1_edit5"
+					android:hint="@string/race_txt5"
 					android:layout_width="fill_parent"
 					android:layout_height="wrap_content"
 					/>
@@ -185,9 +196,10 @@
 					android:id="@+id/race1_update"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:text="Update" 
+					android:text="@string/update" 
 					/>
         	</LinearLayout>
+        	<!-- Fourth tab -->
         	<LinearLayout
 				android:id="@+id/tab4"
 				android:layout_width="fill_parent"
@@ -200,9 +212,10 @@
 					android:layout_width="fill_parent"
 					android:layout_height="wrap_content"
 					android:textColor="#000000"
-					android:text="Grow ratio" />
+					android:text="@string/race_txt1" />
 				<EditText
 					android:id="@+id/race2_edit1"
+					android:hint="@string/race_txt1"
 					android:layout_width="fill_parent"
 					android:layout_height="wrap_content"
 					/>
@@ -211,9 +224,10 @@
 					android:layout_width="fill_parent"
 					android:layout_height="wrap_content"
 					android:textColor="#000000"
-					android:text="Energy used to grow" />
+					android:text="@string/race_txt2" />
 				<EditText
 					android:id="@+id/race2_edit2"
+					android:hint="@string/race_txt2"
 					android:layout_width="fill_parent"
 					android:layout_height="wrap_content"
 					/>
@@ -222,9 +236,10 @@
 					android:layout_width="fill_parent"
 					android:layout_height="wrap_content"
 					android:textColor="#000000"
-					android:text="Max age" />
+					android:text="@string/race_txt3" />
 				<EditText
 					android:id="@+id/race2_edit3"
+					android:hint="@string/race_txt3"
 					android:layout_width="fill_parent"
 					android:layout_height="wrap_content"
 					/>
@@ -233,9 +248,10 @@
 					android:layout_width="fill_parent"
 					android:layout_height="wrap_content"
 					android:textColor="#000000"
-					android:text="X coord seed" />
+					android:text="@string/race_txt4" />
 				<EditText
 					android:id="@+id/race2_edit4"
+					android:hint="@string/race_txt4"
 					android:layout_width="fill_parent"
 					android:layout_height="wrap_content"
 					/>
@@ -244,9 +260,10 @@
 					android:layout_width="fill_parent"
 					android:layout_height="wrap_content"
 					android:textColor="#000000"
-					android:text="Y coord seed" />
+					android:text="@string/race_txt5" />
 				<EditText
 					android:id="@+id/race2_edit5"
+					android:hint="@string/race_txt5"
 					android:layout_width="fill_parent"
 					android:layout_height="wrap_content"
 					/>
@@ -254,9 +271,10 @@
 					android:id="@+id/race2_update"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:text="Update" 
+					android:text="@string/update" 
 					/>
         	</LinearLayout>
+        	<!-- Fifth tab -->
         	<LinearLayout
 				android:id="@+id/tab5"
 				android:layout_width="fill_parent"
@@ -271,8 +289,7 @@
 					android:textColor="#000000"
 					android:text="@string/textinfo" />
         	</LinearLayout>
- 
-         </FrameLayout>
-    </LinearLayout>
- 
+  		</FrameLayout>
+   		<!-- End of tabs -->
+ 	</LinearLayout>
 </TabHost>

@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <string name="start">Start</string>
-    <string name="stop">Stop</string>
-    <string name="app_name">LifeProject</string>
+	<string name="app_name">LifeProject</string>
+	<string name="update">Update</string>
+	<string name="grow_txt1">General grow ratio</string>
+	<string name="grow_txt2">Proximity grow ratio</string>
+	<string name="rain_txt1">OnRain plants grow ratio</string>
+	<string name="rain_txt2">Rain duration</string>
+	<string name="rain_txt3">Rain chances</string>
+	<string name="race_txt1">Grow ratio</string>
+	<string name="race_txt2">Energy used to grow</string>
+	<string name="race_txt3">Max age</string>
+	<string name="race_txt4">X coord of first seed</string>
+	<string name="race_txt5">Y coord of first seed</string>
+    
+    
     <string name="textinfo">
         Alpha Release 2\n
         This is a life simulator, based on those elements:\n
