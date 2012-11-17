@@ -1,29 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="app_name">LifeProject</string>
+	<string name="app_name">Life Sim</string>
 	<string name="update">Update</string>
 	<string name="grow_txt1">General grow ratio</string>
-	<string name="grow_txt2">Proximity grow ratio</string>
-	<string name="rain_txt1">OnRain plants grow ratio</string>
+	<string name="grow_txt2">Enhanced grow ratio</string>
+	<string name="rain_txt1">OnRain grow ratio</string>
 	<string name="rain_txt2">Rain duration</string>
 	<string name="rain_txt3">Rain chances</string>
-	<string name="specie_txt1">Grow ratio</string>
+	<string name="specie_txt1">Reproduction chances</string>
 	<string name="specie_txt2">Energy used to grow</string>
 	<string name="specie_txt3">Max age</string>
 	<string name="specie_txt4">X coord of first seed</string>
 	<string name="specie_txt5">Y coord of first seed</string>
-    
-    
-    <string name="textinfo">
-        Alpha Release 3\n
-        This is a life simulator, based on those elements:\n
-        Plants: Is the main food for the animal spices, you can setup the plants variables on plants tab.\n
-        Rain: Can modify behaviour of plants growing, you can setup the rain variables on plants tab.\n
-       	Spices: Modify behaviour of two spices, compiting for the resources (plants), you can setup the spicies variables on spices tab.\n
-       	Sim tab: you can see the simulation on sim tab (you can stop, start or exit the simulation with menu options)\n
-        This is a very schematic vision of the simulator, if you want more information, a tutorial and / or give me some feedback, visit:\n
-        https://github.com/ferriman/LifeProject/wiki\n
-        Thanks!\n
-    </string>
-
+	<string name="credits">Life simulator by Ferri, release Alpha 3</string>
 </resources>

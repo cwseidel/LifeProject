@@ -22,8 +22,8 @@ public class Engine {
 public static int PLANTS_NORMAL_GROWTH_RATIO=40;
 public static int PLANTS_TOTAL_UNITS=0;
 public static int CHANCES_OF_RAIN=70;
-public static int PLANTS_ENHANCED_GROWTH_RATIO=8;
-public static int PLANTS_ONRAIN_GROWTH_RATIO=50;
+public static int PLANTS_ENHANCED_GROWTH_RATIO=60;
+public static int PLANTS_ONRAIN_GROWTH_RATIO=80;
 public static int MAX_RAINING_TIME=5;
 // species variables
 public static int SPECIE1_MAX_AGE=20;

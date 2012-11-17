@@ -281,14 +281,8 @@
 				android:layout_width="fill_parent"
 				android:layout_height="fill_parent"
 				android:orientation="vertical"
-				android:background="@drawable/background"
+				android:background="@drawable/help"
 				xmlns:android="http://schemas.android.com/apk/res/android">
-				<TextView
-					android:id="@+id/helptext"
-					android:layout_width="fill_parent"
-					android:layout_height="wrap_content"
-					android:textColor="#000000"
-					android:text="@string/textinfo" />
         	</LinearLayout>
   		</FrameLayout>
    		<!-- End of tabs -->
