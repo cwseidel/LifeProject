@@ -46,5 +46,9 @@ public static int SCREEN_W; // screen width
 public static int SCREEN_H; // screen height -not used-
 public static boolean PLAY=false; // app begins stopped
 public static boolean FIRST_LOOP=true; // is the first loop of the main while?
+public static float X_SCALE=1.f;
+public static float Y_SCALE=1.f;
+public static float X_SCALE_CENTER=0;
+public static float Y_SCALE_CENTER=0;
 
 }

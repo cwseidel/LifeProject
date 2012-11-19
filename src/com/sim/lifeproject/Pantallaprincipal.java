@@ -19,6 +19,9 @@ package com.sim.lifeproject;
 
 
 import android.content.Context;
+import android.view.MotionEvent;
+import android.view.ScaleGestureDetector;
+import android.view.ScaleGestureDetector.OnScaleGestureListener;
 import android.view.View;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -51,6 +54,8 @@ public class Pantallaprincipal extends View {
 	ArrayList<Animal> specie1List = new ArrayList<Animal>();
 	ArrayList<Animal> specie2List = new ArrayList<Animal>();
 	ArrayList<Animal> deadAnimals = new ArrayList<Animal>();
+	private ScaleGestureDetector mScaleDetector;
+	private float mScaleFactor = 1.f;
 
 
 	public Pantallaprincipal(Context context) {
@@ -59,10 +64,28 @@ public class Pantallaprincipal extends View {
 			
 	}
 	@Override
+
+	public boolean onTouchEvent(MotionEvent event) {
+	   switch(event.getAction()) {
+	   case MotionEvent.ACTION_DOWN:
+		  Engine.X_SCALE_CENTER = (int) event.getX();
+		  Engine.Y_SCALE_CENTER = (int) event.getY();
+		  Engine.X_SCALE=1.5f;
+		  Engine.Y_SCALE=1.5f;
+	      break;
+	   case MotionEvent.ACTION_UP:
+		   Engine.X_SCALE=1.f;
+		   Engine.Y_SCALE=1.f;
+	   }
+	   return true;
+	}
+
+	@Override
     public void onDraw(Canvas canvas) {
 		if (Engine.PLAY==true) {
 		super.onDraw(canvas);
         canvas.save();
+        canvas.scale(Engine.X_SCALE,Engine.Y_SCALE,Engine.X_SCALE_CENTER,Engine.Y_SCALE_CENTER);
         if (Engine.FIRST_LOOP==true) {
         	// create first animals of each race
     		specie1List.add(new Animal(Engine.SPECIE1_X_START,Engine.SPECIE1_Y_START,Engine.SPECIE1_MAX_AGE));
