@@ -86,7 +86,7 @@ public class LifeProjectActivity extends Activity {
         spec.setContent(R.id.tab5);
         spec.setIndicator("Help",res.getDrawable(android.R.drawable.ic_menu_help));
         tabs.addTab(spec);
-        tabs.setCurrentTab(0); // begin with sim tab
+        tabs.setCurrentTab(4); // begin with help tab
         
         pantalla.requestFocus();
         LinearLayout upper = (LinearLayout) findViewById(R.id.pantallasimulacio);
