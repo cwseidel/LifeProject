@@ -12,8 +12,9 @@ public final class R {
     }
     public static final class drawable {
         public static final int background=0x7f020000;
-        public static final int ic_launcher=0x7f020001;
-        public static final int splashscreen=0x7f020002;
+        public static final int canvasborder=0x7f020001;
+        public static final int ic_launcher=0x7f020002;
+        public static final int splashscreen=0x7f020003;
     }
     public static final class id {
         public static final int LinearLayout02=0x7f060002;

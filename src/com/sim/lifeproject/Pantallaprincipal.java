@@ -131,10 +131,10 @@ public class Pantallaprincipal extends View {
     		Engine.FIRST_LOOP=false;
         }
         // control position of the simulation matrix
-        if (Engine.SCREEN_W>=500) {
-        	position_offset=(Engine.SCREEN_W-500)/2;
+        if (Engine.SCREEN_W>=540) {
+        	position_offset=(Engine.SCREEN_W-540)/2;
         } else {
-        	position_offset=(Engine.SCREEN_W-300)/2;
+        	position_offset=(Engine.SCREEN_W-340)/2;
         }
         if (position_offset<0) { position_offset=0; }
         Engine.PLANTS_TOTAL_UNITS=0;

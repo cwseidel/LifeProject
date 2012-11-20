@@ -25,9 +25,12 @@
     			android:background="@drawable/background"
     			android:orientation="vertical" >
             	<LinearLayout
+            	    android:background="@drawable/canvasborder"
     				android:id="@+id/pantallasimulacio"
     				android:layout_width="fill_parent"
     				android:layout_marginTop="30dip"
+    				android:layout_marginLeft="10dp"
+					android:layout_marginRight="10dp"
     				android:layout_height="300dp" />
 				<LinearLayout
     				android:id="@+id/LinearLayout02"
@@ -39,7 +42,8 @@
 						android:layout_width="fill_parent"
 						android:layout_height="wrap_content"
 						android:textColor="#000000"
-						android:layout_marginLeft="10dip"
+						android:layout_marginLeft="10dp"
+						android:layout_marginTop="10dp"
 						android:gravity="left"
 						android:text="" />		
 				</LinearLayout>
