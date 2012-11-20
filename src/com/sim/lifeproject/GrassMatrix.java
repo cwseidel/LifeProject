@@ -61,8 +61,8 @@ public class GrassMatrix {
 		}
 	}
 	public void rain_on(int x,int y) {
-		for (int ix=x-5;ix<x+6;ix++) {
-			for (int iy=y-5;iy<y+6;iy++) {
+		for (int ix=x-12;ix<x+13;ix++) {
+			for (int iy=y-12;iy<y+13;iy++) {
 				if (iy>=0 && ix>=0 && iy<100 && ix<100) { 
 					g_matrix[ix][iy].setRain(1);
 				}
@@ -70,8 +70,8 @@ public class GrassMatrix {
 		}
 	}
 	public void rain_off(int x,int y) {
-		for (int ix=x-5;ix<x+6;ix++) {
-			for (int iy=y-5;iy<y+6;iy++) {
+		for (int ix=x-12;ix<x+13;ix++) {
+			for (int iy=y-12;iy<y+13;iy++) {
 				if (iy>=0 && ix>=0 && iy<100 && ix<100) { 
 					g_matrix[ix][iy].setRain(0);
 				}
