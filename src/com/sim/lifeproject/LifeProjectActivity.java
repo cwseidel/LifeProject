@@ -157,32 +157,92 @@ public class LifeProjectActivity extends Activity {
 
         plants_update.setOnClickListener(new Button.OnClickListener() {
        	   public void onClick(View v) {
-       		  Engine.PLANTS_ONRAIN_GROWTH_RATIO=Integer.parseInt(rain_edit1.getText().toString());
-       		  Engine.MAX_RAINING_TIME=Integer.parseInt(rain_edit2.getText().toString());
-       		  Engine.CHANCES_OF_RAIN=Integer.parseInt(rain_edit3.getText().toString());
-       		  Engine.PLANTS_NORMAL_GROWTH_RATIO=Integer.parseInt(grow_edit1.getText().toString());
-     		  Engine.PLANTS_ENHANCED_GROWTH_RATIO=Integer.parseInt(grow_edit2.getText().toString());
+       		  if (rain_edit1.getText().toString().trim().equals("")==false) {
+       			   Engine.PLANTS_ONRAIN_GROWTH_RATIO=Integer.parseInt(rain_edit1.getText().toString());
+       		  } else {
+       			   rain_edit1.setText(Integer.toString(Engine.PLANTS_ONRAIN_GROWTH_RATIO));
+       		  }
+       		  if (rain_edit2.getText().toString().trim().equals("")==false) {
+       			  Engine.MAX_RAINING_TIME=Integer.parseInt(rain_edit2.getText().toString());
+       		  } else {
+       			  rain_edit2.setText(Integer.toString(Engine.MAX_RAINING_TIME));
+       		  }
+       		  if (rain_edit3.getText().toString().trim().equals("")==false) {
+       			  Engine.CHANCES_OF_RAIN=Integer.parseInt(rain_edit3.getText().toString());
+       		  } else {
+       			  rain_edit3.setText(Integer.toString(Engine.CHANCES_OF_RAIN));
+       		  }
+       		  if (grow_edit1.getText().toString().trim().equals("")==false) {
+       			  Engine.PLANTS_NORMAL_GROWTH_RATIO=Integer.parseInt(grow_edit1.getText().toString());
+       		  } else {
+       			  grow_edit1.setText(Integer.toString(Engine.PLANTS_NORMAL_GROWTH_RATIO));
+       		  }
+       		  if (grow_edit2.getText().toString().trim().equals("")==false) {
+       			  Engine.PLANTS_ENHANCED_GROWTH_RATIO=Integer.parseInt(grow_edit2.getText().toString());
+       		  } else {
+       			  grow_edit2.setText(Integer.toString(Engine.PLANTS_ENHANCED_GROWTH_RATIO));
+       		  }
        		  tabs.setCurrentTab(0);
        	   }
           });
         specie1_update.setOnClickListener(new Button.OnClickListener() {
         	public void onClick(View v) {
-        		Engine.SPECIE1_CHANCES_TO_BORN=Integer.parseInt(specie1_edit1.getText().toString());
-        		Engine.SPECIE1_ENERGY_NEEDED=Integer.parseInt(specie1_edit2.getText().toString());
-        		Engine.SPECIE1_MAX_AGE=Integer.parseInt(specie1_edit3.getText().toString());
-        		Engine.SPECIE1_X_START=Integer.parseInt(specie1_edit4.getText().toString());
-        		Engine.SPECIE1_Y_START=Integer.parseInt(specie1_edit5.getText().toString());
+        		if (specie1_edit1.getText().toString().trim().equals("")==false) {
+        			Engine.SPECIE1_CHANCES_TO_BORN=Integer.parseInt(specie1_edit1.getText().toString());
+        		} else {
+        			specie1_edit1.setText(Integer.toString(Engine.SPECIE1_CHANCES_TO_BORN));
+        		}
+        		if (specie1_edit2.getText().toString().trim().equals("")==false) {
+        			Engine.SPECIE1_ENERGY_NEEDED=Integer.parseInt(specie1_edit2.getText().toString());
+        		} else {
+        			specie1_edit2.setText(Integer.toString(Engine.SPECIE1_ENERGY_NEEDED));
+        		}
+        		if (specie1_edit3.getText().toString().trim().equals("")==false) {
+        			Engine.SPECIE1_MAX_AGE=Integer.parseInt(specie1_edit3.getText().toString());
+        		} else {
+        			specie1_edit3.setText(Integer.toString(Engine.SPECIE1_MAX_AGE));
+        		}
+        		if (specie1_edit4.getText().toString().trim().equals("")==false) {
+        			Engine.SPECIE1_X_START=Integer.parseInt(specie1_edit4.getText().toString());
+        		} else {
+        			specie1_edit4.setText(Integer.toString(Engine.SPECIE1_X_START));
+        		}
+        		if (specie1_edit5.getText().toString().trim().equals("")==false) {
+        			Engine.SPECIE1_Y_START=Integer.parseInt(specie1_edit5.getText().toString());
+        		} else {
+        			specie1_edit5.setText(Integer.toString(Engine.SPECIE1_Y_START));
+        		}
         		tabs.setCurrentTab(0);
         	   }
            });
         specie2_update.setOnClickListener(new Button.OnClickListener() {
         	public void onClick(View v) {
-        		Engine.SPECIE2_CHANCES_TO_BORN=Integer.parseInt(specie2_edit1.getText().toString());
-           		Engine.SPECIE2_ENERGY_NEEDED=Integer.parseInt(specie2_edit2.getText().toString());
-           		Engine.SPECIE2_MAX_AGE=Integer.parseInt(specie2_edit3.getText().toString());
-           		Engine.SPECIE2_X_START=Integer.parseInt(specie2_edit4.getText().toString());
-        		Engine.SPECIE2_Y_START=Integer.parseInt(specie2_edit5.getText().toString());
-           		tabs.setCurrentTab(0);
+        		if (specie2_edit1.getText().toString().trim().equals("")==false) {
+        			Engine.SPECIE2_CHANCES_TO_BORN=Integer.parseInt(specie2_edit1.getText().toString());
+        		} else {
+        			specie2_edit1.setText(Integer.toString(Engine.SPECIE2_CHANCES_TO_BORN));
+        		}
+        		if (specie2_edit2.getText().toString().trim().equals("")==false) {
+        			Engine.SPECIE2_ENERGY_NEEDED=Integer.parseInt(specie2_edit2.getText().toString());
+        		} else {
+        			specie2_edit2.setText(Integer.toString(Engine.SPECIE2_ENERGY_NEEDED));
+        		}
+        		if (specie2_edit3.getText().toString().trim().equals("")==false) {
+        			Engine.SPECIE2_MAX_AGE=Integer.parseInt(specie2_edit3.getText().toString());
+        		} else {
+        			specie2_edit3.setText(Integer.toString(Engine.SPECIE2_MAX_AGE));
+        		}
+        		if (specie2_edit4.getText().toString().trim().equals("")==false) {
+        			Engine.SPECIE2_X_START=Integer.parseInt(specie2_edit4.getText().toString());
+        		} else {
+        			specie2_edit4.setText(Integer.toString(Engine.SPECIE2_X_START));
+        		}
+        		if (specie2_edit5.getText().toString().trim().equals("")==false) {
+        			Engine.SPECIE2_Y_START=Integer.parseInt(specie2_edit5.getText().toString());
+        		} else {
+        			specie2_edit5.setText(Integer.toString(Engine.SPECIE2_Y_START));
+        		}
+        		tabs.setCurrentTab(0);
         	   }
            });
     }

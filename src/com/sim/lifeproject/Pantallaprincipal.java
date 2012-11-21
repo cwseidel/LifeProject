@@ -56,7 +56,8 @@ public class Pantallaprincipal extends View {
 	ArrayList<Animal> deadAnimals = new ArrayList<Animal>();
 	private ScaleGestureDetector mScaleDetector;
 	private float mScaleFactor = 1.f;
-	int position_offset;
+	int h_position_offset;
+	int v_position_offset=30;
 
 
 	public Pantallaprincipal(Context context) {
@@ -79,6 +80,7 @@ public class Pantallaprincipal extends View {
 		color_race2.setAlpha(100);
 		// end of set tile colors
 		
+		
 			
 	}
 	@Override
@@ -86,14 +88,14 @@ public class Pantallaprincipal extends View {
 	public boolean onTouchEvent(MotionEvent event) {
 	   switch(event.getAction()) {
 	   case MotionEvent.ACTION_DOWN:
-		  //Engine.X_SCALE_CENTER = (int) event.getX();
-		  //Engine.Y_SCALE_CENTER = (int) event.getY();
-		  //Engine.X_SCALE=1.5f;
-		  //Engine.Y_SCALE=1.5f;
+		  Engine.X_SCALE_CENTER = (int) event.getX();
+		  Engine.Y_SCALE_CENTER = (int) event.getY();
+		  Engine.X_SCALE=2.f;
+		  Engine.Y_SCALE=2.f;
 	      break;
 	   case MotionEvent.ACTION_UP:
-		   //Engine.X_SCALE=1.f;
-		   //Engine.Y_SCALE=1.f;
+		   Engine.X_SCALE=1.f;
+		   Engine.Y_SCALE=1.f;
 		   break;
 	   case MotionEvent.ACTION_MOVE:
 	   		Engine.X_SCALE_CENTER = (int) event.getX();
@@ -101,7 +103,7 @@ public class Pantallaprincipal extends View {
 	   		break;
 	   }
 	  
-	   mScaleDetector.onTouchEvent(event);
+	   //mScaleDetector.onTouchEvent(event);
 	   return true;
 	}
 	
@@ -122,21 +124,37 @@ public class Pantallaprincipal extends View {
 		super.onDraw(canvas);
         canvas.save();
        
-        //canvas.scale(Engine.X_SCALE,Engine.Y_SCALE,Engine.X_SCALE_CENTER,Engine.Y_SCALE_CENTER);
-        canvas.scale(mScaleFactor,mScaleFactor,Engine.X_SCALE_CENTER,Engine.Y_SCALE_CENTER);
+        canvas.scale(Engine.X_SCALE,Engine.Y_SCALE,Engine.X_SCALE_CENTER,Engine.Y_SCALE_CENTER);
+        //canvas.scale(mScaleFactor,mScaleFactor,Engine.X_SCALE_CENTER,Engine.Y_SCALE_CENTER);
+        //canvas.scale(mScaleFactor,mScaleFactor);
+       
         if (Engine.FIRST_LOOP==true) {
         	// create first animals of each race
     		specie1List.add(new Animal(Engine.SPECIE1_X_START,Engine.SPECIE1_Y_START,Engine.SPECIE1_MAX_AGE));
     		specie2List.add(new Animal(Engine.SPECIE2_X_START,Engine.SPECIE2_Y_START,Engine.SPECIE2_MAX_AGE));
     		Engine.FIRST_LOOP=false;
+    		 if (Engine.SCREEN_W>540) {
+    			 //Engine.X_SCALE_CENTER=h_position_offset+270;
+    			 //Engine.Y_SCALE_CENTER=270;
+    		 } else {
+    			 //Engine.X_SCALE_CENTER=h_position_offset+170;
+    			 //Engine.Y_SCALE_CENTER=170;
+    		 }
         }
         // control position of the simulation matrix
         if (Engine.SCREEN_W>=540) {
-        	position_offset=(Engine.SCREEN_W-540)/2;
+        	h_position_offset=(Engine.SCREEN_W-540)/2;
         } else {
-        	position_offset=(Engine.SCREEN_W-340)/2;
+        	h_position_offset=(Engine.SCREEN_W-340)/2;
         }
-        if (position_offset<0) { position_offset=0; }
+        if (h_position_offset<0) { h_position_offset=0; }
+        if (Engine.SCREEN_W>540) {
+        	//canvas.translate((Engine.X_SCALE_CENTER-(Engine.SCREEN_W-540))/mScaleFactor,(Engine.Y_SCALE_CENTER)/mScaleFactor);
+        	//canvas.translate(((Engine.X_SCALE_CENTER-(h_position_offset+250))/mScaleFactor),(Engine.Y_SCALE_CENTER-270)/mScaleFactor);
+        } else {
+        	//canvas.translate((Engine.X_SCALE_CENTER-(Engine.SCREEN_W-540))/mScaleFactor,(Engine.Y_SCALE_CENTER)/mScaleFactor);
+        	//canvas.translate(((Engine.X_SCALE_CENTER-(h_position_offset+150))/mScaleFactor),(Engine.Y_SCALE_CENTER-170)/mScaleFactor);
+        }
         Engine.PLANTS_TOTAL_UNITS=0;
 		int random_x = randomGenerator.nextInt(100); //  range 0..99
 		int random_y = randomGenerator.nextInt(100); //  range 0..99
@@ -173,32 +191,32 @@ public class Pantallaprincipal extends View {
 					matriu_herba.born(x,y);
 				}
 				// dibuixem el fons negre
-				canvas.drawRect(position_offset+(x*tile_size), (y*tile_size), position_offset+(x*tile_size)+tile_size, (y*tile_size)+tile_size, fons_matriu);
+				canvas.drawRect(h_position_offset+(x*tile_size), v_position_offset+(y*tile_size), h_position_offset+(x*tile_size)+tile_size, v_position_offset+(y*tile_size)+tile_size, fons_matriu);
 				// dibuixem el fons terra
-				canvas.drawRect(position_offset+(x*tile_size)+1, (y*tile_size)+1, position_offset+(x*tile_size)+tile_size-1, (y*tile_size)+tile_size-1, color_terra);
+				canvas.drawRect(h_position_offset+(x*tile_size)+1, v_position_offset+(y*tile_size)+1, h_position_offset+(x*tile_size)+tile_size-1, v_position_offset+(y*tile_size)+tile_size-1, color_terra);
 				// dibuixem les herbes vives segons els diferents nivells d'energia
 				if (matriu_herba.getAge(x,y)==1) {
-					canvas.drawRect(position_offset+(x*tile_size)+1, (y*tile_size)+1, position_offset+(x*tile_size)+tile_size-1, (y*tile_size)+tile_size-1, color_planta1);
+					canvas.drawRect(h_position_offset+(x*tile_size)+1, v_position_offset+(y*tile_size)+1, h_position_offset+(x*tile_size)+tile_size-1, v_position_offset+(y*tile_size)+tile_size-1, color_planta1);
 					Engine.PLANTS_TOTAL_UNITS=Engine.PLANTS_TOTAL_UNITS+1;
 				}
 				if (matriu_herba.getAge(x,y)==2) {
-					canvas.drawRect(position_offset+(x*tile_size)+1, (y*tile_size)+1, position_offset+(x*tile_size)+tile_size-1, (y*tile_size)+tile_size-1, color_planta2);
+					canvas.drawRect(h_position_offset+(x*tile_size)+1, v_position_offset+(y*tile_size)+1, h_position_offset+(x*tile_size)+tile_size-1, v_position_offset+(y*tile_size)+tile_size-1, color_planta2);
 					Engine.PLANTS_TOTAL_UNITS=Engine.PLANTS_TOTAL_UNITS+1;
 				}
 				if (matriu_herba.getAge(x,y)==3) {
-					canvas.drawRect(position_offset+(x*tile_size)+1, (y*tile_size)+1, position_offset+(x*tile_size)+tile_size-1, (y*tile_size)+tile_size-1, color_planta3);
+					canvas.drawRect(h_position_offset+(x*tile_size)+1, v_position_offset+(y*tile_size)+1, h_position_offset+(x*tile_size)+tile_size-1, v_position_offset+(y*tile_size)+tile_size-1, color_planta3);
 					Engine.PLANTS_TOTAL_UNITS=Engine.PLANTS_TOTAL_UNITS+1;
 				}
 				if (matriu_herba.getAge(x,y)==4) {
-					canvas.drawRect(position_offset+(x*tile_size)+1, (y*tile_size)+1, position_offset+(x*tile_size)+tile_size-1, (y*tile_size)+tile_size-1, color_planta4);
+					canvas.drawRect(h_position_offset+(x*tile_size)+1, v_position_offset+(y*tile_size)+1, h_position_offset+(x*tile_size)+tile_size-1, v_position_offset+(y*tile_size)+tile_size-1, color_planta4);
 					Engine.PLANTS_TOTAL_UNITS=Engine.PLANTS_TOTAL_UNITS+1;
 				}
 				if (matriu_herba.getAge(x,y)==5) {
-					canvas.drawRect(position_offset+(x*tile_size)+1, (y*tile_size)+1, position_offset+(x*tile_size)+tile_size-1, (y*tile_size)+tile_size-1, color_planta5);
+					canvas.drawRect(h_position_offset+(x*tile_size)+1, v_position_offset+(y*tile_size)+1, h_position_offset+(x*tile_size)+tile_size-1, v_position_offset+(y*tile_size)+tile_size-1, color_planta5);
 					Engine.PLANTS_TOTAL_UNITS=Engine.PLANTS_TOTAL_UNITS+1;
 				}
 				if (matriu_herba.getRain(x,y)==1) {
-					canvas.drawRect(position_offset+(x*tile_size)+1, (y*tile_size)+1, position_offset+(x*tile_size)+tile_size-1, (y*tile_size)+tile_size-1, color_rain);
+					canvas.drawRect(h_position_offset+(x*tile_size)+1, v_position_offset+(y*tile_size)+1, h_position_offset+(x*tile_size)+tile_size-1, v_position_offset+(y*tile_size)+tile_size-1, color_rain);
 					Engine.PLANTS_TOTAL_UNITS=Engine.PLANTS_TOTAL_UNITS+1;
 				}
 
@@ -213,7 +231,7 @@ public class Pantallaprincipal extends View {
 		for (int i = 0; i < specie1size; i++) {
 			Animal item=specie1List.get(i);
 			
-			if (matriu_herba.getEnergy(item.getX(),item.getY())>0) { // si la planta te energia
+			if (matriu_herba.getEnergy(item.getX(),item.getY())>Engine.SPECIE1_ENERGY_NEEDED) { // si la planta te energia suficient
 				if (item.getEnergy()<=10) { // si te gana
 						item.feed(); // s'alimenta
 						matriu_herba.setEnergy(item.getX(),item.getY(),Engine.SPECIE1_ENERGY_NEEDED); // restem energia a la planta
@@ -234,7 +252,7 @@ public class Pantallaprincipal extends View {
 			if (item.is_dead()) {
 				deadAnimals.add(item); // el posem a la llista d'animals morts
 			}
-			canvas.drawRect(position_offset+(item.getX()*tile_size)+1, (item.getY()*tile_size)+1, position_offset+(item.getX()*tile_size)+tile_size-1, (item.getY()*tile_size)+tile_size-1, color_race1);
+			canvas.drawRect(h_position_offset+(item.getX()*tile_size)+1, v_position_offset+(item.getY()*tile_size)+1, h_position_offset+(item.getX()*tile_size)+tile_size-1, v_position_offset+(item.getY()*tile_size)+tile_size-1, color_race1);
 		}
 		// remove and clear dead animals (RACE1)
 		Engine.SPECIE1_LAST_DEADS=deadAnimals.size();
@@ -247,7 +265,7 @@ public class Pantallaprincipal extends View {
 		for (int i = 0; i < specie2size; i++) {
 			Animal item=specie2List.get(i);
 			
-			if (matriu_herba.getEnergy(item.getX(),item.getY())>0) { // si la planta te energia
+			if (matriu_herba.getEnergy(item.getX(),item.getY())>Engine.SPECIE2_ENERGY_NEEDED) { // si la planta te energia
 				if (item.getEnergy()<=10) { // si te gana
 						item.feed(); // s'alimenta
 						matriu_herba.setEnergy(item.getX(),item.getY(),Engine.SPECIE2_ENERGY_NEEDED); // restem energia a la planta
@@ -268,7 +286,7 @@ public class Pantallaprincipal extends View {
 			if (item.is_dead()) {
 				deadAnimals.add(item); // el posem a la llista d'animals morts
 			}
-			canvas.drawRect(position_offset+(item.getX()*tile_size)+1, (item.getY()*tile_size)+1, position_offset+(item.getX()*tile_size)+tile_size-1, (item.getY()*tile_size)+tile_size-1, color_race2);
+			canvas.drawRect(h_position_offset+(item.getX()*tile_size)+1, v_position_offset+(item.getY()*tile_size)+1, h_position_offset+(item.getX()*tile_size)+tile_size-1, v_position_offset+(item.getY()*tile_size)+tile_size-1, color_race2);
 		}
 		// remove and clear dead animals (RACE2)
 		Engine.SPECIE2_LAST_DEADS=deadAnimals.size();

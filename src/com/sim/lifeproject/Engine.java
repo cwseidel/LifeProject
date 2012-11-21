@@ -34,8 +34,8 @@ public static int SPECIE1_LAST_DEADS=0;
 public static int SPECIE2_LAST_DEADS=0;
 public static int SPECIE1_CHANCES_TO_BORN=90;
 public static int SPECIE2_CHANCES_TO_BORN=90;
-public static int SPECIE1_ENERGY_NEEDED=10;
-public static int SPECIE2_ENERGY_NEEDED=15;
+public static int SPECIE1_ENERGY_NEEDED=5;
+public static int SPECIE2_ENERGY_NEEDED=7;
 public static int SPECIE1_X_START=10;
 public static int SPECIE1_Y_START=10;
 public static int SPECIE2_X_START=90;
@@ -43,7 +43,7 @@ public static int SPECIE2_Y_START=90;
 
 // global variables
 public static int SCREEN_W; // screen width
-public static int SCREEN_H; // screen height -not used-
+public static int SCREEN_H=500; // screen height -not used-
 public static boolean PLAY=false; // app begins stopped
 public static boolean FIRST_LOOP=true; // is the first loop of the main while?
 public static float X_SCALE=1.f;
