@@ -265,7 +265,7 @@ public class Pantallaprincipal extends View {
 						matriu_herba.setEnergy(item.getX(),item.getY(),Engine.SPECIE1_ENERGY_NEEDED); // restem energia a la planta
 				}
 			}
-			if (item.ready_to_reproduce()) { // si esta preparat per reproduirse
+			if (item.ready_to_reproduce(Engine.SPECIE1_MINIMUM_AGE_TO_REPRODUCE,Engine.SPECIE1_MINIMUM_ENERGY_TO_REPRODUCE)) { // si esta preparat per reproduirse
 				item.reproduce(); // es reprodueix
 				Random randomGenerator = new Random();
 				int chances_to_born = randomGenerator.nextInt(100); //  range 0..99
@@ -299,7 +299,7 @@ public class Pantallaprincipal extends View {
 						matriu_herba.setEnergy(item.getX(),item.getY(),Engine.SPECIE2_ENERGY_NEEDED); // restem energia a la planta
 				}
 			}
-			if (item.ready_to_reproduce()) { // si esta preparat per reproduirse
+			if (item.ready_to_reproduce(Engine.SPECIE2_MINIMUM_AGE_TO_REPRODUCE,Engine.SPECIE2_MINIMUM_ENERGY_TO_REPRODUCE)) { // si esta preparat per reproduirse
 				item.reproduce(); // es reprodueix
 				Random randomGenerator = new Random();
 				int chances_to_born = randomGenerator.nextInt(100); //  range 0..99

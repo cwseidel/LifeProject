@@ -19,12 +19,12 @@ package com.sim.lifeproject;
 
 public class Engine {
 // plants variables
-public static int PLANTS_NORMAL_GROWTH_RATIO=30;
+public static int PLANTS_NORMAL_GROWTH_RATIO=20;
 public static int PLANTS_TOTAL_UNITS=0;
 public static int CHANCES_OF_RAIN=70;
-public static int PLANTS_ENHANCED_GROWTH_RATIO=40;
-public static int PLANTS_ONRAIN_GROWTH_RATIO=80;
-public static int MAX_RAINING_TIME=5;
+public static int PLANTS_ENHANCED_GROWTH_RATIO=30;
+public static int PLANTS_ONRAIN_GROWTH_RATIO=70;
+public static int MAX_RAINING_TIME=10;
 // species variables
 public static int SPECIE1_MAX_AGE=15;
 public static int SPECIE2_MAX_AGE=15;
@@ -40,6 +40,12 @@ public static int SPECIE1_X_START=10;
 public static int SPECIE1_Y_START=10;
 public static int SPECIE2_X_START=90;
 public static int SPECIE2_Y_START=90;
+public static int GENERAL_MINIMUM_ENERGY_TO_REPRODUCE=10;
+public static int GENERAL_MINIMUM_AGE_TO_REPRODUCE=7;
+public static int SPECIE1_MINIMUM_ENERGY_TO_REPRODUCE=10;
+public static int SPECIE1_MINIMUM_AGE_TO_REPRODUCE=7;
+public static int SPECIE2_MINIMUM_ENERGY_TO_REPRODUCE=10;
+public static int SPECIE2_MINIMUM_AGE_TO_REPRODUCE=7;
 
 // global variables
 public static int SCREEN_W; // screen width

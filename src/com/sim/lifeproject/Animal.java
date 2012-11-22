@@ -50,8 +50,8 @@ public class Animal {
 		if (nextplace==2 && this.x<99) { this.x++; }
 		if (nextplace==3 && this.y<99) { this.y++; }
 	}
-	public boolean ready_to_reproduce() {
-		if (this.age>5 && this.energy>10) return true; else return false;
+	public boolean ready_to_reproduce(int agelimit, int energylimit) {
+		if (this.age>agelimit && this.energy>energylimit) return true; else return false;
 	}
 	public void reproduce() {
 		this.energy=this.energy-5;

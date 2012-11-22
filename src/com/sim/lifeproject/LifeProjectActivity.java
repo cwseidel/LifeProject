@@ -47,8 +47,8 @@ public class LifeProjectActivity extends Activity {
 	TabHost tabs;
 	EditText grow_edit1,grow_edit2;
 	EditText rain_edit1,rain_edit2,rain_edit3;
-	EditText specie1_edit1,specie1_edit2,specie1_edit3,specie1_edit4,specie1_edit5;
-	EditText specie2_edit1,specie2_edit2,specie2_edit3,specie2_edit4,specie2_edit5;
+	EditText specie1_edit1,specie1_edit2,specie1_edit3,specie1_edit4,specie1_edit5,specie1_edit6,specie1_edit7;
+	EditText specie2_edit1,specie2_edit2,specie2_edit3,specie2_edit4,specie2_edit5,specie2_edit6,specie2_edit7;
 	TextView info_plants,info_specie1,info_specie2;
 	Button plants_update,specie1_update,specie2_update;
 		
@@ -106,11 +106,15 @@ public class LifeProjectActivity extends Activity {
         specie1_edit3=(EditText)findViewById(R.id.specie1_edit3);
         specie1_edit4=(EditText)findViewById(R.id.specie1_edit4);
         specie1_edit5=(EditText)findViewById(R.id.specie1_edit5);
+        specie1_edit6=(EditText)findViewById(R.id.specie1_edit6);
+        specie1_edit7=(EditText)findViewById(R.id.specie1_edit7);
         specie2_edit1=(EditText)findViewById(R.id.specie2_edit1);
         specie2_edit2=(EditText)findViewById(R.id.specie2_edit2);
         specie2_edit3=(EditText)findViewById(R.id.specie2_edit3);
         specie2_edit4=(EditText)findViewById(R.id.specie2_edit4);
         specie2_edit5=(EditText)findViewById(R.id.specie2_edit5);
+        specie2_edit6=(EditText)findViewById(R.id.specie2_edit6);
+        specie2_edit7=(EditText)findViewById(R.id.specie2_edit7);
         rain_edit1.setText(Integer.toString(Engine.PLANTS_ONRAIN_GROWTH_RATIO));
         rain_edit2.setText(Integer.toString(Engine.MAX_RAINING_TIME));
         rain_edit3.setText(Integer.toString(Engine.CHANCES_OF_RAIN));
@@ -121,11 +125,15 @@ public class LifeProjectActivity extends Activity {
         specie1_edit3.setText(Integer.toString(Engine.SPECIE1_MAX_AGE));
         specie1_edit4.setText(Integer.toString(Engine.SPECIE1_X_START));
         specie1_edit5.setText(Integer.toString(Engine.SPECIE1_Y_START));
+        specie1_edit6.setText(Integer.toString(Engine.SPECIE1_MINIMUM_AGE_TO_REPRODUCE));
+        specie1_edit7.setText(Integer.toString(Engine.SPECIE1_MINIMUM_ENERGY_TO_REPRODUCE));
         specie2_edit1.setText(Integer.toString(Engine.SPECIE2_CHANCES_TO_BORN));
         specie2_edit2.setText(Integer.toString(Engine.SPECIE2_ENERGY_NEEDED));
         specie2_edit3.setText(Integer.toString(Engine.SPECIE2_MAX_AGE));
         specie2_edit4.setText(Integer.toString(Engine.SPECIE2_X_START));
         specie2_edit5.setText(Integer.toString(Engine.SPECIE2_Y_START));
+        specie2_edit6.setText(Integer.toString(Engine.SPECIE2_MINIMUM_AGE_TO_REPRODUCE));
+        specie2_edit7.setText(Integer.toString(Engine.SPECIE2_MINIMUM_ENERGY_TO_REPRODUCE));
         // end setup UI layout
         gestor = new Handler() {
             public void handleMessage(Message msg) {
@@ -212,6 +220,17 @@ public class LifeProjectActivity extends Activity {
         		} else {
         			specie1_edit5.setText(Integer.toString(Engine.SPECIE1_Y_START));
         		}
+        		if (specie1_edit6.getText().toString().trim().equals("")==false) {
+        			Engine.SPECIE1_MINIMUM_AGE_TO_REPRODUCE=Integer.parseInt(specie1_edit6.getText().toString());
+        		} else {
+        			specie1_edit6.setText(Integer.toString(Engine.SPECIE1_MINIMUM_AGE_TO_REPRODUCE));
+        		}
+        		if (specie1_edit7.getText().toString().trim().equals("")==false) {
+        			Engine.SPECIE1_MINIMUM_ENERGY_TO_REPRODUCE=Integer.parseInt(specie1_edit7.getText().toString());
+        		} else {
+        			specie1_edit7.setText(Integer.toString(Engine.SPECIE1_MINIMUM_ENERGY_TO_REPRODUCE));
+        		}
+        		
         		tabs.setCurrentTab(0);
         	   }
            });
@@ -241,6 +260,16 @@ public class LifeProjectActivity extends Activity {
         			Engine.SPECIE2_Y_START=Integer.parseInt(specie2_edit5.getText().toString());
         		} else {
         			specie2_edit5.setText(Integer.toString(Engine.SPECIE2_Y_START));
+        		}
+        		if (specie2_edit6.getText().toString().trim().equals("")==false) {
+        			Engine.SPECIE2_MINIMUM_AGE_TO_REPRODUCE=Integer.parseInt(specie2_edit6.getText().toString());
+        		} else {
+        			specie2_edit6.setText(Integer.toString(Engine.SPECIE2_MINIMUM_AGE_TO_REPRODUCE));
+        		}
+        		if (specie2_edit7.getText().toString().trim().equals("")==false) {
+        			Engine.SPECIE2_MINIMUM_ENERGY_TO_REPRODUCE=Integer.parseInt(specie2_edit7.getText().toString());
+        		} else {
+        			specie2_edit7.setText(Integer.toString(Engine.SPECIE2_MINIMUM_ENERGY_TO_REPRODUCE));
         		}
         		tabs.setCurrentTab(0);
         	   }

@@ -195,6 +195,30 @@
 					android:layout_height="wrap_content"
 					/>
 				<TextView
+					android:id="@+id/specie1_txt6"
+					android:layout_width="fill_parent"
+					android:layout_height="wrap_content"
+					android:textColor="#000000"
+					android:text="@string/specie_txt6" />
+				<EditText
+					android:id="@+id/specie1_edit6"
+					android:hint="@string/specie_txt6_hint"
+					android:layout_width="fill_parent"
+					android:layout_height="wrap_content"
+					/>
+				<TextView
+					android:id="@+id/specie1_txt7"
+					android:layout_width="fill_parent"
+					android:layout_height="wrap_content"
+					android:textColor="#000000"
+					android:text="@string/specie_txt7" />
+				<EditText
+					android:id="@+id/specie1_edit7"
+					android:hint="@string/specie_txt7_hint"
+					android:layout_width="fill_parent"
+					android:layout_height="wrap_content"
+					/>
+				<TextView
 					android:id="@+id/specie1_txt4"
 					android:layout_width="fill_parent"
 					android:layout_height="wrap_content"
@@ -280,6 +304,30 @@
 				<EditText
 					android:id="@+id/specie2_edit3"
 					android:hint="@string/specie_txt3_hint"
+					android:layout_width="fill_parent"
+					android:layout_height="wrap_content"
+					/>
+				<TextView
+					android:id="@+id/specie2_txt6"
+					android:layout_width="fill_parent"
+					android:layout_height="wrap_content"
+					android:textColor="#000000"
+					android:text="@string/specie_txt6" />
+				<EditText
+					android:id="@+id/specie2_edit6"
+					android:hint="@string/specie_txt6_hint"
+					android:layout_width="fill_parent"
+					android:layout_height="wrap_content"
+					/>
+				<TextView
+					android:id="@+id/specie2_txt7"
+					android:layout_width="fill_parent"
+					android:layout_height="wrap_content"
+					android:textColor="#000000"
+					android:text="@string/specie_txt7" />
+				<EditText
+					android:id="@+id/specie2_edit7"
+					android:hint="@string/specie_txt7_hint"
 					android:layout_width="fill_parent"
 					android:layout_height="wrap_content"
 					/>
