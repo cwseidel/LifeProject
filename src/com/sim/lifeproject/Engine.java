@@ -50,5 +50,6 @@ public static float X_SCALE=1.f;
 public static float Y_SCALE=1.f;
 public static float X_SCALE_CENTER=0;
 public static float Y_SCALE_CENTER=0;
+public static float MASTER_SCALE=1.f;
 
 }

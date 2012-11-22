@@ -119,12 +119,47 @@ public class Pantallaprincipal extends View {
 
 	@Override
     public void onDraw(Canvas canvas) {
-		
-		if (Engine.PLAY==true) {
+
+		if (Engine.PLAY==false && Engine.FIRST_LOOP==true) { // si encara no s'ha apretat START per primer cop mostrem nomes el terra
+			super.onDraw(canvas);
+	        canvas.save();
+	        //define master scale 
+	        if (Engine.SCREEN_W>300) {
+	        	Engine.MASTER_SCALE=.8f;
+	        }
+	        if (Engine.SCREEN_W>540) {
+	        	Engine.MASTER_SCALE=1.f;
+	        }
+	        canvas.scale(Engine.X_SCALE*Engine.MASTER_SCALE,Engine.Y_SCALE*Engine.MASTER_SCALE,Engine.X_SCALE_CENTER,Engine.Y_SCALE_CENTER);
+	        // control position of the simulation matrix
+	        if (Engine.SCREEN_W>=540) {
+	        	h_position_offset=(Engine.SCREEN_W-540)/2;
+	        } else {
+	        	h_position_offset=(Engine.SCREEN_W-272)/2;
+	        }
+	        if (Engine.SCREEN_W>500) { tile_size=5; } else { tile_size=3; } // set tile size
+			// update an draw the matrix
+			for (int x=0;x<100;x++) {
+				for (int y=0;y<100;y++) {
+					// dibuixem el fons negre
+					canvas.drawRect(h_position_offset+(x*tile_size), v_position_offset+(y*tile_size), h_position_offset+(x*tile_size)+tile_size, v_position_offset+(y*tile_size)+tile_size, fons_matriu);
+					// dibuixem el fons terra
+					canvas.drawRect(h_position_offset+(x*tile_size)+1, v_position_offset+(y*tile_size)+1, h_position_offset+(x*tile_size)+tile_size-1, v_position_offset+(y*tile_size)+tile_size-1, color_terra);
+				}
+			}
+		}
+		if (Engine.PLAY==true) { // si la simulacio esta funcionant
 		super.onDraw(canvas);
         canvas.save();
-       
-        canvas.scale(Engine.X_SCALE,Engine.Y_SCALE,Engine.X_SCALE_CENTER,Engine.Y_SCALE_CENTER);
+        //define master scale 
+        if (Engine.SCREEN_W>300) {
+        	Engine.MASTER_SCALE=.8f;
+        }
+        if (Engine.SCREEN_W>540) {
+        	Engine.MASTER_SCALE=1.f;
+        }
+        
+        canvas.scale(Engine.X_SCALE*Engine.MASTER_SCALE,Engine.Y_SCALE*Engine.MASTER_SCALE,Engine.X_SCALE_CENTER,Engine.Y_SCALE_CENTER);
         //canvas.scale(mScaleFactor,mScaleFactor,Engine.X_SCALE_CENTER,Engine.Y_SCALE_CENTER);
         //canvas.scale(mScaleFactor,mScaleFactor);
        
@@ -133,19 +168,12 @@ public class Pantallaprincipal extends View {
     		specie1List.add(new Animal(Engine.SPECIE1_X_START,Engine.SPECIE1_Y_START,Engine.SPECIE1_MAX_AGE));
     		specie2List.add(new Animal(Engine.SPECIE2_X_START,Engine.SPECIE2_Y_START,Engine.SPECIE2_MAX_AGE));
     		Engine.FIRST_LOOP=false;
-    		 if (Engine.SCREEN_W>540) {
-    			 //Engine.X_SCALE_CENTER=h_position_offset+270;
-    			 //Engine.Y_SCALE_CENTER=270;
-    		 } else {
-    			 //Engine.X_SCALE_CENTER=h_position_offset+170;
-    			 //Engine.Y_SCALE_CENTER=170;
-    		 }
         }
         // control position of the simulation matrix
         if (Engine.SCREEN_W>=540) {
         	h_position_offset=(Engine.SCREEN_W-540)/2;
         } else {
-        	h_position_offset=(Engine.SCREEN_W-340)/2;
+        	h_position_offset=(Engine.SCREEN_W-272)/2;
         }
         if (h_position_offset<0) { h_position_offset=0; }
         if (Engine.SCREEN_W>540) {
