@@ -23,6 +23,8 @@ import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.ScaleGestureDetector.OnScaleGestureListener;
 import android.view.View;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -49,6 +51,7 @@ public class Pantallaprincipal extends View {
 	Paint color_rain = new Paint();
 	Paint color_race1 = new Paint();
 	Paint color_race2 = new Paint();
+	Paint start_image = new Paint();
 	Paint fons_matriu= new Paint();
 	// arraylist per les dos llistes d'animals
 	ArrayList<Animal> specie1List = new ArrayList<Animal>();
@@ -58,6 +61,7 @@ public class Pantallaprincipal extends View {
 	private float mScaleFactor = 1.f;
 	int h_position_offset;
 	int v_position_offset=30;
+	Bitmap fons_start;
 
 
 	public Pantallaprincipal(Context context) {
@@ -79,6 +83,7 @@ public class Pantallaprincipal extends View {
 		color_race1.setAlpha(100);
 		color_race2.setAlpha(100);
 		// end of set tile colors
+		
 		
 		
 			
@@ -123,6 +128,9 @@ public class Pantallaprincipal extends View {
 		if (Engine.PLAY==false && Engine.FIRST_LOOP==true) { // si encara no s'ha apretat START per primer cop mostrem nomes el terra
 			super.onDraw(canvas);
 	        canvas.save();
+	        fons_start=BitmapFactory.decodeResource(getResources(), R.drawable.start);
+	        canvas.drawBitmap(fons_start, 0, 0, start_image);
+	        /* AIXO TREU TOT EL TEMA DE LA FONS DE TERRA
 	        //define master scale 
 	        if (Engine.SCREEN_W>300) {
 	        	Engine.MASTER_SCALE=.8f;
@@ -146,7 +154,7 @@ public class Pantallaprincipal extends View {
 					// dibuixem el fons terra
 					canvas.drawRect(h_position_offset+(x*tile_size)+1, v_position_offset+(y*tile_size)+1, h_position_offset+(x*tile_size)+tile_size-1, v_position_offset+(y*tile_size)+tile_size-1, color_terra);
 				}
-			}
+			} */
 		}
 		if (Engine.PLAY==true) { // si la simulacio esta funcionant
 		super.onDraw(canvas);
