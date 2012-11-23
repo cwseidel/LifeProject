@@ -55,10 +55,11 @@ public class LifeProjectActivity extends Activity {
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        pantalla = new Pantallaprincipal(this);
-        setContentView(R.layout.main);
+        // setup variables
         Engine.PLAY=false;
         Engine.FIRST_LOOP=true;
+        pantalla = new Pantallaprincipal(this);
+        setContentView(R.layout.main);
         Display display = getWindowManager().getDefaultDisplay();
         Engine.SCREEN_W=display.getWidth();
         Resources res = getResources();

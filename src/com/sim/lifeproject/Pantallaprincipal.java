@@ -99,9 +99,11 @@ public class Pantallaprincipal extends View {
 		  Engine.Y_SCALE=2.f;
 	      break;
 	   case MotionEvent.ACTION_UP:
-		   Engine.X_SCALE=1.f;
-		   Engine.Y_SCALE=1.f;
-		   break;
+		   	Engine.X_SCALE=1.f;
+		   	Engine.Y_SCALE=1.f;
+		   	Engine.X_SCALE_CENTER = 0;
+		   	Engine.Y_SCALE_CENTER = 0;
+		   	break;
 	   case MotionEvent.ACTION_MOVE:
 	   		Engine.X_SCALE_CENTER = (int) event.getX();
 	   		Engine.Y_SCALE_CENTER = (int) event.getY();
@@ -128,7 +130,11 @@ public class Pantallaprincipal extends View {
 		if (Engine.PLAY==false && Engine.FIRST_LOOP==true) { // si encara no s'ha apretat START per primer cop mostrem nomes el terra
 			super.onDraw(canvas);
 	        canvas.save();
-	        fons_start=BitmapFactory.decodeResource(getResources(), R.drawable.start);
+	        if (Engine.SCREEN_W>540) {
+	        	fons_start=BitmapFactory.decodeResource(getResources(), R.drawable.starthi);
+	        } else {
+	        	fons_start=BitmapFactory.decodeResource(getResources(), R.drawable.starthi);
+	        }
 	        canvas.drawBitmap(fons_start, 0, 0, start_image);
 	        /* AIXO TREU TOT EL TEMA DE LA FONS DE TERRA
 	        //define master scale 
