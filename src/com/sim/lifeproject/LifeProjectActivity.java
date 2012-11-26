@@ -21,7 +21,10 @@ package com.sim.lifeproject;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
+import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -51,7 +54,23 @@ public class LifeProjectActivity extends Activity {
 	EditText specie2_edit1,specie2_edit2,specie2_edit3,specie2_edit4,specie2_edit5,specie2_edit6,specie2_edit7;
 	TextView info_plants,info_specie1,info_specie2;
 	Button plants_update,specie1_update,specie2_update;
-		
+	
+	//public static boolean isHoneycomb() {
+	    // Can use static final constants like HONEYCOMB, declared in later versions
+	    // of the OS since they are inlined at compile time. This is guaranteed behavior.
+	    //return Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB;
+	//}
+
+	public static boolean isTablet(Context context) {
+	    return (context.getResources().getConfiguration().screenLayout
+	            & Configuration.SCREENLAYOUT_SIZE_MASK)
+	            >= Configuration.SCREENLAYOUT_SIZE_LARGE;
+	}
+
+	//public static boolean isHoneycombTablet(Context context) {
+	//    return isHoneycomb() && isTablet(context);
+	//}
+	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,7 +78,11 @@ public class LifeProjectActivity extends Activity {
         Engine.PLAY=false;
         Engine.FIRST_LOOP=true;
         pantalla = new Pantallaprincipal(this);
-        setContentView(R.layout.main);
+        if (isTablet(getApplicationContext())) {
+        	setContentView(R.layout.maintablet);
+        } else {
+        	setContentView(R.layout.main);
+        }
         Display display = getWindowManager().getDefaultDisplay();
         Engine.SCREEN_W=display.getWidth();
         Resources res = getResources();
