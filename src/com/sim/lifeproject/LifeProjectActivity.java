@@ -80,8 +80,10 @@ public class LifeProjectActivity extends Activity {
         pantalla = new Pantallaprincipal(this);
         if (isTablet(getApplicationContext())) {
         	setContentView(R.layout.maintablet);
+        	Engine.ISTABLET=true;
         } else {
         	setContentView(R.layout.main);
+        	Engine.ISTABLET=false;
         }
         Display display = getWindowManager().getDefaultDisplay();
         Engine.SCREEN_W=display.getWidth();

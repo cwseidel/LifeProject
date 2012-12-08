@@ -17,8 +17,7 @@ public final class R {
         public static final int ic_launcher=0x7f020003;
         public static final int splashscreen=0x7f020004;
         public static final int starthi=0x7f020005;
-        public static final int startlo=0x7f020006;
-        public static final int starttablet=0x7f020007;
+        public static final int starttablet=0x7f020006;
     }
     public static final class id {
         public static final int LinearLayout02=0x7f060002;

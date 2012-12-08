@@ -130,7 +130,7 @@ public class Pantallaprincipal extends View {
 		if (Engine.PLAY==false && Engine.FIRST_LOOP==true) { // si encara no s'ha apretat START per primer cop mostrem nomes el terra
 			super.onDraw(canvas);
 	        canvas.save();
-	        if (Engine.SCREEN_W>=750) {
+	        if (Engine.ISTABLET==true) {
 	        	fons_start=BitmapFactory.decodeResource(getResources(), R.drawable.starttablet);
 	        } else {
 	        	fons_start=BitmapFactory.decodeResource(getResources(), R.drawable.starthi);
