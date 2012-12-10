@@ -166,7 +166,19 @@ public class LifeProjectActivity extends Activity {
             	switch (msg.what) {
             	case LifeProjectActivity.UPDATEID:
             		if (Engine.PLAY==true) { pantalla.invalidate(); }
-            		info_plants.setText("(Green) Plants: "+(float)Engine.PLANTS_TOTAL_UNITS/100+ "%\n(Red) Specie 1: "+Engine.SPECIE1_TOTAL_UNITS+" alive ("+(float)Engine.SPECIE1_LAST_DEADS*100/Engine.SPECIE1_TOTAL_UNITS+" % died)\n(Yellow) Specie 2: "+Engine.SPECIE2_TOTAL_UNITS+" alive ("+(float)Engine.SPECIE2_LAST_DEADS*100/Engine.SPECIE2_TOTAL_UNITS+" % died)");
+            		float specie1DeadValue;
+            		float specie2DeadValue;
+            		if (Engine.SPECIE1_TOTAL_UNITS!=0) {
+            			specie1DeadValue=(float)Math.round(((float)Engine.SPECIE1_LAST_DEADS*100/(float)Engine.SPECIE1_TOTAL_UNITS)*100)/100;
+            		} else {
+            			specie1DeadValue=0;
+            		}
+            		if (Engine.SPECIE2_TOTAL_UNITS!=0) {
+            			specie2DeadValue=(float)Math.round(((float)Engine.SPECIE2_LAST_DEADS*100/(float)Engine.SPECIE2_TOTAL_UNITS)*100)/100;
+            		} else {
+            			specie2DeadValue=0;
+            		}
+            			info_plants.setText("(Green) Plants: "+(float)Engine.PLANTS_TOTAL_UNITS/100+ "%\n(Red) Specie 1: "+Engine.SPECIE1_TOTAL_UNITS+" alive ("+(float)specie1DeadValue+" % died)\n(Yellow) Specie 2: "+Engine.SPECIE2_TOTAL_UNITS+" alive ("+(float)specie2DeadValue+" % died)");
             		break;
             	}
             	super.handleMessage(msg);
