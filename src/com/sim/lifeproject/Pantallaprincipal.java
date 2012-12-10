@@ -126,17 +126,8 @@ public class Pantallaprincipal extends View {
 
 	@Override
     public void onDraw(Canvas canvas) {
-
-		if (Engine.PLAY==false && Engine.FIRST_LOOP==true) { // si encara no s'ha apretat START per primer cop mostrem nomes el terra
-			super.onDraw(canvas);
-	        canvas.save();
-	        if (Engine.ISTABLET==true) {
-	        	fons_start=BitmapFactory.decodeResource(getResources(), R.drawable.starttablet);
-	        } else {
-	        	fons_start=BitmapFactory.decodeResource(getResources(), R.drawable.starthi);
-	        }
-	        canvas.drawBitmap(fons_start, 0, 0, start_image);
-	        /* AIXO TREU TOT EL TEMA DE LA FONS DE TERRA
+		if (Engine.PLAY==false && Engine.FIRST_LOOP==false) {
+			// AIXO TREU TOT EL TEMA DE LA FONS DE TERRA
 	        //define master scale 
 	        if (Engine.SCREEN_W>300) {
 	        	Engine.MASTER_SCALE=.8f;
@@ -159,8 +150,61 @@ public class Pantallaprincipal extends View {
 					canvas.drawRect(h_position_offset+(x*tile_size), v_position_offset+(y*tile_size), h_position_offset+(x*tile_size)+tile_size, v_position_offset+(y*tile_size)+tile_size, fons_matriu);
 					// dibuixem el fons terra
 					canvas.drawRect(h_position_offset+(x*tile_size)+1, v_position_offset+(y*tile_size)+1, h_position_offset+(x*tile_size)+tile_size-1, v_position_offset+(y*tile_size)+tile_size-1, color_terra);
+					// dibuixem les herbes vives segons els diferents nivells d'energia
+					if (matriu_herba.getAge(x,y)==1) {
+						canvas.drawRect(h_position_offset+(x*tile_size)+1, v_position_offset+(y*tile_size)+1, h_position_offset+(x*tile_size)+tile_size-1, v_position_offset+(y*tile_size)+tile_size-1, color_planta1);
+						Engine.PLANTS_TOTAL_UNITS=Engine.PLANTS_TOTAL_UNITS+1;
+					}
+					if (matriu_herba.getAge(x,y)==2) {
+						canvas.drawRect(h_position_offset+(x*tile_size)+1, v_position_offset+(y*tile_size)+1, h_position_offset+(x*tile_size)+tile_size-1, v_position_offset+(y*tile_size)+tile_size-1, color_planta2);
+						Engine.PLANTS_TOTAL_UNITS=Engine.PLANTS_TOTAL_UNITS+1;
+					}
+					if (matriu_herba.getAge(x,y)==3) {
+						canvas.drawRect(h_position_offset+(x*tile_size)+1, v_position_offset+(y*tile_size)+1, h_position_offset+(x*tile_size)+tile_size-1, v_position_offset+(y*tile_size)+tile_size-1, color_planta3);
+						Engine.PLANTS_TOTAL_UNITS=Engine.PLANTS_TOTAL_UNITS+1;
+					}
+					if (matriu_herba.getAge(x,y)==4) {
+						canvas.drawRect(h_position_offset+(x*tile_size)+1, v_position_offset+(y*tile_size)+1, h_position_offset+(x*tile_size)+tile_size-1, v_position_offset+(y*tile_size)+tile_size-1, color_planta4);
+						Engine.PLANTS_TOTAL_UNITS=Engine.PLANTS_TOTAL_UNITS+1;
+					}
+					if (matriu_herba.getAge(x,y)==5) {
+						canvas.drawRect(h_position_offset+(x*tile_size)+1, v_position_offset+(y*tile_size)+1, h_position_offset+(x*tile_size)+tile_size-1, v_position_offset+(y*tile_size)+tile_size-1, color_planta5);
+						Engine.PLANTS_TOTAL_UNITS=Engine.PLANTS_TOTAL_UNITS+1;
+					}
+					if (matriu_herba.getRain(x,y)==1) {
+						canvas.drawRect(h_position_offset+(x*tile_size)+1, v_position_offset+(y*tile_size)+1, h_position_offset+(x*tile_size)+tile_size-1, v_position_offset+(y*tile_size)+tile_size-1, color_rain);
+						Engine.PLANTS_TOTAL_UNITS=Engine.PLANTS_TOTAL_UNITS+1;
+					}
 				}
-			} */
+			}
+			int specie1size= specie1List.size();
+			int specie2size= specie2List.size();
+			Engine.SPECIE1_TOTAL_UNITS=specie1size;
+			Engine.SPECIE2_TOTAL_UNITS=specie2size;
+			deadAnimals.clear();
+			// bucle per visualitzar i fer evolucionar els animals (SPECIE1)
+			for (int i = 0; i < specie1size; i++) {
+				Animal item=specie1List.get(i);
+				canvas.drawRect(h_position_offset+(item.getX()*tile_size)+1, v_position_offset+(item.getY()*tile_size)+1, h_position_offset+(item.getX()*tile_size)+tile_size-1, v_position_offset+(item.getY()*tile_size)+tile_size-1, color_race1);
+			}
+			// remove and clear dead animals (RACE1)
+			// bucle per visualitzar i fer evolucionar els animals (SPECIE2)
+			for (int i = 0; i < specie2size; i++) {
+				Animal item=specie2List.get(i);
+				canvas.drawRect(h_position_offset+(item.getX()*tile_size)+1, v_position_offset+(item.getY()*tile_size)+1, h_position_offset+(item.getX()*tile_size)+tile_size-1, v_position_offset+(item.getY()*tile_size)+tile_size-1, color_race2);
+			}
+			// remove and clear dead animals (RACE2)
+		}
+		if (Engine.PLAY==false && Engine.FIRST_LOOP==true) { // si encara no s'ha apretat START per primer cop mostrem nomes el terra
+			super.onDraw(canvas);
+	        canvas.save();
+	        if (Engine.ISTABLET==true) {
+	        	fons_start=BitmapFactory.decodeResource(getResources(), R.drawable.starttablet);
+	        } else {
+	        	fons_start=BitmapFactory.decodeResource(getResources(), R.drawable.starthi);
+	        }
+	        canvas.drawBitmap(fons_start, 0, 0, start_image);
+	        
 		}
 		if (Engine.PLAY==true) { // si la simulacio esta funcionant
 		super.onDraw(canvas);
