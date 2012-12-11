@@ -144,6 +144,7 @@ public class Pantallaprincipal extends View {
 		if (Engine.PLAY==true) { // if simulation is running
 		super.onDraw(canvas);
         canvas.save();
+        Engine.LOOPS++;
         //define master scale 
         if (Engine.SCREEN_W>300) {
         	Engine.MASTER_SCALE=.8f;

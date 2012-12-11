@@ -34,17 +34,17 @@ public static int SPECIE1_LAST_DEADS=0;
 public static int SPECIE2_LAST_DEADS=0;
 public static int SPECIE1_CHANCES_TO_BORN=90;
 public static int SPECIE2_CHANCES_TO_BORN=90;
-public static int SPECIE1_ENERGY_NEEDED=5;
+public static int SPECIE1_ENERGY_NEEDED=7;
 public static int SPECIE2_ENERGY_NEEDED=7;
 public static int SPECIE1_X_START=10;
 public static int SPECIE1_Y_START=10;
 public static int SPECIE2_X_START=90;
 public static int SPECIE2_Y_START=90;
-public static int GENERAL_MINIMUM_ENERGY_TO_REPRODUCE=10;
+public static int GENERAL_MINIMUM_ENERGY_TO_REPRODUCE=12;
 public static int GENERAL_MINIMUM_AGE_TO_REPRODUCE=7;
-public static int SPECIE1_MINIMUM_ENERGY_TO_REPRODUCE=10;
+public static int SPECIE1_MINIMUM_ENERGY_TO_REPRODUCE=12;
 public static int SPECIE1_MINIMUM_AGE_TO_REPRODUCE=7;
-public static int SPECIE2_MINIMUM_ENERGY_TO_REPRODUCE=10;
+public static int SPECIE2_MINIMUM_ENERGY_TO_REPRODUCE=12;
 public static int SPECIE2_MINIMUM_AGE_TO_REPRODUCE=7;
 
 // global variables
@@ -58,5 +58,6 @@ public static float X_SCALE_CENTER=0;
 public static float Y_SCALE_CENTER=0;
 public static float MASTER_SCALE=1.f;
 public static boolean ISTABLET=false;
+public static int LOOPS=0;
 
 }

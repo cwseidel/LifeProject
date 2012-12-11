@@ -186,7 +186,7 @@ public class LifeProjectActivity extends Activity {
             		} else {
             			specie2DeadValue=0;
             		}
-            			info_plants.setText("(Green) Plants: "+(float)Engine.PLANTS_TOTAL_UNITS/100+ "%\n(Red) Specie 1: "+Engine.SPECIE1_TOTAL_UNITS+" alive ("+(float)specie1DeadValue+" % died)\n(Yellow) Specie 2: "+Engine.SPECIE2_TOTAL_UNITS+" alive ("+(float)specie2DeadValue+" % died)");
+            			info_plants.setText("(Green) Plants: "+(float)Engine.PLANTS_TOTAL_UNITS/100+"% ("+Engine.LOOPS/365+" years and "+Engine.LOOPS%365+" days)\n(Red) Specie 1: "+Engine.SPECIE1_TOTAL_UNITS+" alive (death ratio: "+(float)specie1DeadValue+"%)\n(Yellow) Specie 2: "+Engine.SPECIE2_TOTAL_UNITS+" alive (death ratio: "+(float)specie2DeadValue+"%)");
             		break;
             	}
             	super.handleMessage(msg);
@@ -199,7 +199,7 @@ public class LifeProjectActivity extends Activity {
         			msg.what= LifeProjectActivity.UPDATEID;
        				LifeProjectActivity.gestor.sendMessage(msg);
       					try {
-      						Thread.sleep(300);
+      						Thread.sleep(600);
       					} catch (InterruptedException e) {
       						Engine.PLAY=false;
         			}
