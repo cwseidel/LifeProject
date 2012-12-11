@@ -59,5 +59,6 @@ public static float Y_SCALE_CENTER=0;
 public static float MASTER_SCALE=1.f;
 public static boolean ISTABLET=false;
 public static int LOOPS=0;
+public static boolean IS_MAGNIFIED=false;
 
 }
