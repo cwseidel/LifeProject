@@ -45,14 +45,14 @@ public class LifeProjectActivity extends Activity {
 	Thread bucleprincipal;
 	protected static final int UPDATEID=0x101;
 	static Handler gestor;
-	View pantalla;
+	View pantalla, grafic;
 	LinearLayout upper;
 	TabHost tabs;
 	EditText grow_edit1,grow_edit2;
 	EditText rain_edit1,rain_edit2,rain_edit3;
 	EditText specie1_edit1,specie1_edit2,specie1_edit3,specie1_edit4,specie1_edit5,specie1_edit6,specie1_edit7;
 	EditText specie2_edit1,specie2_edit2,specie2_edit3,specie2_edit4,specie2_edit5,specie2_edit6,specie2_edit7;
-	TextView info_plants,info_specie1,info_specie2;
+	TextView info_sim,info_specie1,info_specie2,info_graph;
 	Button plants_update,specie1_update,specie2_update;
 	
 	//public static boolean isHoneycomb() {
@@ -78,6 +78,7 @@ public class LifeProjectActivity extends Activity {
         Engine.PLAY=false;
         Engine.FIRST_LOOP=true;
         pantalla = new Pantallaprincipal(this);
+        grafic = new Graph(this);
         if (isTablet(getApplicationContext())) {
         	setContentView(R.layout.maintablet);
         	Engine.ISTABLET=true;
@@ -96,6 +97,10 @@ public class LifeProjectActivity extends Activity {
         spec.setContent(R.id.tab1);
         spec.setIndicator("Sim",res.getDrawable(android.R.drawable.ic_menu_gallery));
         tabs.addTab(spec);
+        spec=tabs.newTabSpec("mytab5");
+        spec.setContent(R.id.tab6);
+        spec.setIndicator("Graph",res.getDrawable(android.R.drawable.ic_menu_gallery));
+        tabs.addTab(spec);
         spec=tabs.newTabSpec("mytab2");
         spec.setContent(R.id.tab2);
         spec.setIndicator("Plants",res.getDrawable(android.R.drawable.ic_menu_edit));
@@ -112,19 +117,26 @@ public class LifeProjectActivity extends Activity {
         spec.setContent(R.id.tab5);
         spec.setIndicator("Help",res.getDrawable(android.R.drawable.ic_menu_help));
         tabs.addTab(spec);
-        tabs.setCurrentTab(4); // begin with help tab
+        // setup width and height of tabs
+        //tabs.getTabWidget().getChildAt(0).setLayoutParams(new LinearLayout.LayoutParams(100, 100));
+        tabs.setCurrentTab(5); // begin with help tab
         // control of tab
-        tabs.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
+        /*tabs.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
 			
 			public void onTabChanged(String tabId) {
 				// TODO Auto-generated method stub
 				pantalla.invalidate();
+				grafic.invalidate();
 			}
-        });
+        }); */
         
         pantalla.requestFocus();
-        LinearLayout upper = (LinearLayout) findViewById(R.id.pantallasimulacio);
-        upper.addView(pantalla);
+        // add canvas to views
+        LinearLayout canvassim = (LinearLayout) findViewById(R.id.pantallasimulacio);
+        canvassim.addView(pantalla);
+        LinearLayout canvasgraph = (LinearLayout) findViewById(R.id.graficsimulacio);
+        canvasgraph.addView(grafic);
+        
         // begin setup UI layout
         plants_update = (Button) findViewById(R.id.plants_update);
         specie1_update = (Button) findViewById(R.id.specie1_update);
@@ -134,7 +146,8 @@ public class LifeProjectActivity extends Activity {
         rain_edit1=(EditText)findViewById(R.id.rain_edit1);
         rain_edit2=(EditText)findViewById(R.id.rain_edit2);
         rain_edit3=(EditText)findViewById(R.id.rain_edit3);
-        info_plants=(TextView)findViewById(R.id.show_info);
+        info_sim=(TextView)findViewById(R.id.show_info);
+        info_graph=(TextView)findViewById(R.id.show_infograph);
         specie1_edit1=(EditText)findViewById(R.id.specie1_edit1);
         specie1_edit2=(EditText)findViewById(R.id.specie1_edit2);
         specie1_edit3=(EditText)findViewById(R.id.specie1_edit3);
@@ -173,7 +186,7 @@ public class LifeProjectActivity extends Activity {
             public void handleMessage(Message msg) {
             	switch (msg.what) {
             	case LifeProjectActivity.UPDATEID:
-            		if (Engine.PLAY==true) { pantalla.invalidate(); }
+            		if (Engine.PLAY==true) { pantalla.invalidate(); grafic.invalidate();}
             		float specie1DeadValue;
             		float specie2DeadValue;
             		if (Engine.SPECIE1_TOTAL_UNITS!=0) {
@@ -186,7 +199,9 @@ public class LifeProjectActivity extends Activity {
             		} else {
             			specie2DeadValue=0;
             		}
-            			info_plants.setText("(Green) Plants: "+(float)Engine.PLANTS_TOTAL_UNITS/100+"% ("+Engine.LOOPS/365+" years and "+Engine.LOOPS%365+" days)\n(Red) Specie 1: "+Engine.SPECIE1_TOTAL_UNITS+" alive (death ratio: "+(float)specie1DeadValue+"%)\n(Yellow) Specie 2: "+Engine.SPECIE2_TOTAL_UNITS+" alive (death ratio: "+(float)specie2DeadValue+"%)");
+            		info_sim.setText("(Green) Plants: "+(float)Engine.PLANTS_TOTAL_UNITS/100+"% ("+Engine.LOOPS/365+" years and "+Engine.LOOPS%365+" days)\n(Red) Specie 1: "+Engine.SPECIE1_TOTAL_UNITS+" alive (death ratio: "+(float)specie1DeadValue+"%)\n(Yellow) Specie 2: "+Engine.SPECIE2_TOTAL_UNITS+" alive (death ratio: "+(float)specie2DeadValue+"%)");
+        			info_graph.setText("(Green) Plants: "+(float)Engine.PLANTS_TOTAL_UNITS/100+"% ("+Engine.LOOPS/365+" years and "+Engine.LOOPS%365+" days)\n(Red) Specie 1: "+Engine.SPECIE1_TOTAL_UNITS+" alive (death ratio: "+(float)specie1DeadValue+"%)\n(Yellow) Specie 2: "+Engine.SPECIE2_TOTAL_UNITS+" alive (death ratio: "+(float)specie2DeadValue+"%)");
+
             		break;
             	}
             	super.handleMessage(msg);
