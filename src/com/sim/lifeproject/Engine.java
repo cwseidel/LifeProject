@@ -24,11 +24,11 @@ import java.util.Random;
 
 public class Engine {
 // plants variables
-public static int PLANTS_NORMAL_GROWTH_RATIO=20;
+public static int PLANTS_NORMAL_GROWTH_RATIO=15;
 public static int PLANTS_TOTAL_UNITS=0;
 public static int CHANCES_OF_RAIN=70;
-public static int PLANTS_ENHANCED_GROWTH_RATIO=30;
-public static int PLANTS_ONRAIN_GROWTH_RATIO=70;
+public static int PLANTS_ENHANCED_GROWTH_RATIO=25;
+public static int PLANTS_ONRAIN_GROWTH_RATIO=60;
 public static int MAX_RAINING_TIME=10;
 // species variables
 public static int SPECIE1_MAX_AGE=15;
@@ -45,12 +45,10 @@ public static int SPECIE1_X_START=10;
 public static int SPECIE1_Y_START=10;
 public static int SPECIE2_X_START=90;
 public static int SPECIE2_Y_START=90;
-public static int GENERAL_MINIMUM_ENERGY_TO_REPRODUCE=12;
-public static int GENERAL_MINIMUM_AGE_TO_REPRODUCE=7;
-public static int SPECIE1_MINIMUM_ENERGY_TO_REPRODUCE=12;
-public static int SPECIE1_MINIMUM_AGE_TO_REPRODUCE=7;
-public static int SPECIE2_MINIMUM_ENERGY_TO_REPRODUCE=12;
-public static int SPECIE2_MINIMUM_AGE_TO_REPRODUCE=7;
+public static int SPECIE1_MINIMUM_ENERGY_TO_REPRODUCE=7;
+public static int SPECIE1_MINIMUM_AGE_TO_REPRODUCE=5;
+public static int SPECIE2_MINIMUM_ENERGY_TO_REPRODUCE=7;
+public static int SPECIE2_MINIMUM_AGE_TO_REPRODUCE=5;
 //arraylist per les dos llistes d'animals
 public static ArrayList<Animal> specie1List = new ArrayList<Animal>();
 public static ArrayList<Animal> specie2List = new ArrayList<Animal>();
@@ -69,11 +67,13 @@ public static float MASTER_SCALE=1.f;
 public static boolean ISTABLET=false;
 public static int LOOPS=0;
 public static boolean IS_MAGNIFIED=false;
+public static int PROCESSINGLIMIT=5000;
 public static GrassMatrix matriu_herba=new GrassMatrix();
 private static int is_raining=0;
 private static int raining_time=0;
 private static int current_rain_x=0;
 private static int current_rain_y=0;
+
 
 // graph
 public static int[] plantsgraphvalues = new int[100];
@@ -86,8 +86,8 @@ public static void evolve() {
     Engine.LOOPS++;
     if (Engine.FIRST_LOOP==true) {
     	// create first animals of each race
-		specie1List.add(new Animal(Engine.SPECIE1_X_START,Engine.SPECIE1_Y_START,Engine.SPECIE1_MAX_AGE));
-		specie2List.add(new Animal(Engine.SPECIE2_X_START,Engine.SPECIE2_Y_START,Engine.SPECIE2_MAX_AGE));
+		specie1List.add(new Animal(Engine.SPECIE1_X_START,Engine.SPECIE1_Y_START,Engine.SPECIE1_MAX_AGE, true));
+		specie2List.add(new Animal(Engine.SPECIE2_X_START,Engine.SPECIE2_Y_START,Engine.SPECIE2_MAX_AGE,true));
 		Engine.FIRST_LOOP=false;
     }
     Engine.PLANTS_TOTAL_UNITS=0;
@@ -138,6 +138,12 @@ public static void evolve() {
 	// bucle per visualitzar i fer evolucionar els animals (SPECIE1)
 	for (int i = 0; i < specie1size; i++) {
 		Animal item=specie1List.get(i);
+		// activem el plaguecontrol (per evitar la superpoblacio i el bloqueig del telefon)
+		if ((SPECIE1_TOTAL_UNITS+SPECIE2_TOTAL_UNITS)>PROCESSINGLIMIT) {
+			item.setplaguecontrol(true);
+		} else {
+			item.setplaguecontrol(false);
+		}
 		if (matriu_herba.getEnergy(item.getX(),item.getY())>Engine.SPECIE1_ENERGY_NEEDED) { // si la planta te energia suficient
 			if (item.getEnergy()<=10) { // si te gana
 					item.feed(); // s'alimenta
@@ -148,7 +154,7 @@ public static void evolve() {
 			item.reproduce(); // es reprodueix
 			int chances_to_born = randomGenerator.nextInt(100); //  range 0..99
 			if (chances_to_born<Engine.SPECIE1_CHANCES_TO_BORN) {
-				specie1List.add(new Animal(item.getX(),item.getY(),Engine.SPECIE1_MAX_AGE));
+				specie1List.add(new Animal(item.getX(),item.getY(),Engine.SPECIE1_MAX_AGE,false));
 			}
 			item.grow(); // creix
 		} else {
@@ -169,7 +175,12 @@ public static void evolve() {
 	// bucle per visualitzar i fer evolucionar els animals (SPECIE2)
 	for (int i = 0; i < specie2size; i++) {
 		Animal item=specie2List.get(i);
-		
+		// activem el plaguecontrol (per evitar la superpoblacio i el bloqueig del telefon)
+		if ((SPECIE1_TOTAL_UNITS+SPECIE2_TOTAL_UNITS)>PROCESSINGLIMIT) {
+			item.setplaguecontrol(true);
+		} else {
+			item.setplaguecontrol(false);
+		}
 		if (matriu_herba.getEnergy(item.getX(),item.getY())>Engine.SPECIE2_ENERGY_NEEDED) { // si la planta te energia
 			if (item.getEnergy()<=10) { // si te gana
 					item.feed(); // s'alimenta
@@ -180,7 +191,7 @@ public static void evolve() {
 			item.reproduce(); // es reprodueix
 			int chances_to_born = randomGenerator.nextInt(100); //  range 0..99
 			if (chances_to_born<Engine.SPECIE2_CHANCES_TO_BORN) {
-				specie2List.add(new Animal(item.getX(),item.getY(),Engine.SPECIE2_MAX_AGE));
+				specie2List.add(new Animal(item.getX(),item.getY(),Engine.SPECIE2_MAX_AGE,false));
 			}
 			item.grow(); // creix
 		} else {

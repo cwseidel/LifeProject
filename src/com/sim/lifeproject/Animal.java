@@ -25,22 +25,59 @@ public class Animal {
 	private int age;
 	private int energy;
 	private int max_age;
+	private boolean plaguecontrol=false;
 	private boolean is_dead;
-	public Animal(int x, int y, int max_age) { // animal born
+	private boolean is_inmortal;
+	public Animal(int x, int y, int max_age,boolean inmortal) { // animal born
 		this.x=x;
 		this.y=y;
 		this.age=0;
 		this.energy=10;
 		this.max_age=max_age;
+		this.is_inmortal=inmortal;
 		this.is_dead=false;
 	}
 	public void feed() {
 		this.energy=this.energy+5;
 	}
 	public void grow() {
-		this.age++;
-		this.energy--;
-		if (this.energy<=0 || this.age>this.max_age) { this.is_dead=true; }
+		int limit=this.max_age/3;
+		int plaguemodifier;
+		Random randomGenerator = new Random();
+		if (this.is_inmortal==false) {
+			if (this.plaguecontrol==true) { plaguemodifier=30; } else { plaguemodifier=0; }
+			int death_chance = randomGenerator.nextInt(100); //  range 0..99
+			if (this.age<limit) {
+				if (death_chance>5+plaguemodifier) {
+					this.age++;
+					this.energy--;
+				} else {
+					this.is_dead=true;
+					this.energy=0;
+				}
+			}
+			if (this.age>=limit && this.age<limit*2) {
+				if (death_chance>15+plaguemodifier) {
+					this.age++;
+					this.energy--;
+				} else {
+					this.is_dead=true;
+					this.energy=0;
+				}
+			}
+			if (this.age>=limit*2) {
+				if (death_chance>40+plaguemodifier) {
+					this.age++;
+					this.energy--;
+				} else {
+					this.is_dead=true;
+					this.energy=0;
+				}
+			}
+			if (this.energy<=0) { this.is_dead=true; }
+		} else {
+			this.age++;
+		}
 	}
 	public void move() {
 		Random randomGenerator = new Random();
@@ -82,6 +119,12 @@ public class Animal {
 	}
 	public boolean is_dead() {
 		return this.is_dead;
+	}
+	public void setplaguecontrol(boolean value) {
+		this.plaguecontrol=value;
+	}
+	public boolean getplaguecontrol() {
+		return this.plaguecontrol;
 	}
 	
 }
