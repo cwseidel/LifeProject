@@ -24,10 +24,10 @@ import java.util.Random;
 
 public class Engine {
 // plants variables
-public static int PLANTS_NORMAL_GROWTH_RATIO=20;
+public static int PLANTS_NORMAL_GROWTH_RATIO=15;
 public static int PLANTS_TOTAL_UNITS=0;
 public static int CHANCES_OF_RAIN=70;
-public static int PLANTS_ENHANCED_GROWTH_RATIO=30;
+public static int PLANTS_ENHANCED_GROWTH_RATIO=25;
 public static int PLANTS_ONRAIN_GROWTH_RATIO=60;
 public static int MAX_RAINING_TIME=10;
 // species variables
@@ -41,10 +41,10 @@ public static int SPECIE1_CHANCES_TO_BORN=90;
 public static int SPECIE2_CHANCES_TO_BORN=90;
 public static int SPECIE1_ENERGY_NEEDED=8;
 public static int SPECIE2_ENERGY_NEEDED=8;
-public static int SPECIE1_X_START=10;
-public static int SPECIE1_Y_START=10;
-public static int SPECIE2_X_START=90;
-public static int SPECIE2_Y_START=90;
+public static int SPECIE1_X_START=20;
+public static int SPECIE1_Y_START=20;
+public static int SPECIE2_X_START=80;
+public static int SPECIE2_Y_START=80;
 public static int SPECIE1_MINIMUM_ENERGY_TO_REPRODUCE=6;
 public static int SPECIE1_MINIMUM_AGE_TO_REPRODUCE=4;
 public static int SPECIE2_MINIMUM_ENERGY_TO_REPRODUCE=6;
