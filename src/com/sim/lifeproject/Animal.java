@@ -48,7 +48,7 @@ public class Animal {
 			if (this.plaguecontrol==true) { plaguemodifier=30; } else { plaguemodifier=0; }
 			int death_chance = randomGenerator.nextInt(100); //  range 0..99
 			if (this.age<limit) {
-				if (death_chance>5+plaguemodifier) {
+				if (death_chance>15+plaguemodifier) {
 					this.age++;
 					this.energy--;
 				} else {
@@ -57,7 +57,7 @@ public class Animal {
 				}
 			}
 			if (this.age>=limit && this.age<limit*2) {
-				if (death_chance>15+plaguemodifier) {
+				if (death_chance>5+plaguemodifier) {
 					this.age++;
 					this.energy--;
 				} else {
