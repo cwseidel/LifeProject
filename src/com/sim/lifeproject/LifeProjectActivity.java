@@ -186,7 +186,7 @@ public class LifeProjectActivity extends Activity {
             public void handleMessage(Message msg) {
             	switch (msg.what) {
             	case LifeProjectActivity.UPDATEID:
-            		if (Engine.PLAY==true) { Engine.evolve(); pantalla.invalidate(); grafic.invalidate(); }
+            		if (Engine.PLAY==true) { Engine.evolve(); Engine.buildgraph(); pantalla.invalidate(); grafic.invalidate(); }
             		float specie1DeadValue;
             		float specie2DeadValue;
             		if (Engine.SPECIE1_TOTAL_UNITS!=0) {

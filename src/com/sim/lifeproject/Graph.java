@@ -37,22 +37,10 @@ public class Graph extends View {
 
 	private int tile_size;
 	Paint color_terra = new Paint();
-	Paint color_planta1 = new Paint();
-	Paint color_planta2 = new Paint();
-	Paint color_planta3 = new Paint();
-	Paint color_planta4 = new Paint();
-	Paint color_planta5 = new Paint();
-	Paint color_rain = new Paint();
+	Paint color_planta = new Paint();
 	Paint color_race1 = new Paint();
 	Paint color_race2 = new Paint();
-	Paint start_image = new Paint();
-	Paint fons_matriu= new Paint();
-	// arraylist per les dos llistes d'animals
-	ArrayList<Animal> specie1List = new ArrayList<Animal>();
-	ArrayList<Animal> specie2List = new ArrayList<Animal>();
-	ArrayList<Animal> deadAnimals = new ArrayList<Animal>();
-	private ScaleGestureDetector mScaleDetector;
-	private float mScaleFactor = 1.f;
+	Paint axis= new Paint();
 	int h_position_offset;
 	int v_position_offset=30;
 	Bitmap fons_start;
@@ -62,16 +50,11 @@ public class Graph extends View {
 		super(context);
 		// set tile colors
 		color_terra.setColor(Color.rgb(136, 96, 17));
-		color_planta1.setColor(Color.rgb(113, 255, 113));
-		color_planta2.setColor(Color.rgb(4, 255, 4));
-		color_planta3.setColor(Color.rgb(0, 232, 0));
-		color_planta4.setColor(Color.rgb(0, 170, 0));
-		color_planta5.setColor(Color.rgb(0, 115, 0));
+		color_planta.setColor(Color.rgb(113, 255, 113));
 		color_race1.setColor(Color.rgb(255, 0, 0));
 		color_race2.setColor(Color.rgb(255, 255, 0));
-		fons_matriu.setColor(Color.rgb(0, 0, 0));
-		color_rain.setColor(Color.rgb(0, 128, 255));
-		color_rain.setAlpha(100);
+		axis.setColor(Color.rgb(0, 0, 0));
+		color_planta.setAlpha(100);
 		color_race1.setAlpha(100);
 		color_race2.setAlpha(100);
 		// end of set tile colors
@@ -80,49 +63,14 @@ public class Graph extends View {
 		
 			
 	}
-	@Override
-
-	public boolean onTouchEvent(MotionEvent event) {
-	   switch(event.getAction()) {
-	   case MotionEvent.ACTION_DOWN:
-		  Engine.X_SCALE_CENTER = (int) event.getX();
-		  Engine.Y_SCALE_CENTER = (int) event.getY();
-		  Engine.X_SCALE=2.f;
-		  Engine.Y_SCALE=2.f;
-	      break;
-	   case MotionEvent.ACTION_UP:
-		   	Engine.X_SCALE=1.f;
-		   	Engine.Y_SCALE=1.f;
-		   	Engine.X_SCALE_CENTER = 0;
-		   	Engine.Y_SCALE_CENTER = 0;
-		   	break;
-	   case MotionEvent.ACTION_MOVE:
-	   		Engine.X_SCALE_CENTER = (int) event.getX();
-	   		Engine.Y_SCALE_CENTER = (int) event.getY();
-	   		break;
-	   }
-	  
-	   //mScaleDetector.onTouchEvent(event);
-	   return true;
-	}
 	
-	private class ScaleListener extends ScaleGestureDetector.SimpleOnScaleGestureListener {
-	    @Override
-	    public boolean onScale(ScaleGestureDetector detector) {
-	        mScaleFactor *= detector.getScaleFactor();
-	        // Don't let the object get too small or too large.
-	        mScaleFactor = Math.max(0.1f, Math.min(mScaleFactor, 5.0f));
-	        return true;
-	    }
-	}
-
 	@Override
     public void onDraw(Canvas canvas) {
 		// This method shows a snapshot of the simulation matrix
-		showSnapshot(canvas);
+		showGraph(canvas);
 		
 	}
-	private void showSnapshot(Canvas canvas) {
+	private void showGraph(Canvas canvas) {
 		// This method shows a snapshot of the simulation matrix
         //define master scale 
         if (Engine.SCREEN_W>300) {
@@ -139,15 +87,21 @@ public class Graph extends View {
         	h_position_offset=(Engine.SCREEN_W-272)/2;
         }
         if (Engine.SCREEN_W>500) { tile_size=5; } else { tile_size=3; } // set tile size
-		// update an draw the matrix
+        // draw axis
 		for (int x=0;x<100;x++) {
-			for (int y=0;y<100;y++) {
-				// dibuixem el fons negre
-				canvas.drawRect(h_position_offset+(x*tile_size), v_position_offset+(y*tile_size), h_position_offset+(x*tile_size)+tile_size, v_position_offset+(y*tile_size)+tile_size, fons_matriu);
-				// dibuixem el fons terra
-				canvas.drawRect(h_position_offset+(x*tile_size)+1, v_position_offset+(y*tile_size)+1, h_position_offset+(x*tile_size)+tile_size-1, v_position_offset+(y*tile_size)+tile_size-1, color_terra);
-			}
+			canvas.drawRect(h_position_offset+(x*tile_size), v_position_offset+(99*tile_size), h_position_offset+(x*tile_size)+tile_size, v_position_offset+(99*tile_size)+tile_size, axis);
+			canvas.drawRect(h_position_offset+(tile_size)-tile_size, v_position_offset+(x*tile_size)-tile_size, h_position_offset+(tile_size), v_position_offset+(x*tile_size), axis);
 		}
+		// draw graph
+		for (int x=0;x<100;x++) {
+			int valorplanta=100-Engine.plantsgraphvalues[x];
+			int valorespecie1=100-Engine.specie1graphvalues[x];
+			int valorespecie2=100-Engine.specie2graphvalues[x];
+			canvas.drawRect(h_position_offset+(x*tile_size), v_position_offset+(valorplanta*tile_size)-2*tile_size, h_position_offset+(x*tile_size)+tile_size, v_position_offset+(valorplanta*tile_size)-tile_size, color_planta);
+			canvas.drawRect(h_position_offset+(x*tile_size), v_position_offset+(valorespecie1*tile_size)-2*tile_size, h_position_offset+(x*tile_size)+tile_size, v_position_offset+(valorespecie1*tile_size)-tile_size, color_race1);
+			canvas.drawRect(h_position_offset+(x*tile_size), v_position_offset+(valorespecie2*tile_size)-2*tile_size, h_position_offset+(x*tile_size)+tile_size, v_position_offset+(valorespecie2*tile_size)-tile_size, color_race2);
+		}
+		
 	}
 
 }

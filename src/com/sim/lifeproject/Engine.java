@@ -75,6 +75,11 @@ private static int raining_time=0;
 private static int current_rain_x=0;
 private static int current_rain_y=0;
 
+// graph
+public static int[] plantsgraphvalues = new int[100];
+public static int[] specie1graphvalues = new int[100];
+public static int[] specie2graphvalues = new int[100];
+
 
 public static void evolve() {
 	if (Engine.PLAY==true) { // if simulation is running
@@ -195,6 +200,19 @@ public static void evolve() {
 	deadAnimals.clear();
 	//invalidate();
 	}
+}
+
+public static void buildgraph() {
+	// move all values to the left
+	for (int x=0;x<99;x++) {
+		plantsgraphvalues[x]=plantsgraphvalues[x+1];
+		specie1graphvalues[x]=specie1graphvalues[x+1];
+		specie2graphvalues[x]=specie2graphvalues[x+1];
+	}
+	// put new values on the last position
+	plantsgraphvalues[98]=(int)(Engine.PLANTS_TOTAL_UNITS/100);
+	specie1graphvalues[98]=(int)((float)((float)Engine.SPECIE1_TOTAL_UNITS/(float)(Engine.SPECIE1_TOTAL_UNITS+Engine.SPECIE2_TOTAL_UNITS))*100);
+	specie2graphvalues[98]=(int)((float)((float)Engine.SPECIE2_TOTAL_UNITS/(float)(Engine.SPECIE1_TOTAL_UNITS+Engine.SPECIE2_TOTAL_UNITS))*100);
 }
 
 }
