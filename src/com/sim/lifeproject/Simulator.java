@@ -34,7 +34,7 @@ import java.util.Random;
 
 
 
-public class Pantallaprincipal extends View {
+public class Simulator extends View {
 
 	private int tile_size;
 	Paint color_terra = new Paint();
@@ -55,7 +55,7 @@ public class Pantallaprincipal extends View {
 	Bitmap fons_start;
 
 
-	public Pantallaprincipal(Context context) {
+	public Simulator(Context context) {
 		super(context);
 		mScaleDetector = new ScaleGestureDetector(context, new ScaleListener());
 		// set tile colors

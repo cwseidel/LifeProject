@@ -94,6 +94,9 @@ public class Graph extends View {
 			canvas.drawRect(h_position_offset+(tile_size)-tile_size, v_position_offset+(x*tile_size)-tile_size, h_position_offset+(tile_size), v_position_offset+(x*tile_size), axis);
 		}
 		// draw graph
+		valorplantaanterior=100-Engine.plantsgraphvalues[0];
+		valorespecie1anterior=100-Engine.specie1graphvalues[0];
+		valorespecie2anterior=100-Engine.specie2graphvalues[0];
 		for (int x=0;x<99;x++) {
 			valorplanta=100-Engine.plantsgraphvalues[x];
 			valorespecie1=100-Engine.specie1graphvalues[x];
@@ -102,9 +105,9 @@ public class Graph extends View {
 			//canvas.drawRect(h_position_offset+(x*tile_size), v_position_offset+(valorespecie1*tile_size)-2*tile_size, h_position_offset+(x*tile_size)+tile_size, v_position_offset+(valorespecie1*tile_size)-tile_size, color_race1);
 			//canvas.drawRect(h_position_offset+(x*tile_size), v_position_offset+(valorespecie2*tile_size)-2*tile_size, h_position_offset+(x*tile_size)+tile_size, v_position_offset+(valorespecie2*tile_size)-tile_size, color_race2);
 			for (int pos=0;pos<3;pos++) {
-			canvas.drawLine(h_position_offset+((x+1)*tile_size)+pos, v_position_offset+(valorplanta*tile_size)-2*tile_size,h_position_offset+(x*tile_size)+pos, v_position_offset+(valorplantaanterior*tile_size)-2*tile_size, color_planta);
-			canvas.drawLine(h_position_offset+((x+1)*tile_size)+pos, v_position_offset+(valorespecie1*tile_size)-2*tile_size, h_position_offset+(x*tile_size)+pos, v_position_offset+(valorespecie1anterior*tile_size)-2*tile_size, color_race1);
-			canvas.drawLine(h_position_offset+((x+1)*tile_size)+pos, v_position_offset+(valorespecie2*tile_size)-2*tile_size, h_position_offset+(x*tile_size)+pos, v_position_offset+(valorespecie2anterior*tile_size)-2*tile_size, color_race2);
+			canvas.drawLine(h_position_offset+((x+2)*tile_size)+pos, v_position_offset+(valorplanta*tile_size)-2*tile_size,h_position_offset+((x+1)*tile_size)+pos, v_position_offset+(valorplantaanterior*tile_size)-2*tile_size, color_planta);
+			canvas.drawLine(h_position_offset+((x+2)*tile_size)+pos, v_position_offset+(valorespecie1*tile_size)-2*tile_size, h_position_offset+((x+1)*tile_size)+pos, v_position_offset+(valorespecie1anterior*tile_size)-2*tile_size, color_race1);
+			canvas.drawLine(h_position_offset+((x+2)*tile_size)+pos, v_position_offset+(valorespecie2*tile_size)-2*tile_size, h_position_offset+((x+1)*tile_size)+pos, v_position_offset+(valorespecie2anterior*tile_size)-2*tile_size, color_race2);
 			}
 			valorplantaanterior=valorplanta;
 			valorespecie1anterior=valorespecie1;
