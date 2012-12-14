@@ -38,8 +38,8 @@ public class Graph extends View {
 	private int tile_size;
 	Paint color_terra = new Paint();
 	Paint color_planta = new Paint();
-	Paint color_race1 = new Paint();
-	Paint color_race2 = new Paint();
+	Paint color_specie1 = new Paint();
+	Paint color_specie2 = new Paint();
 	Paint axis= new Paint();
 	int h_position_offset;
 	int v_position_offset=30;
@@ -51,12 +51,15 @@ public class Graph extends View {
 		// set tile colors
 		color_terra.setColor(Color.rgb(136, 96, 17));
 		color_planta.setColor(Color.rgb(113, 255, 113));
-		color_race1.setColor(Color.rgb(255, 0, 0));
-		color_race2.setColor(Color.rgb(255, 255, 0));
+		color_specie1.setColor(Color.rgb(255, 0, 0));
+		color_specie2.setColor(Color.rgb(255, 255, 0));
 		axis.setColor(Color.rgb(0, 0, 0));
 		color_planta.setAlpha(100);
-		color_race1.setAlpha(100);
-		color_race2.setAlpha(100);
+		color_specie1.setAlpha(100);
+		color_specie2.setAlpha(100);
+		color_planta.setStrokeWidth(5);
+		color_specie1.setStrokeWidth(5);
+		color_specie2.setStrokeWidth(5);
 		// end of set tile colors
 		
 		
@@ -89,10 +92,8 @@ public class Graph extends View {
         }
         if (Engine.SCREEN_W>500) { tile_size=5; } else { tile_size=3; } // set tile size
         // draw axis
-		for (int x=0;x<100;x++) {
-			canvas.drawRect(h_position_offset+(x*tile_size), v_position_offset+(99*tile_size), h_position_offset+(x*tile_size)+tile_size, v_position_offset+(99*tile_size)+tile_size, axis);
-			canvas.drawRect(h_position_offset+(tile_size)-tile_size, v_position_offset+(x*tile_size)-tile_size, h_position_offset+(tile_size), v_position_offset+(x*tile_size), axis);
-		}
+		canvas.drawLine(h_position_offset+4, v_position_offset-4,h_position_offset+4, v_position_offset+(tile_size*99)-4,axis);
+		canvas.drawLine(h_position_offset+4, v_position_offset+(tile_size*99)-4,h_position_offset+(tile_size*100)+4, v_position_offset+(tile_size*99)-4,axis);
 		// draw graph
 		valorplantaanterior=100-Engine.plantsgraphvalues[0];
 		valorespecie1anterior=100-Engine.specie1graphvalues[0];
@@ -101,14 +102,9 @@ public class Graph extends View {
 			valorplanta=100-Engine.plantsgraphvalues[x];
 			valorespecie1=100-Engine.specie1graphvalues[x];
 			valorespecie2=100-Engine.specie2graphvalues[x];
-			//canvas.drawRect(h_position_offset+(x*tile_size), v_position_offset+(valorplanta*tile_size)-2*tile_size, h_position_offset+(x*tile_size)+tile_size, v_position_offset+(valorplanta*tile_size)-tile_size, color_planta);
-			//canvas.drawRect(h_position_offset+(x*tile_size), v_position_offset+(valorespecie1*tile_size)-2*tile_size, h_position_offset+(x*tile_size)+tile_size, v_position_offset+(valorespecie1*tile_size)-tile_size, color_race1);
-			//canvas.drawRect(h_position_offset+(x*tile_size), v_position_offset+(valorespecie2*tile_size)-2*tile_size, h_position_offset+(x*tile_size)+tile_size, v_position_offset+(valorespecie2*tile_size)-tile_size, color_race2);
-			for (int pos=0;pos<3;pos++) {
-			canvas.drawLine(h_position_offset+((x+2)*tile_size)+pos, v_position_offset+(valorplanta*tile_size)-2*tile_size,h_position_offset+((x+1)*tile_size)+pos, v_position_offset+(valorplantaanterior*tile_size)-2*tile_size, color_planta);
-			canvas.drawLine(h_position_offset+((x+2)*tile_size)+pos, v_position_offset+(valorespecie1*tile_size)-2*tile_size, h_position_offset+((x+1)*tile_size)+pos, v_position_offset+(valorespecie1anterior*tile_size)-2*tile_size, color_race1);
-			canvas.drawLine(h_position_offset+((x+2)*tile_size)+pos, v_position_offset+(valorespecie2*tile_size)-2*tile_size, h_position_offset+((x+1)*tile_size)+pos, v_position_offset+(valorespecie2anterior*tile_size)-2*tile_size, color_race2);
-			}
+			canvas.drawLine(h_position_offset+((x+2)*tile_size), v_position_offset+(valorplanta*tile_size)-2*tile_size,h_position_offset+((x+1)*tile_size), v_position_offset+(valorplantaanterior*tile_size)-2*tile_size, color_planta);
+			canvas.drawLine(h_position_offset+((x+2)*tile_size), v_position_offset+(valorespecie1*tile_size)-2*tile_size, h_position_offset+((x+1)*tile_size), v_position_offset+(valorespecie1anterior*tile_size)-2*tile_size, color_specie1);
+			canvas.drawLine(h_position_offset+((x+2)*tile_size), v_position_offset+(valorespecie2*tile_size)-2*tile_size, h_position_offset+((x+1)*tile_size), v_position_offset+(valorespecie2anterior*tile_size)-2*tile_size, color_specie2);
 			valorplantaanterior=valorplanta;
 			valorespecie1anterior=valorespecie1;
 			valorespecie2anterior=valorespecie2;
