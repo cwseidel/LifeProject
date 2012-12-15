@@ -47,12 +47,13 @@ public class Simulator extends View {
 	Paint color_race1 = new Paint();
 	Paint color_race2 = new Paint();
 	Paint start_image = new Paint();
+	Paint lupa_paint = new Paint();
 	Paint fons_matriu= new Paint();
 	private ScaleGestureDetector mScaleDetector;
 	private float mScaleFactor = 1.f;
 	int h_position_offset;
 	int v_position_offset=30;
-	Bitmap fons_start;
+	Bitmap fons_start, lupa;
 
 
 	public Simulator(Context context) {
@@ -73,6 +74,12 @@ public class Simulator extends View {
 		color_race1.setAlpha(100);
 		color_race2.setAlpha(100);
 		// end of set tile colors
+		lupa=BitmapFactory.decodeResource(getResources(), R.drawable.lupa);
+		if (Engine.ISTABLET==true) {
+        	fons_start=BitmapFactory.decodeResource(getResources(), R.drawable.starttablet);
+        } else {
+        	fons_start=BitmapFactory.decodeResource(getResources(), R.drawable.starthi);
+        }
 		
 		
 		
@@ -87,16 +94,19 @@ public class Simulator extends View {
 		  Engine.Y_SCALE_CENTER = (int) event.getY();
 		  Engine.X_SCALE=2.f;
 		  Engine.Y_SCALE=2.f;
+		  Engine.IS_MAGNIFIED=true;
 	      break;
 	   case MotionEvent.ACTION_UP:
 		   	Engine.X_SCALE=1.f;
 		   	Engine.Y_SCALE=1.f;
 		   	Engine.X_SCALE_CENTER = 0;
 		   	Engine.Y_SCALE_CENTER = 0;
+		   	Engine.IS_MAGNIFIED=false;
 		   	break;
 	   case MotionEvent.ACTION_MOVE:
 	   		Engine.X_SCALE_CENTER = (int) event.getX();
 	   		Engine.Y_SCALE_CENTER = (int) event.getY();
+	   		Engine.IS_MAGNIFIED=true;
 	   		break;
 	   }
 	  
@@ -123,11 +133,6 @@ public class Simulator extends View {
 		if (Engine.PLAY==false && Engine.FIRST_LOOP==true) { // si encara no s'ha apretat START per primer cop mostrem nomes el terra
 			super.onDraw(canvas);
 	        canvas.save();
-	        if (Engine.ISTABLET==true) {
-	        	fons_start=BitmapFactory.decodeResource(getResources(), R.drawable.starttablet);
-	        } else {
-	        	fons_start=BitmapFactory.decodeResource(getResources(), R.drawable.starthi);
-	        }
 	        canvas.drawBitmap(fons_start, 0, 0, start_image);
 	        
 		}
@@ -197,6 +202,10 @@ public class Simulator extends View {
 		for (int i = 0; i < specie2size; i++) {
 			Animal item=Engine.specie2List.get(i);
 			canvas.drawRect(h_position_offset+(item.getX()*tile_size)+1, v_position_offset+(item.getY()*tile_size)+1, h_position_offset+(item.getX()*tile_size)+tile_size-1, v_position_offset+(item.getY()*tile_size)+tile_size-1, color_race2);
+		}
+		// bucle per visualitzar la lupa si toca
+		if (Engine.IS_MAGNIFIED==true) {
+			canvas.drawBitmap(lupa,0, 0, lupa_paint);		
 		}
 	}
 
