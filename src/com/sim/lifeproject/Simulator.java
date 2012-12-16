@@ -74,7 +74,7 @@ public class Simulator extends View {
 		color_race1.setAlpha(100);
 		color_race2.setAlpha(100);
 		// end of set tile colors
-		lupa=BitmapFactory.decodeResource(getResources(), R.drawable.lupa);
+		lupa=BitmapFactory.decodeResource(getResources(),R.drawable.lupa);
 		if (Engine.ISTABLET==true) {
         	fons_start=BitmapFactory.decodeResource(getResources(), R.drawable.starttablet);
         } else {
@@ -205,7 +205,7 @@ public class Simulator extends View {
 		}
 		// bucle per visualitzar la lupa si toca
 		if (Engine.IS_MAGNIFIED==true) {
-			canvas.drawBitmap(lupa,0, 0, lupa_paint);		
+			canvas.drawBitmap(lupa,Engine.X_SCALE_CENTER+60, Engine.Y_SCALE_CENTER-20, lupa_paint);		
 		}
 	}
 

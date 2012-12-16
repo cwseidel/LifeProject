@@ -38,6 +38,6 @@ public class SplashScreen extends Activity {
 				SplashScreen.this.startActivity(sim);
 				SplashScreen.this.finish();
 			}
-			}, 4000);
+			}, 2500);
 }
 }
