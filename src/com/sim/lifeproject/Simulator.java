@@ -47,6 +47,7 @@ public class Simulator extends View {
 	int h_position_offset;
 	int v_position_offset=30;
 	Bitmap fons_start, lupa;
+	int celldistance=1;
 
 
 	public Simulator(Context context) {
@@ -145,31 +146,30 @@ public class Simulator extends View {
 				// dibuixem el fons negre
 				canvas.drawRect(h_position_offset+(x*tile_size), v_position_offset+(y*tile_size), h_position_offset+(x*tile_size)+tile_size, v_position_offset+(y*tile_size)+tile_size, fons_matriu);
 				// dibuixem el fons terra
-				canvas.drawRect(h_position_offset+(x*tile_size)+1, v_position_offset+(y*tile_size)+1, h_position_offset+(x*tile_size)+tile_size-1, v_position_offset+(y*tile_size)+tile_size-1, color_terra);
+				canvas.drawRect(h_position_offset+(x*tile_size)+celldistance, v_position_offset+(y*tile_size)+celldistance, h_position_offset+(x*tile_size)+tile_size-celldistance, v_position_offset+(y*tile_size)+tile_size-celldistance, color_terra);
 				// dibuixem les herbes vives segons els diferents nivells d'energia
-				if (Engine.matriu_herba.getAge(x,y)==1) {
-					canvas.drawRect(h_position_offset+(x*tile_size)+1, v_position_offset+(y*tile_size)+1, h_position_offset+(x*tile_size)+tile_size-1, v_position_offset+(y*tile_size)+tile_size-1, color_planta1);
+				if (Engine.matriu_herba.getAge(x,y)>0 && Engine.matriu_herba.getAge(x,y)<6) {
+					canvas.drawRect(h_position_offset+(x*tile_size)+celldistance, v_position_offset+(y*tile_size)+celldistance, h_position_offset+(x*tile_size)+tile_size-celldistance, v_position_offset+(y*tile_size)+tile_size-celldistance, color_planta1);
 					Engine.PLANTS_TOTAL_UNITS=Engine.PLANTS_TOTAL_UNITS+1;
 				}
-				if (Engine.matriu_herba.getAge(x,y)==2) {
-					canvas.drawRect(h_position_offset+(x*tile_size)+1, v_position_offset+(y*tile_size)+1, h_position_offset+(x*tile_size)+tile_size-1, v_position_offset+(y*tile_size)+tile_size-1, color_planta2);
+				/*if (Engine.matriu_herba.getAge(x,y)==2) {
+					canvas.drawRect(h_position_offset+(x*tile_size)+celldistance, v_position_offset+(y*tile_size)+celldistance, h_position_offset+(x*tile_size)+tile_size-celldistance, v_position_offset+(y*tile_size)+tile_size-celldistance, color_planta2);
 					Engine.PLANTS_TOTAL_UNITS=Engine.PLANTS_TOTAL_UNITS+1;
 				}
 				if (Engine.matriu_herba.getAge(x,y)==3) {
-					canvas.drawRect(h_position_offset+(x*tile_size)+1, v_position_offset+(y*tile_size)+1, h_position_offset+(x*tile_size)+tile_size-1, v_position_offset+(y*tile_size)+tile_size-1, color_planta3);
+					canvas.drawRect(h_position_offset+(x*tile_size)+celldistance, v_position_offset+(y*tile_size)+celldistance, h_position_offset+(x*tile_size)+tile_size-celldistance, v_position_offset+(y*tile_size)+tile_size-celldistance, color_planta3);
 					Engine.PLANTS_TOTAL_UNITS=Engine.PLANTS_TOTAL_UNITS+1;
 				}
 				if (Engine.matriu_herba.getAge(x,y)==4) {
-					canvas.drawRect(h_position_offset+(x*tile_size)+1, v_position_offset+(y*tile_size)+1, h_position_offset+(x*tile_size)+tile_size-1, v_position_offset+(y*tile_size)+tile_size-1, color_planta4);
+					canvas.drawRect(h_position_offset+(x*tile_size)+celldistance, v_position_offset+(y*tile_size)+celldistance, h_position_offset+(x*tile_size)+tile_size-celldistance, v_position_offset+(y*tile_size)+tile_size-celldistance, color_planta4);
 					Engine.PLANTS_TOTAL_UNITS=Engine.PLANTS_TOTAL_UNITS+1;
 				}
 				if (Engine.matriu_herba.getAge(x,y)==5) {
-					canvas.drawRect(h_position_offset+(x*tile_size)+1, v_position_offset+(y*tile_size)+1, h_position_offset+(x*tile_size)+tile_size-1, v_position_offset+(y*tile_size)+tile_size-1, color_planta5);
+					canvas.drawRect(h_position_offset+(x*tile_size)+celldistance, v_position_offset+(y*tile_size)+celldistance, h_position_offset+(x*tile_size)+tile_size-celldistance, v_position_offset+(y*tile_size)+tile_size-celldistance, color_planta5);
 					Engine.PLANTS_TOTAL_UNITS=Engine.PLANTS_TOTAL_UNITS+1;
-				}
+				} */
 				if (Engine.matriu_herba.getRain(x,y)==1) {
-					canvas.drawRect(h_position_offset+(x*tile_size)+1, v_position_offset+(y*tile_size)+1, h_position_offset+(x*tile_size)+tile_size-1, v_position_offset+(y*tile_size)+tile_size-1, color_rain);
-					Engine.PLANTS_TOTAL_UNITS=Engine.PLANTS_TOTAL_UNITS+1;
+					canvas.drawRect(h_position_offset+(x*tile_size)+celldistance, v_position_offset+(y*tile_size)+celldistance, h_position_offset+(x*tile_size)+tile_size-celldistance, v_position_offset+(y*tile_size)+tile_size-celldistance, color_rain);
 				}
 			}
 		}
@@ -178,12 +178,12 @@ public class Simulator extends View {
 		// bucle per visualitzar i fer evolucionar els animals (SPECIE1)
 		for (int i = 0; i < specie1size; i++) {
 			Animal item=Engine.specie1List.get(i);
-			canvas.drawRect(h_position_offset+(item.getX()*tile_size)+1, v_position_offset+(item.getY()*tile_size)+1, h_position_offset+(item.getX()*tile_size)+tile_size-1, v_position_offset+(item.getY()*tile_size)+tile_size-1, color_race1);
+			canvas.drawRect(h_position_offset+(item.getX()*tile_size)+celldistance, v_position_offset+(item.getY()*tile_size)+celldistance, h_position_offset+(item.getX()*tile_size)+tile_size-celldistance, v_position_offset+(item.getY()*tile_size)+tile_size-celldistance, color_race1);
 		}
 		// bucle per visualitzar i fer evolucionar els animals (SPECIE2)
 		for (int i = 0; i < specie2size; i++) {
 			Animal item=Engine.specie2List.get(i);
-			canvas.drawRect(h_position_offset+(item.getX()*tile_size)+1, v_position_offset+(item.getY()*tile_size)+1, h_position_offset+(item.getX()*tile_size)+tile_size-1, v_position_offset+(item.getY()*tile_size)+tile_size-1, color_race2);
+			canvas.drawRect(h_position_offset+(item.getX()*tile_size)+celldistance, v_position_offset+(item.getY()*tile_size)+celldistance, h_position_offset+(item.getX()*tile_size)+tile_size-celldistance, v_position_offset+(item.getY()*tile_size)+tile_size-celldistance, color_race2);
 		}
 		// bucle per visualitzar la lupa si toca
 		if (Engine.IS_MAGNIFIED==true) {
