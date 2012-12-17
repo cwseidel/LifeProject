@@ -24,7 +24,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -203,8 +202,8 @@ public class LifeProjectActivity extends Activity {
             		} else {
             			specie2DeadValue=0;
             		}
-            		info_sim.setText("(Green) Plants: "+(float)Engine.PLANTS_TOTAL_UNITS/100+"% ("+Engine.LOOPS/365+" years and "+Engine.LOOPS%365+" days)\n(Red) Specie 1: "+Engine.SPECIE1_TOTAL_UNITS+" alive (death ratio: "+(float)specie1DeadValue+"%)\n(Yellow) Specie 2: "+Engine.SPECIE2_TOTAL_UNITS+" alive (death ratio: "+(float)specie2DeadValue+"%)");
-        			info_graph.setText("(Green) Plants: "+(float)Engine.PLANTS_TOTAL_UNITS/100+"% ("+Engine.LOOPS/365+" years and "+Engine.LOOPS%365+" days)\n(Red) Specie 1: "+Engine.SPECIE1_TOTAL_UNITS+" alive (death ratio: "+(float)specie1DeadValue+"%)\n(Yellow) Specie 2: "+Engine.SPECIE2_TOTAL_UNITS+" alive (death ratio: "+(float)specie2DeadValue+"%)");
+            		info_sim.setText("(Green) Plants: "+(float)Engine.PLANTS_TOTAL_UNITS/100+"% ("+Engine.LOOPS/365+" years and "+Engine.LOOPS%365+" days)\n(Red) Specie 1: "+Engine.SPECIE1_TOTAL_UNITS+" alive (death ratio: "+(float)specie1DeadValue+"%)\n(Blue) Specie 2: "+Engine.SPECIE2_TOTAL_UNITS+" alive (death ratio: "+(float)specie2DeadValue+"%)");
+        			info_graph.setText("(Green) Plants: "+(float)Engine.PLANTS_TOTAL_UNITS/100+"% ("+Engine.LOOPS/365+" years and "+Engine.LOOPS%365+" days)\n(Red) Specie 1: "+Engine.SPECIE1_TOTAL_UNITS+" alive (death ratio: "+(float)specie1DeadValue+"%)\n(Blue) Specie 2: "+Engine.SPECIE2_TOTAL_UNITS+" alive (death ratio: "+(float)specie2DeadValue+"%)");
 
             		break;
             	}

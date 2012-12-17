@@ -19,16 +19,11 @@ package com.sim.lifeproject;
 
 
 import android.content.Context;
-import android.view.MotionEvent;
-import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-
-import java.util.ArrayList;
-import java.util.Random;
 
 
 
@@ -52,11 +47,11 @@ public class Graph extends View {
 		color_terra.setColor(Color.rgb(136, 96, 17));
 		color_planta.setColor(Color.rgb(113, 255, 113));
 		color_specie1.setColor(Color.rgb(255, 0, 0));
-		color_specie2.setColor(Color.rgb(255, 255, 0));
+		color_specie2.setColor(Color.rgb(0, 0, 255));
 		axis.setColor(Color.rgb(0, 0, 0));
-		color_planta.setAlpha(100);
-		color_specie1.setAlpha(100);
-		color_specie2.setAlpha(100);
+		color_planta.setAlpha(200);
+		color_specie1.setAlpha(200);
+		color_specie2.setAlpha(200);
 		color_planta.setStrokeWidth(5);
 		color_specie1.setStrokeWidth(5);
 		color_specie2.setStrokeWidth(5);

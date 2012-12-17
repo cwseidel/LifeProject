@@ -20,17 +20,12 @@ package com.sim.lifeproject;
 
 import android.content.Context;
 import android.view.MotionEvent;
-import android.view.ScaleGestureDetector;
-import android.view.ScaleGestureDetector.OnScaleGestureListener;
 import android.view.View;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-
-import java.util.ArrayList;
-import java.util.Random;
 
 
 
@@ -49,8 +44,6 @@ public class Simulator extends View {
 	Paint start_image = new Paint();
 	Paint lupa_paint = new Paint();
 	Paint fons_matriu= new Paint();
-	private ScaleGestureDetector mScaleDetector;
-	private float mScaleFactor = 1.f;
 	int h_position_offset;
 	int v_position_offset=30;
 	Bitmap fons_start, lupa;
@@ -58,7 +51,6 @@ public class Simulator extends View {
 
 	public Simulator(Context context) {
 		super(context);
-		mScaleDetector = new ScaleGestureDetector(context, new ScaleListener());
 		// set tile colors
 		color_terra.setColor(Color.rgb(136, 96, 17));
 		color_planta1.setColor(Color.rgb(113, 255, 113));
@@ -67,12 +59,12 @@ public class Simulator extends View {
 		color_planta4.setColor(Color.rgb(0, 170, 0));
 		color_planta5.setColor(Color.rgb(0, 115, 0));
 		color_race1.setColor(Color.rgb(255, 0, 0));
-		color_race2.setColor(Color.rgb(255, 255, 0));
+		color_race2.setColor(Color.rgb(0, 0, 255));
 		fons_matriu.setColor(Color.rgb(0, 0, 0));
 		color_rain.setColor(Color.rgb(0, 128, 255));
 		color_rain.setAlpha(100);
-		color_race1.setAlpha(100);
-		color_race2.setAlpha(100);
+		color_race1.setAlpha(200);
+		color_race2.setAlpha(200);
 		// end of set tile colors
 		lupa=BitmapFactory.decodeResource(getResources(),R.drawable.lupa);
 		if (Engine.ISTABLET==true) {
@@ -110,19 +102,9 @@ public class Simulator extends View {
 	   		break;
 	   }
 	  
-	   //mScaleDetector.onTouchEvent(event);
 	   return true;
 	}
 	
-	private class ScaleListener extends ScaleGestureDetector.SimpleOnScaleGestureListener {
-	    @Override
-	    public boolean onScale(ScaleGestureDetector detector) {
-	        mScaleFactor *= detector.getScaleFactor();
-	        // Don't let the object get too small or too large.
-	        mScaleFactor = Math.max(0.1f, Math.min(mScaleFactor, 5.0f));
-	        return true;
-	    }
-	}
 
 	@Override
     public void onDraw(Canvas canvas) {

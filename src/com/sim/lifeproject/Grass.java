@@ -116,5 +116,10 @@ public class Grass {
 	public int getEnergy() {
 		return this.energy;
 	}
-
+	public int getX() {
+		return this.x;
+	}
+	public int getY() {
+		return this.y;
+	}
 }
