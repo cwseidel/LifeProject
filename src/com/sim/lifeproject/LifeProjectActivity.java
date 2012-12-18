@@ -106,11 +106,11 @@ public class LifeProjectActivity extends Activity {
         tabs.addTab(spec);
         spec=tabs.newTabSpec("mytab3");
         spec.setContent(R.id.tab3);
-        spec.setIndicator("Specie 1",res.getDrawable(android.R.drawable.ic_menu_edit));
+        spec.setIndicator("Specie one",res.getDrawable(android.R.drawable.ic_menu_edit));
         tabs.addTab(spec);
         spec=tabs.newTabSpec("mytab4");
         spec.setContent(R.id.tab4);
-        spec.setIndicator("Specie 2",res.getDrawable(android.R.drawable.ic_menu_edit));
+        spec.setIndicator("Specie two",res.getDrawable(android.R.drawable.ic_menu_edit));
         tabs.addTab(spec);
         spec=tabs.newTabSpec("mytab5");
         spec.setContent(R.id.tab5);
