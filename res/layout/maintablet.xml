@@ -173,6 +173,7 @@
 					android:id="@+id/plants_update"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
+					android:layout_marginBottom="70dip"
 					android:text="@string/update" 
 					/>
         	</LinearLayout>
@@ -307,6 +308,7 @@
 					android:id="@+id/specie1_update"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
+					android:layout_marginBottom="70dip"
 					android:text="@string/update" 
 					/>
         	</LinearLayout>
@@ -440,6 +442,7 @@
 					android:id="@+id/specie2_update"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
+					android:layout_marginBottom="70dip"
 					android:text="@string/update" 
 					/>
         	</LinearLayout>
