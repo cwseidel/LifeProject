@@ -226,4 +226,60 @@ public static void buildgraph() {
 	specie2graphvalues[98]=(int)((float)((float)Engine.SPECIE2_TOTAL_UNITS/(float)(Engine.SPECIE1_TOTAL_UNITS+Engine.SPECIE2_TOTAL_UNITS))*100);
 }
 
+public static void reset() {
+	// plants variables
+	PLANTS_NORMAL_GROWTH_RATIO=15;
+	PLANTS_TOTAL_UNITS=0;
+	CHANCES_OF_RAIN=70;
+	PLANTS_ENHANCED_GROWTH_RATIO=25;
+	PLANTS_ONRAIN_GROWTH_RATIO=60;
+	MAX_RAINING_TIME=10;
+	// species variables
+	SPECIE1_MAX_AGE=15;
+	SPECIE2_MAX_AGE=15;
+	SPECIE1_TOTAL_UNITS=0;
+	SPECIE2_TOTAL_UNITS=0;
+	SPECIE1_LAST_DEADS=0;
+	SPECIE2_LAST_DEADS=0;
+	SPECIE1_CHANCES_TO_BORN=90;
+	SPECIE2_CHANCES_TO_BORN=90;
+	SPECIE1_ENERGY_NEEDED=8;
+	SPECIE2_ENERGY_NEEDED=8;
+	SPECIE1_X_START=20;
+	SPECIE1_Y_START=20;
+	SPECIE2_X_START=80;
+	SPECIE2_Y_START=80;
+	SPECIE1_MINIMUM_ENERGY_TO_REPRODUCE=6;
+	SPECIE1_MINIMUM_AGE_TO_REPRODUCE=4;
+	SPECIE2_MINIMUM_ENERGY_TO_REPRODUCE=6;
+	SPECIE2_MINIMUM_AGE_TO_REPRODUCE=4;
+	//arraylist per les dos llistes d'animals
+	specie1List.clear();
+	specie2List.clear();
+	deadAnimals.clear();
+
+	// global variables
+	PLAY=false; // app begins stopped
+	FIRST_LOOP=true; // is the first loop of the main while?
+	X_SCALE=1.f;
+	Y_SCALE=1.f;
+	X_SCALE_CENTER=0;
+	Y_SCALE_CENTER=0;
+	MASTER_SCALE=1.f;
+	ISTABLET=false;
+	LOOPS=0;
+	IS_MAGNIFIED=false;
+	PROCESSINGLIMIT=5000;
+	matriu_herba=new GrassMatrix();
+	is_raining=0;
+	raining_time=0;
+	current_rain_x=0;
+	current_rain_y=0;
+
+
+	// graph
+	plantsgraphvalues = new int[100];
+	specie1graphvalues = new int[100];
+	specie2graphvalues = new int[100];
+}
 }

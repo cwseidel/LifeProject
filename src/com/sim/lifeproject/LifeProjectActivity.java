@@ -106,11 +106,11 @@ public class LifeProjectActivity extends Activity {
         tabs.addTab(spec);
         spec=tabs.newTabSpec("mytab3");
         spec.setContent(R.id.tab3);
-        spec.setIndicator("Specie one",res.getDrawable(android.R.drawable.ic_menu_edit));
+        spec.setIndicator("Red specie",res.getDrawable(android.R.drawable.ic_menu_edit));
         tabs.addTab(spec);
         spec=tabs.newTabSpec("mytab4");
         spec.setContent(R.id.tab4);
-        spec.setIndicator("Specie two",res.getDrawable(android.R.drawable.ic_menu_edit));
+        spec.setIndicator("Blue specie",res.getDrawable(android.R.drawable.ic_menu_edit));
         tabs.addTab(spec);
         spec=tabs.newTabSpec("mytab5");
         spec.setContent(R.id.tab5);
@@ -363,6 +363,7 @@ public class LifeProjectActivity extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 	    switch (item.getItemId()) {
 	        case R.id.menu_exit:
+	        	Engine.reset();
 	        	finish();
 	            break;
 	        case R.id.menu_start:
@@ -371,7 +372,36 @@ public class LifeProjectActivity extends Activity {
 	        case R.id.menu_stop: 
 	        	Engine.PLAY=false; 
 	        	break;
+	        case R.id.menu_reset: 
+	        	reset(); 
+	        	break;
 	    }
 	    return true;
+	}
+	public void reset() {
+		Engine.reset();
+		pantalla.invalidate();
+		grafic.invalidate();
+		rain_edit1.setText(Integer.toString(Engine.PLANTS_ONRAIN_GROWTH_RATIO));
+        rain_edit2.setText(Integer.toString(Engine.MAX_RAINING_TIME));
+        rain_edit3.setText(Integer.toString(Engine.CHANCES_OF_RAIN));
+        grow_edit1.setText(Integer.toString(Engine.PLANTS_NORMAL_GROWTH_RATIO));
+        grow_edit2.setText(Integer.toString(Engine.PLANTS_ENHANCED_GROWTH_RATIO));
+        specie1_edit1.setText(Integer.toString(Engine.SPECIE1_CHANCES_TO_BORN));
+        specie1_edit2.setText(Integer.toString(Engine.SPECIE1_ENERGY_NEEDED));
+        specie1_edit3.setText(Integer.toString(Engine.SPECIE1_MAX_AGE));
+        specie1_edit4.setText(Integer.toString(Engine.SPECIE1_X_START));
+        specie1_edit5.setText(Integer.toString(Engine.SPECIE1_Y_START));
+        specie1_edit6.setText(Integer.toString(Engine.SPECIE1_MINIMUM_AGE_TO_REPRODUCE));
+        specie1_edit7.setText(Integer.toString(Engine.SPECIE1_MINIMUM_ENERGY_TO_REPRODUCE));
+        specie1_edit8.setText(Integer.toString(Engine.PROCESSINGLIMIT));
+        specie2_edit1.setText(Integer.toString(Engine.SPECIE2_CHANCES_TO_BORN));
+        specie2_edit2.setText(Integer.toString(Engine.SPECIE2_ENERGY_NEEDED));
+        specie2_edit3.setText(Integer.toString(Engine.SPECIE2_MAX_AGE));
+        specie2_edit4.setText(Integer.toString(Engine.SPECIE2_X_START));
+        specie2_edit5.setText(Integer.toString(Engine.SPECIE2_Y_START));
+        specie2_edit6.setText(Integer.toString(Engine.SPECIE2_MINIMUM_AGE_TO_REPRODUCE));
+        specie2_edit7.setText(Integer.toString(Engine.SPECIE2_MINIMUM_ENERGY_TO_REPRODUCE));
+        specie2_edit8.setText(Integer.toString(Engine.PROCESSINGLIMIT));
 	}
 }

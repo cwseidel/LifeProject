@@ -33,8 +33,9 @@ public final class R {
         public static final int insidetab3=0x7f070016;
         public static final int insidetab4=0x7f070029;
         public static final int insidetab5=0x7f07003c;
-        public static final int menu_exit=0x7f07003e;
-        public static final int menu_start=0x7f070040;
+        public static final int menu_exit=0x7f070041;
+        public static final int menu_reset=0x7f070040;
+        public static final int menu_start=0x7f07003e;
         public static final int menu_stop=0x7f07003f;
         public static final int pantallasimulacio=0x7f070001;
         public static final int plants_update=0x7f070014;

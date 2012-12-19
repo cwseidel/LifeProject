@@ -88,6 +88,9 @@ public class Simulator extends View {
 		  Engine.X_SCALE=2.f;
 		  Engine.Y_SCALE=2.f;
 		  Engine.IS_MAGNIFIED=true;
+		  if (Engine.PLAY==false && Engine.FIRST_LOOP==true) {
+			  Engine.PLAY=true;
+		  }
 	      break;
 	   case MotionEvent.ACTION_UP:
 		   	Engine.X_SCALE=1.f;
@@ -113,9 +116,23 @@ public class Simulator extends View {
 			// This method shows a snapshot of the simulation matrix
 			showSnapshot(canvas);
 		}
-		if (Engine.PLAY==false && Engine.FIRST_LOOP==true) { // si encara no s'ha apretat START per primer cop mostrem nomes el terra
+		if (Engine.PLAY==false && Engine.FIRST_LOOP==true) { // si encara no s'ha apretat START per primer cop mostrem la pantalla inicial
 			super.onDraw(canvas);
 	        canvas.save();
+	        //define master scale 
+	        if (Engine.SCREEN_W>300) {
+	        	Engine.MASTER_SCALE=.8f;
+	        }
+	        if (Engine.SCREEN_W>540) {
+	        	Engine.MASTER_SCALE=1.f;
+	        }
+	        canvas.scale(Engine.X_SCALE*Engine.MASTER_SCALE,Engine.Y_SCALE*Engine.MASTER_SCALE,Engine.X_SCALE_CENTER,Engine.Y_SCALE_CENTER);
+	        // control position of the simulation matrix
+	        if (Engine.SCREEN_W>=540) {
+	        	h_position_offset=(Engine.SCREEN_W-540)/2;
+	        } else {
+	        	h_position_offset=(Engine.SCREEN_W-272)/2;
+	        }
 	        canvas.drawBitmap(fons_start, 0, 0, start_image);
 	        
 		}
