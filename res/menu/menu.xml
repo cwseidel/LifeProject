@@ -1,8 +1,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/menu_start"
-        android:title="Start" />
+        android:title="Resume" />
     <item android:id="@+id/menu_stop"
-        android:title="Stop" />
+        android:title="Pause" />
     <item android:id="@+id/menu_reset"
         android:title="Reset" />
     <item android:id="@+id/menu_exit"
