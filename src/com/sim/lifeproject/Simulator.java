@@ -133,11 +133,11 @@ public class Simulator extends View {
 	        } else {
 	        	h_position_offset=(Engine.SCREEN_W-272)/2;
 	        }
-	        if (Engine.ISTABLET==true) {
-	        	 canvas.drawBitmap(fons_start, h_position_offset, v_position_offset, start_image);
-	        } else {
+	        //if (Engine.ISTABLET==true) {
+	        //	 canvas.drawBitmap(fons_start, h_position_offset, v_position_offset, start_image);
+	        //} else {
 	        	 canvas.drawBitmap(fons_start, 0, 0, start_image);
-	        }
+	        //}
 	       
 	        
 		}

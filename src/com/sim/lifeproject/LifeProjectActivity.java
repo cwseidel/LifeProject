@@ -77,8 +77,6 @@ public class LifeProjectActivity extends Activity {
         // setup variables
         Engine.PLAY=false;
         Engine.FIRST_LOOP=true;
-        pantalla = new Simulator(this);
-        grafic = new Graph(this);
         if (isTablet(getApplicationContext())) {
         	setContentView(R.layout.maintablet);
         	Engine.ISTABLET=true;
@@ -86,6 +84,8 @@ public class LifeProjectActivity extends Activity {
         	setContentView(R.layout.main);
         	Engine.ISTABLET=false;
         }
+        pantalla = new Simulator(this);
+        grafic = new Graph(this); 
         Display display = getWindowManager().getDefaultDisplay();
         Engine.SCREEN_W=display.getWidth();
         // ara es fa amb getSize a partir de api 13

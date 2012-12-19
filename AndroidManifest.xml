@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.sim.lifeproject"
     android:versionCode="16"
-    android:versionName="0.15" >
+    android:versionName="0.14.1" >
 
     <uses-sdk android:minSdkVersion="10"
         />
