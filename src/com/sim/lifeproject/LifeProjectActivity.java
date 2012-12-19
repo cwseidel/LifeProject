@@ -70,6 +70,7 @@ public class LifeProjectActivity extends Activity {
 	//    return isHoneycomb() && isTablet(context);
 	//}
 	
+	@SuppressWarnings("deprecation")
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,6 +88,7 @@ public class LifeProjectActivity extends Activity {
         }
         Display display = getWindowManager().getDefaultDisplay();
         Engine.SCREEN_W=display.getWidth();
+        // ara es fa amb getSize a partir de api 13
         Resources res = getResources();
         
         // tab setup
