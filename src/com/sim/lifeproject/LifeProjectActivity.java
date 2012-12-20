@@ -108,11 +108,11 @@ public class LifeProjectActivity extends Activity {
         tabs.addTab(spec);
         spec=tabs.newTabSpec("mytab3");
         spec.setContent(R.id.tab3);
-        spec.setIndicator(" Red specie ",res.getDrawable(android.R.drawable.ic_menu_edit));
+        spec.setIndicator("  Red specie  ",res.getDrawable(android.R.drawable.ic_menu_edit));
         tabs.addTab(spec);
         spec=tabs.newTabSpec("mytab4");
         spec.setContent(R.id.tab4);
-        spec.setIndicator(" Blue specie ",res.getDrawable(android.R.drawable.ic_menu_edit));
+        spec.setIndicator("  Blue specie  ",res.getDrawable(android.R.drawable.ic_menu_edit));
         tabs.addTab(spec);
         spec=tabs.newTabSpec("mytab5");
         spec.setContent(R.id.tab5);
@@ -372,7 +372,7 @@ public class LifeProjectActivity extends Activity {
 	        	Engine.PLAY=true;                
 	        	break;
 	        case R.id.menu_stop: 
-	        	Engine.PLAY=false; 
+	        	Engine.PLAY=false;
 	        	break;
 	        case R.id.menu_reset: 
 	        	reset(); 

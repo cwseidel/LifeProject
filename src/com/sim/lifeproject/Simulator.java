@@ -119,30 +119,10 @@ public class Simulator extends View {
 		if (Engine.PLAY==false && Engine.FIRST_LOOP==true) { // si encara no s'ha apretat START per primer cop mostrem la pantalla inicial
 			super.onDraw(canvas);
 	        canvas.save();
-	        //define master scale 
-	        if (Engine.SCREEN_W>300) {
-	        	Engine.MASTER_SCALE=.8f;
-	        }
-	        if (Engine.SCREEN_W>540) {
-	        	Engine.MASTER_SCALE=1.f;
-	        }
-	        canvas.scale(Engine.X_SCALE*Engine.MASTER_SCALE,Engine.Y_SCALE*Engine.MASTER_SCALE,Engine.X_SCALE_CENTER,Engine.Y_SCALE_CENTER);
-	        // control position of the simulation matrix
-	        if (Engine.SCREEN_W>=540) {
-	        	h_position_offset=(Engine.SCREEN_W-540)/2;
-	        } else {
-	        	h_position_offset=(Engine.SCREEN_W-272)/2;
-	        }
-	        //if (Engine.ISTABLET==true) {
-	        //	 canvas.drawBitmap(fons_start, h_position_offset, v_position_offset, start_image);
-	        //} else {
-	        	 canvas.drawBitmap(fons_start, 0, 0, start_image);
-	        //}
-	       
-	        
+	        canvas.drawBitmap(fons_start, 0, 0, start_image);    
 		}
 		if (Engine.PLAY==true) { // if simulation is running
-        showSnapshot(canvas);
+			showSnapshot(canvas);
 		}
 	}
 	private void showSnapshot(Canvas canvas) {
@@ -172,7 +152,6 @@ public class Simulator extends View {
 				// dibuixem les herbes vives segons els diferents nivells d'energia
 				if (Engine.matriu_herba.getAge(x,y)>0 && Engine.matriu_herba.getAge(x,y)<6) {
 					canvas.drawRect(h_position_offset+(x*tile_size)+celldistance, v_position_offset+(y*tile_size)+celldistance, h_position_offset+(x*tile_size)+tile_size-celldistance, v_position_offset+(y*tile_size)+tile_size-celldistance, color_planta1);
-					Engine.PLANTS_TOTAL_UNITS=Engine.PLANTS_TOTAL_UNITS+1;
 				}
 				/*if (Engine.matriu_herba.getAge(x,y)==2) {
 					canvas.drawRect(h_position_offset+(x*tile_size)+celldistance, v_position_offset+(y*tile_size)+celldistance, h_position_offset+(x*tile_size)+tile_size-celldistance, v_position_offset+(y*tile_size)+tile_size-celldistance, color_planta2);
