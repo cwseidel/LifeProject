@@ -50,8 +50,8 @@ public class Simulator extends View {
 	int celldistance=1;
 
 
-	public Simulator(Context context) {
-		super(context);
+	public Simulator(Simfragment simfragment) {
+		super(simfragment);
 		// set tile colors
 		color_terra.setColor(Color.rgb(136, 96, 17));
 		color_planta1.setColor(Color.rgb(113, 255, 113));
