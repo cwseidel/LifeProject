@@ -1,6 +1,7 @@
 package com.sim.lifeproject;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -18,6 +19,7 @@ public class Graphfragment extends Fragment {
 	TextView info_graph;
 	View grafic;
 	Thread bucleprincipal;
+	static Handler gestor;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -41,7 +43,7 @@ public class Graphfragment extends Fragment {
         		while (true) {
         			Message msg = new Message();
         			msg.what= LifeProjectActivity.UPDATEID;
-       				LifeProjectActivity.gestor.sendMessage(msg);
+       				Graphfragment.gestor.sendMessage(msg);
       					try {
       						Thread.sleep(400);
       					} catch (InterruptedException e) {
