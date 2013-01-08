@@ -41,10 +41,10 @@ import android.widget.TextView;
 @SuppressLint("HandlerLeak")
 public class LifeProjectActivity extends Activity {
     /** Called when the activity is first created. */
-	Thread bucleprincipal;
+	
 	protected static final int UPDATEID=0x101;
-	static Handler gestor;
-	View pantalla, grafic;
+	
+	
 	LinearLayout upper;
 	TabHost tabs;
 
@@ -82,7 +82,7 @@ public class LifeProjectActivity extends Activity {
         	Engine.ISTABLET=false;
         }
        
-        grafic = new Graph(this); 
+        
         Display display = getWindowManager().getDefaultDisplay();
         Engine.SCREEN_W=display.getWidth();
         // ara es fa amb getSize a partir de api 13
@@ -129,72 +129,10 @@ public class LifeProjectActivity extends Activity {
 				grafic.invalidate();
 			}
         }); */
-        
-        pantalla.requestFocus();
-        // add canvas to views
-        LinearLayout canvassim = (LinearLayout) findViewById(R.id.pantallasimulacio);
-        canvassim.addView(pantalla);
-        LinearLayout canvasgraph = (LinearLayout) findViewById(R.id.graficsimulacio);
-        canvasgraph.addView(grafic);
-        
-        // begin setup UI layout
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+
         // end setup UI layout
-        gestor = new Handler() {
-            public void handleMessage(Message msg) {
-            	switch (msg.what) {
-            	case LifeProjectActivity.UPDATEID:
-            		if (Engine.PLAY==true) { Engine.evolve(); Engine.buildgraph(); pantalla.invalidate(); grafic.invalidate(); }
-            		float specie1DeadValue;
-            		float specie2DeadValue;
-            		if (Engine.SPECIE1_TOTAL_UNITS!=0) {
-            			specie1DeadValue=(float)Math.round(((float)Engine.SPECIE1_LAST_DEADS*100/(float)Engine.SPECIE1_TOTAL_UNITS)*100)/100;
-            		} else {
-            			specie1DeadValue=0;
-            		}
-            		if (Engine.SPECIE2_TOTAL_UNITS!=0) {
-            			specie2DeadValue=(float)Math.round(((float)Engine.SPECIE2_LAST_DEADS*100/(float)Engine.SPECIE2_TOTAL_UNITS)*100)/100;
-            		} else {
-            			specie2DeadValue=0;
-            		}
-            		info_sim.setText("Plants: "+(float)Engine.PLANTS_TOTAL_UNITS/100+"% ("+Engine.LOOPS/365+" years and "+Engine.LOOPS%365+" days)\nRed specie: "+Engine.SPECIE1_TOTAL_UNITS+" alive (death ratio: "+(float)specie1DeadValue+"%)\nBlue specie: "+Engine.SPECIE2_TOTAL_UNITS+" alive (death ratio: "+(float)specie2DeadValue+"%)");
-        			info_graph.setText("Plants: "+(float)Engine.PLANTS_TOTAL_UNITS/100+"% ("+Engine.LOOPS/365+" years and "+Engine.LOOPS%365+" days)\nRed specie: "+Engine.SPECIE1_TOTAL_UNITS+" alive (death ratio: "+(float)specie1DeadValue+"%)\nBlue specie: "+Engine.SPECIE2_TOTAL_UNITS+" alive (death ratio: "+(float)specie2DeadValue+"%)");
-
-            		break;
-            	}
-            	super.handleMessage(msg);
-            }
-        };
-        bucleprincipal = new Thread() {
-        	public void run() {
-        		while (true) {
-        			Message msg = new Message();
-        			msg.what= LifeProjectActivity.UPDATEID;
-       				LifeProjectActivity.gestor.sendMessage(msg);
-      					try {
-      						Thread.sleep(400);
-      					} catch (InterruptedException e) {
-      						Engine.PLAY=false;
-        			}
-        		}
-        	}
-        };
-        bucleprincipal.start();
         
-
-        
-        
-        
+ 
     }
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -223,8 +161,8 @@ public class LifeProjectActivity extends Activity {
 	}
 	public void reset() {
 		Engine.reset();
-		pantalla.invalidate();
-		grafic.invalidate();
+		//pantalla.invalidate();
+		//grafic.invalidate();
 		/*
 		rain_edit1.setText(Integer.toString(Engine.PLANTS_ONRAIN_GROWTH_RATIO));
         rain_edit2.setText(Integer.toString(Engine.MAX_RAINING_TIME));
