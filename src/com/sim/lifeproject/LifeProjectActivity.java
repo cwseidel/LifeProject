@@ -27,6 +27,9 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.ViewPager;
+import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.Display;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -39,7 +42,7 @@ import android.widget.TabHost;
 import android.widget.TextView;
 
 @SuppressLint("HandlerLeak")
-public class LifeProjectActivity extends Activity {
+public class LifeProjectActivity extends FragmentActivity {
     /** Called when the activity is first created. */
 	
 	protected static final int UPDATEID=0x101;
@@ -47,6 +50,15 @@ public class LifeProjectActivity extends Activity {
 	
 	LinearLayout upper;
 	TabHost tabs;
+	ViewPager pager;
+	MyFragmentsAdapter adapter;
+	Simfragment Sf;
+	Graphfragment Gf;
+	Plantsfragment Pf;
+	Specie1fragment S1f;
+	Specie2fragment S2f;
+	Helpfragment Hf;
+
 
 
 	
@@ -131,9 +143,44 @@ public class LifeProjectActivity extends Activity {
         }); */
 
         // end setup UI layout
-        
+     // pager setup
+     pager = (ViewPager) findViewById(R.id.viewpager);
+     adapter = new MyFragmentsAdapter(getSupportFragmentManager());
+     Sf = new Simfragment();
+     Gf = new Graphfragment();
+     Pf =  new Plantsfragment();
+     S1f =  new Specie1fragment();
+     S2f = new Specie2fragment();
+     Hf = new Helpfragment();
+     adapter.addFragment(Sf);
+     adapter.addFragment(Gf);
+     adapter.addFragment(Pf);
+     adapter.addFragment(S1f);
+     adapter.addFragment(S2f);
+     adapter.addFragment(Hf);
+     pager.setAdapter(adapter);
+     pager.setOnPageChangeListener(new OnPageChangeListener() {
+     	public void onPageSelected(int position)
+         {
+     		//adapter.notifyDataSetChanged();
+     		//Engine.calculo();
+     		tabs.setCurrentTab(position);
+         }
+
+     	public void onPageScrolled(int arg0, float arg1, int arg2) {
+     		//adapter.notifyDataSetChanged();
+     		//Engine.calculo();
+     	}
+         public void onPageScrollStateChanged(int arg0) {
+         	//adapter.notifyDataSetChanged();
+         	//Engine.calculo();
+         }
+      });
+     
  
     }
+	
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 	    MenuInflater inflater = getMenuInflater();

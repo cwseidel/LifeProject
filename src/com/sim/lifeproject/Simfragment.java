@@ -1,5 +1,6 @@
 package com.sim.lifeproject;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 
 
 
+@SuppressLint("HandlerLeak")
 public class Simfragment extends Fragment {
 	
 	View view = null;
