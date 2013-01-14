@@ -75,17 +75,15 @@ public class Graph extends View {
         if (Engine.SCREEN_W>300) {
         	Engine.MASTER_SCALE=.8f;
         }
-        if (Engine.SCREEN_W>540) {
+        if (Engine.SCREEN_W>440) {
         	Engine.MASTER_SCALE=1.f;
         }
         canvas.scale(Engine.X_SCALE*Engine.MASTER_SCALE,Engine.Y_SCALE*Engine.MASTER_SCALE,Engine.X_SCALE_CENTER,Engine.Y_SCALE_CENTER);
         // control position of the simulation matrix
-        if (Engine.SCREEN_W>=540) {
-        	h_position_offset=(Engine.SCREEN_W-540)/2;
-        } else {
-        	h_position_offset=(Engine.SCREEN_W-272)/2;
-        }
-        if (Engine.SCREEN_W>500) { tile_size=5; } else { tile_size=3; } // set tile size
+     // control position of the simulation matrix
+        if (Engine.SCREEN_W>440) { tile_size=4; h_position_offset=(Engine.SCREEN_W-440)/2;} // set tile size
+        if (Engine.SCREEN_W<=440) { tile_size=3; h_position_offset=(Engine.SCREEN_W-272)/2;}
+        if (Engine.SCREEN_W>540) { tile_size=5; h_position_offset=(Engine.SCREEN_W-540)/2;} 
         // draw axis
 		canvas.drawLine(h_position_offset+4, v_position_offset-4,h_position_offset+4, v_position_offset+(tile_size*99)-4,axis);
 		canvas.drawLine(h_position_offset+4, v_position_offset+(tile_size*99)-4,h_position_offset+(tile_size*100)+4, v_position_offset+(tile_size*99)-4,axis);
