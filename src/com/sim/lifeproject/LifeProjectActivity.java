@@ -34,9 +34,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.TabHost;
 import android.widget.TextView;
+import android.widget.TabHost.OnTabChangeListener;
 
 @SuppressLint("HandlerLeak")
 public class LifeProjectActivity extends Activity {
@@ -75,6 +77,9 @@ public class LifeProjectActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // setup variables
+        float scale = getResources().getDisplayMetrics().density;
+	    final double tabWidth = (int) (150 * scale + 0.5f);
+	    final HorizontalScrollView mHorizontalScrollView;
         Engine.PLAY=false;
         Engine.FIRST_LOOP=true;
         if (isTablet(getApplicationContext())) {
@@ -118,9 +123,17 @@ public class LifeProjectActivity extends Activity {
         spec.setContent(R.id.tab5);
         spec.setIndicator("Help",res.getDrawable(android.R.drawable.ic_menu_help));
         tabs.addTab(spec);
+        
         // setup width and height of tabs
+    	// amb aixo ens preparem per centrar els tabs
+        for (int i = 0; i < tabs.getTabWidget().getTabCount(); i++) {
+	        tabs.getTabWidget().getChildTabViewAt(i).getLayoutParams().width = (int) tabWidth;
+	    }
+
+	    final double screenWidth = getWindowManager().getDefaultDisplay().getWidth();
+	    mHorizontalScrollView = (HorizontalScrollView) findViewById(R.id.hscroll);
         //tabs.getTabWidget().getChildAt(0).setLayoutParams(new LinearLayout.LayoutParams(100, 100));
-        tabs.setCurrentTab(5); // begin with help tab
+        //tabs.setCurrentTab(5); // begin with help tab
         // control of tab
         /*tabs.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
 			
@@ -227,6 +240,7 @@ public class LifeProjectActivity extends Activity {
         	}
         };
         bucleprincipal.start();
+        tabs.setCurrentTab(0);
         
 
         plants_update.setOnClickListener(new Button.OnClickListener() {
@@ -354,7 +368,25 @@ public class LifeProjectActivity extends Activity {
         		tabs.setCurrentTab(0);
         	   }
            });
-    }
+        
+        tabs.setOnTabChangedListener(new OnTabChangeListener() {
+
+    		public void onTabChanged(String tabId) {
+
+    		int nrOfShownCompleteTabs = ((int) (Math.floor(screenWidth / tabWidth) - 1) / 2) * 2;
+            int remainingSpace = (int) ((screenWidth - tabWidth - (tabWidth * nrOfShownCompleteTabs)) / 2);
+            int a = (int) (tabs.getCurrentTab() * tabWidth);
+            int b = (int) ((int) (nrOfShownCompleteTabs / 2) * tabWidth);
+            int offset = (a - b) - remainingSpace;
+            mHorizontalScrollView.scrollTo(offset, 0);
+         
+    		 
+    		}
+    	});
+	
+	}
+	
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 	    MenuInflater inflater = getMenuInflater();
