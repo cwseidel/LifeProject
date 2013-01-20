@@ -101,27 +101,27 @@ public class LifeProjectActivity extends Activity {
         tabs.setup(); 
         TabHost.TabSpec spec=tabs.newTabSpec("mytab1");
         spec.setContent(R.id.tab1);
-        spec.setIndicator("Sim",res.getDrawable(android.R.drawable.ic_menu_gallery));
+        spec.setIndicator("Sim");
         tabs.addTab(spec);
         spec=tabs.newTabSpec("mytab5");
         spec.setContent(R.id.tab6);
-        spec.setIndicator("Graph",res.getDrawable(android.R.drawable.ic_menu_gallery));
+        spec.setIndicator("Graph");
         tabs.addTab(spec);
         spec=tabs.newTabSpec("mytab2");
         spec.setContent(R.id.tab2);
-        spec.setIndicator("Plants",res.getDrawable(android.R.drawable.ic_menu_edit));
+        spec.setIndicator("Plants");
         tabs.addTab(spec);
         spec=tabs.newTabSpec("mytab3");
         spec.setContent(R.id.tab3);
-        spec.setIndicator("  Red specie  ",res.getDrawable(android.R.drawable.ic_menu_edit));
+        spec.setIndicator("  Red specie  ");
         tabs.addTab(spec);
         spec=tabs.newTabSpec("mytab4");
         spec.setContent(R.id.tab4);
-        spec.setIndicator("  Blue specie  ",res.getDrawable(android.R.drawable.ic_menu_edit));
+        spec.setIndicator("  Blue specie  ");
         tabs.addTab(spec);
         spec=tabs.newTabSpec("mytab5");
         spec.setContent(R.id.tab5);
-        spec.setIndicator("Help",res.getDrawable(android.R.drawable.ic_menu_help));
+        spec.setIndicator("Help");
         tabs.addTab(spec);
         
         // setup width and height of tabs
