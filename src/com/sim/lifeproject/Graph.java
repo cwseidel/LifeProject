@@ -1,5 +1,5 @@
 /*
-    Copyright (C) 2012  Ferran Fàbregas
+    Copyright (C) 2012  Ferran Fï¿½bregas
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,30 +19,41 @@ package com.sim.lifeproject;
 
 
 import android.content.Context;
+import android.view.Display;
 import android.view.View;
+import android.view.WindowManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Point;
 
 
 
 public class Graph extends View {
 	
 
-	private int tile_size;
+	private float tile_size;
 	Paint color_terra = new Paint();
 	Paint color_planta = new Paint();
 	Paint color_specie1 = new Paint();
 	Paint color_specie2 = new Paint();
 	Paint axis= new Paint();
-	int h_position_offset;
+	float h_position_offset;
 	int v_position_offset=30;
 	Bitmap fons_start;
+	int real_size_x;
+	int real_size_y;
 
 
 	public Graph(Context context) {
 		super(context);
+		WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+		Display display = wm.getDefaultDisplay();
+		Point size = new Point();
+		display.getSize(size);
+		real_size_x = size.x;
+		real_size_y = size.y;
 		// set tile colors
 		color_terra.setColor(Color.rgb(136, 96, 17));
 		color_planta.setColor(Color.rgb(113, 255, 113));
@@ -72,18 +83,21 @@ public class Graph extends View {
 		// This method shows a snapshot of the simulation matrix
         //define master scale 
 		int valorplanta,valorespecie1,valorespecie2,valorplantaanterior=100,valorespecie1anterior=100,valorespecie2anterior=100;
-        if (Engine.SCREEN_W>300) {
-        	Engine.MASTER_SCALE=.8f;
-        }
-        if (Engine.SCREEN_W>440) {
+        // if (Engine.SCREEN_W>300) {
+        //	Engine.MASTER_SCALE=.8f;
+        //}
+        //if (Engine.SCREEN_W>440) {
         	Engine.MASTER_SCALE=1.f;
-        }
-        canvas.scale(Engine.X_SCALE*Engine.MASTER_SCALE,Engine.Y_SCALE*Engine.MASTER_SCALE,Engine.X_SCALE_CENTER,Engine.Y_SCALE_CENTER);
+        //}
+        //canvas.scale(Engine.X_SCALE*Engine.MASTER_SCALE,Engine.Y_SCALE*Engine.MASTER_SCALE,Engine.X_SCALE_CENTER,Engine.Y_SCALE_CENTER);
         // control position of the simulation matrix
-     // control position of the simulation matrix
-        if (Engine.SCREEN_W>440) { tile_size=4; h_position_offset=(Engine.SCREEN_W-440)/2;} // set tile size
-        if (Engine.SCREEN_W<=440) { tile_size=3; h_position_offset=(Engine.SCREEN_W-272)/2;}
-        if (Engine.SCREEN_W>540) { tile_size=5; h_position_offset=(Engine.SCREEN_W-540)/2;} 
+        // control position of the simulation matrix
+        //if (Engine.SCREEN_W>440) { tile_size=4; h_position_offset=(Engine.SCREEN_W-440)/2;} // set tile size
+        //if (Engine.SCREEN_W<=440) { tile_size=3; h_position_offset=(Engine.SCREEN_W-272)/2;}
+        //if (Engine.SCREEN_W>540) { tile_size=5; h_position_offset=(Engine.SCREEN_W-540)/2;} 
+        tile_size=Engine.rescaling_x(5,real_size_x);
+    	//System.out.println("TileSize:"+tile_size);
+    	h_position_offset=(real_size_x-((tile_size*100)))/2;
         // draw axis
 		canvas.drawLine(h_position_offset+4, v_position_offset-4,h_position_offset+4, v_position_offset+(tile_size*99)-4,axis);
 		canvas.drawLine(h_position_offset+4, v_position_offset+(tile_size*99)-4,h_position_offset+(tile_size*100)+4, v_position_offset+(tile_size*99)-4,axis);

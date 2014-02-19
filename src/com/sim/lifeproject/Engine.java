@@ -1,5 +1,5 @@
 /*
-    Copyright (C) 2012  Ferran Fàbregas
+    Copyright (C) 2012  Ferran Fï¿½bregas
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,6 +19,9 @@ package com.sim.lifeproject;
 
 import java.util.ArrayList;
 import java.util.Random;
+
+import android.graphics.Point;
+import android.view.Display;
 
 
 
@@ -74,12 +77,24 @@ private static int raining_time=0;
 private static int current_rain_x=0;
 private static int current_rain_y=0;
 
+// screen controls
+private static int VIRTUAL_HEIGHT=700;
+private static int VIRTUAL_WIDTH=700;
+
 
 // graph
 public static int[] plantsgraphvalues = new int[100];
 public static int[] specie1graphvalues = new int[100];
 public static int[] specie2graphvalues = new int[100];
 
+
+public static float rescaling_x(int value,int realsize_x) {
+	return value*realsize_x/VIRTUAL_WIDTH;
+}
+
+public static float rescaling_y(int value,int realsize_y) {
+	return value*realsize_y/VIRTUAL_HEIGHT;
+}
 
 public static void evolve() {
 	if (Engine.PLAY==true) { // if simulation is running

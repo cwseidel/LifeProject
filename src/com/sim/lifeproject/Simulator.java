@@ -1,5 +1,5 @@
 /*
-    Copyright (C) 2012  Ferran Fàbregas
+    Copyright (C) 2012  Ferran Fï¿½bregas
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,19 +19,22 @@ package com.sim.lifeproject;
 
 
 import android.content.Context;
+import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Point;
 
 
 
 public class Simulator extends View {
 
-	private int tile_size;
+	private float tile_size;
 	Paint color_terra = new Paint();
 	Paint color_planta1 = new Paint();
 	Paint color_planta2 = new Paint();
@@ -44,14 +47,23 @@ public class Simulator extends View {
 	Paint start_image = new Paint();
 	Paint lupa_paint = new Paint();
 	Paint fons_matriu= new Paint();
-	int h_position_offset;
+	float h_position_offset;
 	int v_position_offset=30;
 	Bitmap fons_start, lupa;
 	int celldistance=1;
+	int real_size_x;
+	int real_size_y;
 
 
 	public Simulator(Context context) {
 		super(context);
+		// get size of the screen
+		WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+		Display display = wm.getDefaultDisplay();
+		Point size = new Point();
+		display.getSize(size);
+		real_size_x = size.x;
+		real_size_y = size.y;
 		// set tile colors
 		color_terra.setColor(Color.rgb(136, 96, 17));
 		color_planta1.setColor(Color.rgb(113, 255, 113));
@@ -128,18 +140,23 @@ public class Simulator extends View {
 	private void showSnapshot(Canvas canvas) {
 		// This method shows a snapshot of the simulation matrix
         //define master scale 
-        if (Engine.SCREEN_W>300) {
-        	Engine.MASTER_SCALE=.8f;
-        }
-        if (Engine.SCREEN_W>440) {
+        //if (Engine.SCREEN_W>300) {
+        	//Engine.MASTER_SCALE=.8f;
+        //}
+        //if (Engine.SCREEN_W>440) {
         	Engine.MASTER_SCALE=1.f;
-        }
+        //}
         canvas.scale(Engine.X_SCALE*Engine.MASTER_SCALE,Engine.Y_SCALE*Engine.MASTER_SCALE,Engine.X_SCALE_CENTER,Engine.Y_SCALE_CENTER);
         // control position of the simulation matrix
-        if (Engine.SCREEN_W>440) { tile_size=4; h_position_offset=(Engine.SCREEN_W-440)/2;} // set tile size
-        if (Engine.SCREEN_W<=440) { tile_size=3; h_position_offset=(Engine.SCREEN_W-272)/2;}
-        if (Engine.SCREEN_W>540) { tile_size=5; h_position_offset=(Engine.SCREEN_W-540)/2;} 
-		// update an draw the matrix
+        //if (Engine.SCREEN_W>440) { tile_size=4; h_position_offset=(Engine.SCREEN_W-440)/2;} // set tile size
+        //if (Engine.SCREEN_W<=440) { tile_size=3; h_position_offset=(Engine.SCREEN_W-272)/2;}
+        //if (Engine.SCREEN_W>540) { tile_size=5; h_position_offset=(Engine.SCREEN_W-540)/2;} 
+		tile_size=Engine.rescaling_x(5,real_size_x);
+		//System.out.println("TileSize:"+tile_size);
+		h_position_offset=(real_size_x-((tile_size*100)+(Engine.rescaling_x(celldistance,real_size_x)*100)))/2;
+		//System.out.println("h_offset:"+h_position_offset);
+		//System.out.println("real x:"+real_size_x);
+        // update an draw the matrix
 		for (int x=0;x<100;x++) {
 			for (int y=0;y<100;y++) {
 				// dibuixem el fons negre
