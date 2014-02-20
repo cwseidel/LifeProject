@@ -19,7 +19,9 @@ package com.sim.lifeproject;
 
 
 import android.content.Context;
+
 import android.util.FloatMath;
+import android.util.Log;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
@@ -55,6 +57,8 @@ public class Simulator extends View {
 	int celldistance=1;
 	int real_size_x;
 	int real_size_y;
+	int xtranslation=0;
+	int ytranslation=0;
 	float basedist;
 	PointF midpoint;
 	int mode; // 0=zoom / 1=move
@@ -115,6 +119,11 @@ public class Simulator extends View {
 		  if (Engine.PLAY==false && Engine.FIRST_LOOP==true) {
 			  Engine.PLAY=true;
 		  }*/
+		  if (Engine.PLAY==false && Engine.FIRST_LOOP==true) {
+				  Engine.PLAY=true;
+		  }
+		  Engine.X_SCALE=1.01f;
+		  Engine.Y_SCALE=1.01f;
 		  mode=1;
 	      break;
 	   case MotionEvent.ACTION_UP:
@@ -132,18 +141,34 @@ public class Simulator extends View {
 		   		Engine.Y_SCALE_CENTER = (int) midPoint(event).y;
 		   		newdist=spacing(event);
 		   		if (newdist>basedist) { // zoom in
-		   			Engine.X_SCALE+=0.1f;
-		   			Engine.Y_SCALE+=0.1f;
+		   			Engine.X_SCALE+=1.1f;
+		   			Engine.Y_SCALE+=1.1f;
 		   		}
 		   		if (newdist>basedist) { // zoom out
-		   			Engine.X_SCALE-=0.1f;
-		   			Engine.Y_SCALE-=0.1f;
+		   			Engine.X_SCALE-=1.1f;
+		   			Engine.Y_SCALE-=1.1f;
 		   		}
 		   		basedist=newdist;
 		   	}
 		   	if (mode==1) { // move
-		   		Engine.X_SCALE_CENTER = (int) event.getX(0);
-		   		Engine.Y_SCALE_CENTER = (int) event.getY(0);
+		   		//Engine.X_SCALE_CENTER = (int) event.getX();
+		   		//Engine.Y_SCALE_CENTER = (int) event.getY();
+		   		//Log.v("touchpad","x-center:"+(int) event.getX());
+		   		//Log.v("touchpad","y-center:"+(int) event.getY());
+		   		//Engine.IS_MAGNIFIED=true;
+		   		
+		   		if (event.getX()>real_size_x/2) {
+		   			xtranslation+=40;
+		   		}
+		   		if (event.getX()<real_size_x/2) {
+		   			xtranslation-=40;
+		   		}
+		   		if (event.getY()>real_size_y/2) {
+		   			ytranslation+=40;
+		   		}
+		   		if (event.getY()<real_size_x/2) {
+		   			ytranslation-=40;
+		   		}
 		   	}
 	   		/*Engine.X_SCALE_CENTER = (int) event.getX();
 	   		Engine.Y_SCALE_CENTER = (int) event.getY();
@@ -196,7 +221,9 @@ public class Simulator extends View {
 	private void showSnapshot(Canvas canvas) {
 		// This method shows a snapshot of the simulation matrix  
         Engine.MASTER_SCALE=1.f;
-        canvas.scale(Engine.X_SCALE*Engine.MASTER_SCALE,Engine.Y_SCALE*Engine.MASTER_SCALE,Engine.X_SCALE_CENTER,Engine.Y_SCALE_CENTER); 
+        canvas.translate(xtranslation, ytranslation);
+        canvas.scale(Engine.X_SCALE, Engine.Y_SCALE);
+        //canvas.scale(Engine.X_SCALE*Engine.MASTER_SCALE,Engine.Y_SCALE*Engine.MASTER_SCALE,Engine.X_SCALE_CENTER,Engine.Y_SCALE_CENTER); 
 		tile_size=Engine.rescaling_x(5,real_size_x);
 		h_position_offset=(real_size_x-((tile_size*100)+(Engine.rescaling_x(celldistance,real_size_x)*100)))/2;
         // update an draw the matrix
