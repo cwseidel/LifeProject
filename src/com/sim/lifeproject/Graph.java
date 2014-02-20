@@ -81,22 +81,10 @@ public class Graph extends View {
 	}
 	private void showGraph(Canvas canvas) {
 		// This method shows a snapshot of the simulation matrix
-        //define master scale 
 		int valorplanta,valorespecie1,valorespecie2,valorplantaanterior=100,valorespecie1anterior=100,valorespecie2anterior=100;
-        // if (Engine.SCREEN_W>300) {
-        //	Engine.MASTER_SCALE=.8f;
-        //}
-        //if (Engine.SCREEN_W>440) {
-        	Engine.MASTER_SCALE=1.f;
-        //}
-        //canvas.scale(Engine.X_SCALE*Engine.MASTER_SCALE,Engine.Y_SCALE*Engine.MASTER_SCALE,Engine.X_SCALE_CENTER,Engine.Y_SCALE_CENTER);
-        // control position of the simulation matrix
-        // control position of the simulation matrix
-        //if (Engine.SCREEN_W>440) { tile_size=4; h_position_offset=(Engine.SCREEN_W-440)/2;} // set tile size
-        //if (Engine.SCREEN_W<=440) { tile_size=3; h_position_offset=(Engine.SCREEN_W-272)/2;}
-        //if (Engine.SCREEN_W>540) { tile_size=5; h_position_offset=(Engine.SCREEN_W-540)/2;} 
+		//define master scale 
+        Engine.MASTER_SCALE=1.f;
         tile_size=Engine.rescaling_x(5,real_size_x);
-    	//System.out.println("TileSize:"+tile_size);
     	h_position_offset=(real_size_x-((tile_size*100)))/2;
         // draw axis
 		canvas.drawLine(h_position_offset+4, v_position_offset-4,h_position_offset+4, v_position_offset+(tile_size*99)-4,axis);

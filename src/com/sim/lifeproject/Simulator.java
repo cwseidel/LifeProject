@@ -138,24 +138,11 @@ public class Simulator extends View {
 		}
 	}
 	private void showSnapshot(Canvas canvas) {
-		// This method shows a snapshot of the simulation matrix
-        //define master scale 
-        //if (Engine.SCREEN_W>300) {
-        	//Engine.MASTER_SCALE=.8f;
-        //}
-        //if (Engine.SCREEN_W>440) {
-        	Engine.MASTER_SCALE=1.f;
-        //}
-        canvas.scale(Engine.X_SCALE*Engine.MASTER_SCALE,Engine.Y_SCALE*Engine.MASTER_SCALE,Engine.X_SCALE_CENTER,Engine.Y_SCALE_CENTER);
-        // control position of the simulation matrix
-        //if (Engine.SCREEN_W>440) { tile_size=4; h_position_offset=(Engine.SCREEN_W-440)/2;} // set tile size
-        //if (Engine.SCREEN_W<=440) { tile_size=3; h_position_offset=(Engine.SCREEN_W-272)/2;}
-        //if (Engine.SCREEN_W>540) { tile_size=5; h_position_offset=(Engine.SCREEN_W-540)/2;} 
+		// This method shows a snapshot of the simulation matrix  
+        Engine.MASTER_SCALE=1.f;
+        canvas.scale(Engine.X_SCALE*Engine.MASTER_SCALE,Engine.Y_SCALE*Engine.MASTER_SCALE,Engine.X_SCALE_CENTER,Engine.Y_SCALE_CENTER); 
 		tile_size=Engine.rescaling_x(5,real_size_x);
-		//System.out.println("TileSize:"+tile_size);
 		h_position_offset=(real_size_x-((tile_size*100)+(Engine.rescaling_x(celldistance,real_size_x)*100)))/2;
-		//System.out.println("h_offset:"+h_position_offset);
-		//System.out.println("real x:"+real_size_x);
         // update an draw the matrix
 		for (int x=0;x<100;x++) {
 			for (int y=0;y<100;y++) {

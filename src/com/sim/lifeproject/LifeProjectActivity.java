@@ -23,7 +23,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Configuration;
-import android.content.res.Resources;
+//import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -94,7 +94,7 @@ public class LifeProjectActivity extends Activity {
         Display display = getWindowManager().getDefaultDisplay();
         Engine.SCREEN_W=display.getWidth();
         // ara es fa amb getSize a partir de api 13
-        Resources res = getResources();
+        //Resources res = getResources();
         
         // tab setup
         tabs=(TabHost)findViewById(android.R.id.tabhost);

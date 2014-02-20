@@ -20,11 +20,6 @@ package com.sim.lifeproject;
 import java.util.ArrayList;
 import java.util.Random;
 
-import android.graphics.Point;
-import android.view.Display;
-
-
-
 public class Engine {
 // plants variables
 public static int PLANTS_NORMAL_GROWTH_RATIO=15;
