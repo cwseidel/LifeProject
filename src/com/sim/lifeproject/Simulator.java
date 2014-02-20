@@ -83,6 +83,13 @@ public class Simulator extends View {
 		color_rain.setAlpha(100);
 		color_race1.setAlpha(200);
 		color_race2.setAlpha(200);
+		
+		// default scale
+		Engine.X_SCALE=1.f;
+	   	Engine.Y_SCALE=1.f;
+	   	Engine.X_SCALE_CENTER = 0;
+	   	Engine.Y_SCALE_CENTER = 0;
+	   	
 		// end of set tile colors
 		lupa=BitmapFactory.decodeResource(getResources(),R.drawable.lupa);
 		if (Engine.ISTABLET==true) {
