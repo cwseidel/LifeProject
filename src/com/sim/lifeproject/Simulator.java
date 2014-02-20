@@ -19,6 +19,7 @@ package com.sim.lifeproject;
 
 
 import android.content.Context;
+import android.util.FloatMath;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
@@ -29,6 +30,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
+import android.graphics.PointF;
 
 
 
@@ -53,6 +55,9 @@ public class Simulator extends View {
 	int celldistance=1;
 	int real_size_x;
 	int real_size_y;
+	float basedist;
+	PointF midpoint;
+	int mode; // 0=zoom / 1=move
 
 
 	public Simulator(Context context) {
@@ -95,33 +100,77 @@ public class Simulator extends View {
 	public boolean onTouchEvent(MotionEvent event) {
 	   switch(event.getAction()) {
 	   case MotionEvent.ACTION_DOWN:
-		  Engine.X_SCALE_CENTER = (int) event.getX();
+		  /*Engine.X_SCALE_CENTER = (int) event.getX();
 		  Engine.Y_SCALE_CENTER = (int) event.getY();
 		  Engine.X_SCALE=2.f;
 		  Engine.Y_SCALE=2.f;
 		  Engine.IS_MAGNIFIED=true;
 		  if (Engine.PLAY==false && Engine.FIRST_LOOP==true) {
 			  Engine.PLAY=true;
-		  }
+		  }*/
+		  mode=1;
 	      break;
 	   case MotionEvent.ACTION_UP:
-		   	Engine.X_SCALE=1.f;
+		   	/*Engine.X_SCALE=1.f;
 		   	Engine.Y_SCALE=1.f;
 		   	Engine.X_SCALE_CENTER = 0;
 		   	Engine.Y_SCALE_CENTER = 0;
-		   	Engine.IS_MAGNIFIED=false;
+		   	Engine.IS_MAGNIFIED=false;*/
+		    mode=1;
 		   	break;
 	   case MotionEvent.ACTION_MOVE:
-	   		Engine.X_SCALE_CENTER = (int) event.getX();
+		   	if (mode==0) { // zoom
+		   		float newdist;
+		   		Engine.X_SCALE_CENTER = (int) midPoint(event).x;
+		   		Engine.Y_SCALE_CENTER = (int) midPoint(event).y;
+		   		newdist=spacing(event);
+		   		if (newdist>basedist) { // zoom in
+		   			Engine.X_SCALE+=0.1f;
+		   			Engine.Y_SCALE+=0.1f;
+		   		}
+		   		if (newdist>basedist) { // zoom out
+		   			Engine.X_SCALE-=0.1f;
+		   			Engine.Y_SCALE-=0.1f;
+		   		}
+		   		basedist=newdist;
+		   	}
+		   	if (mode==1) { // move
+		   		Engine.X_SCALE_CENTER = (int) event.getX(0);
+		   		Engine.Y_SCALE_CENTER = (int) event.getY(0);
+		   	}
+	   		/*Engine.X_SCALE_CENTER = (int) event.getX();
 	   		Engine.Y_SCALE_CENTER = (int) event.getY();
-	   		Engine.IS_MAGNIFIED=true;
+	   		Engine.IS_MAGNIFIED=true;*/
 	   		break;
+	   case MotionEvent.ACTION_POINTER_DOWN:
+		   	// second finger
+		   basedist=spacing(event);
+		   midpoint=midPoint(event);
+		   mode=0;
+		   break;
+	   case MotionEvent.ACTION_POINTER_UP:
+		   	// second finger release
+		   mode=1;
+		   break;
 	   }
 	  
 	   return true;
 	}
 	
-
+	public float spacing(MotionEvent event) { // distance between two points
+		float x = event.getX(0) - event.getX(1);
+		float y = event.getY(0) - event.getY(1);
+		return  (float) Math.sqrt(x * x + y * y);
+	}
+	
+	private PointF midPoint(MotionEvent event) { // midPoint between two points
+		PointF point = new PointF();
+		float x = event.getX(0) + event.getX(1);
+		float y = event.getY(0) + event.getY(1);
+		point.set(x / 2, y / 2);
+		return point;
+	}
+	
 	@Override
     public void onDraw(Canvas canvas) {
 		if (Engine.PLAY==false && Engine.FIRST_LOOP==false) {
